@@ -1,0 +1,14 @@
+{
+  "name": "expense-splitting",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@nrwl/cypress": "15.9.2",
+    "@nrwl/nx-cloud": "latest",
+    "@nrwl/react": "15.9.2",
+    "@nrwl/vite": "15.9.2",
+    "@nrwl/workspace": "15.9.2",
+    "nx": "15.9.2"
+  }
+}
