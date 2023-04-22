@@ -1821,7 +1821,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/cli@npm:15.9.2":
+"@nrwl/cli@npm:15.9.2, @nrwl/cli@npm:^15.9.2":
   version: 15.9.2
   resolution: "@nrwl/cli@npm:15.9.2"
   dependencies:
@@ -4263,52 +4263,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "es@workspace:."
-  dependencies:
-    "@nrwl/cypress": "npm:15.9.2"
-    "@nrwl/eslint-plugin-nx": "npm:15.9.2"
-    "@nrwl/js": "npm:15.9.2"
-    "@nrwl/linter": "npm:15.9.2"
-    "@nrwl/react": "npm:15.9.2"
-    "@nrwl/vite": "npm:15.9.2"
-    "@nrwl/workspace": "npm:15.9.2"
-    "@testing-library/react": "npm:14.0.0"
-    "@types/node": "npm:18.14.2"
-    "@types/react": "npm:18.0.28"
-    "@types/react-dom": "npm:18.0.11"
-    "@types/react-router-dom": "npm:5.3.3"
-    "@typescript-eslint/eslint-plugin": "npm:^5.36.1"
-    "@typescript-eslint/parser": "npm:^5.36.1"
-    "@vitejs/plugin-react": "npm:^3.0.0"
-    "@vitest/coverage-c8": "npm:~0.25.8"
-    "@vitest/ui": "npm:^0.25.8"
-    cypress: "npm:^12.2.0"
-    eslint: "npm:~8.15.0"
-    eslint-config-prettier: "npm:8.1.0"
-    eslint-plugin-cypress: "npm:^2.10.3"
-    eslint-plugin-import: "npm:2.27.5"
-    eslint-plugin-jsx-a11y: "npm:6.7.1"
-    eslint-plugin-react: "npm:7.32.2"
-    eslint-plugin-react-hooks: "npm:4.6.0"
-    global: "npm:^4.4.0"
-    jsdom: "npm:~20.0.3"
-    nx: "npm:^15.9.2"
-    prettier: "npm:^2.6.2"
-    react: "npm:18.2.0"
-    react-dom: "npm:18.2.0"
-    react-router-dom: "npm:6.8.1"
-    react-test-renderer: "npm:18.2.0"
-    sass: "npm:^1.55.0"
-    typescript: "npm:~4.9.5"
-    vite: "npm:^4.0.1"
-    vite-plugin-eslint: "npm:^1.8.1"
-    vite-tsconfig-paths: "npm:^4.0.2"
-    vitest: "npm:^0.25.8"
-  languageName: unknown
-  linkType: soft
-
 "esbuild@npm:^0.17.5":
   version: 0.17.17
   resolution: "esbuild@npm:0.17.17"
@@ -4745,6 +4699,54 @@ __metadata:
   checksum: 129ac01296a4dfb2a937f36473424205e241e2019bc4c6b38061bbf0041c4052eaa37c3935b3244bdf0f1db896a6ae324f0a3c70915257cf31fe5d2550831649
   languageName: node
   linkType: hard
+
+"expensesplitting@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "expensesplitting@workspace:."
+  dependencies:
+    "@nrwl/cli": "npm:^15.9.2"
+    "@nrwl/cypress": "npm:15.9.2"
+    "@nrwl/eslint-plugin-nx": "npm:15.9.2"
+    "@nrwl/js": "npm:15.9.2"
+    "@nrwl/linter": "npm:15.9.2"
+    "@nrwl/react": "npm:15.9.2"
+    "@nrwl/vite": "npm:15.9.2"
+    "@nrwl/workspace": "npm:15.9.2"
+    "@testing-library/react": "npm:14.0.0"
+    "@types/node": "npm:18.14.2"
+    "@types/react": "npm:18.0.28"
+    "@types/react-dom": "npm:18.0.11"
+    "@types/react-router-dom": "npm:5.3.3"
+    "@typescript-eslint/eslint-plugin": "npm:^5.36.1"
+    "@typescript-eslint/parser": "npm:^5.36.1"
+    "@vitejs/plugin-react": "npm:^3.0.0"
+    "@vitest/coverage-c8": "npm:~0.25.8"
+    "@vitest/ui": "npm:^0.25.8"
+    cypress: "npm:^12.2.0"
+    eslint: "npm:~8.15.0"
+    eslint-config-prettier: "npm:8.1.0"
+    eslint-plugin-cypress: "npm:^2.10.3"
+    eslint-plugin-import: "npm:2.27.5"
+    eslint-plugin-jsx-a11y: "npm:6.7.1"
+    eslint-plugin-react: "npm:7.32.2"
+    eslint-plugin-react-hooks: "npm:4.6.0"
+    global: "npm:^4.4.0"
+    jsdom: "npm:~20.0.3"
+    nx: "npm:^15.9.2"
+    prettier: "npm:^2.6.2"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    react-router-dom: "npm:6.8.1"
+    react-test-renderer: "npm:18.2.0"
+    sass: "npm:^1.55.0"
+    typescript: "npm:~4.9.5"
+    vite: "npm:^4.0.1"
+    vite-plugin-eslint: "npm:^1.8.1"
+    vite-tsconfig-paths: "npm:^4.0.2"
+    vitest: "npm:^0.25.8"
+    zod: "npm:^3.21.4"
+  languageName: unknown
+  linkType: soft
 
 "extend@npm:~3.0.2":
   version: 3.0.2
@@ -8871,5 +8873,12 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: 63eceacd482622afd71290541a9823a0e5eed88a6b58a5d136a5fb8151ed4d1549c80f28d74d4ad351582f9890635d49e6cf70f8d3cc64948640f839f6a37c70
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.21.4":
+  version: 3.21.4
+  resolution: "zod@npm:3.21.4"
+  checksum: f25f384f380c49d05a11541093a8d26f07688aa39f6a8adbd6dc338b43f63617bf138734fb1b79800ba374523f6a1bb561f7d401b3cc051fed2715eae5577d0a
   languageName: node
   linkType: hard

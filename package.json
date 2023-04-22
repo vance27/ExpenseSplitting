@@ -1,6 +1,6 @@
 {
-  "name": "es",
-  "version": "0.0.0",
+  "name": "expensesplitting",
+  "version": "0.0.1",
   "license": "MIT",
   "private": true,
   "devDependencies": {
@@ -44,9 +44,11 @@
     "node": "18.16.0"
   },
   "dependencies": {
+    "@nrwl/cli": "^15.9.2",
     "global": "^4.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.8.1"
+    "react-router-dom": "6.8.1",
+    "zod": "^3.21.4"
   }
 }
