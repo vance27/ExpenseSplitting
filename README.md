@@ -1,4 +1,20 @@
-# Es
+# Expense Splitting
+
+Take exported csv data from Mint and convert to an automated total of what is owed to that individual.
+
+- Intakes exported data
+- filters out unwanted values using 0..\* lists. (Brian list, Patrice list, shared list)
+- Orders list by data
+- Columns are:
+
+  - DATE
+  - TITLE
+  - NOTES
+  - PRICE
+  - SHARED - BOOLEAN
+  - ?sharedPercentage (how much the OTHER person owes)
+
+- Exports data to a civ file
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
