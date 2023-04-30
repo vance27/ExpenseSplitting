@@ -1,10 +1,28 @@
 # Expense Splitting
+Users have preferences that determine how they want their data to be imported (what values are filtered out, regex for values that should be variable, etc.)
+-filter object is based off of column names from the csv file
+
+MongoDB
+
+
+document database??
+UX
+open page, option to view past records or upload a new file
+
+only allows csv files from mint export to be imported, will error otherwise
+
+shows list of uploaded files and allows users to edit the data. updates made will save the request to the database
+
+exportable to expense splitting format to double check values
+
+
+
 
 Take exported csv data from Mint and convert to an automated total of what is owed to that individual.
 
 - Intakes exported data
 - filters out unwanted values using 0..\* lists. (Brian list, Patrice list, shared list)
-- Orders list by data
+- Orders list by date
 - Columns are:
 
   - DATE
