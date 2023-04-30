@@ -11,7 +11,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 const pages: string[] = [];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -40,7 +39,7 @@ function ResponsiveAppBar() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" style={{ margin: 0 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <LocalAtmIcon />

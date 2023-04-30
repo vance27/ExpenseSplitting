@@ -31,6 +31,7 @@ const columns: GridColDef[] = [
         headerName: 'Amount',
         width: 160,
         editable: true,
+        valueFormatter: ({ value }) => `$${value}`,
     },
     {
         field: 'transactionType',
@@ -53,7 +54,9 @@ const columns: GridColDef[] = [
 ];
 
 // TODO: Add loading spinner for data grid
-
+// TODO: color code values to easily see large transactions
+// TODO: add delete row capability
+// TODO: add saved state cookie/local storage (in progress)
 const pageSizeOptions: number[] = [5, 10, 25, 50];
 
 export function UploadCsv(): ReactElement {
@@ -90,7 +93,6 @@ export function UploadCsv(): ReactElement {
                         setError(
                             "Unable to parse CSV file. Please verify the csv file's format."
                         );
-                        console.log('error', error);
                         return;
                     }
                     console.log('res', res);
@@ -105,7 +107,14 @@ export function UploadCsv(): ReactElement {
     function CustomToolbar() {
         return (
             <GridToolbarContainer>
-                <GridToolbarExport />
+                <GridToolbarExport
+                    csvOptions={{
+                        fileName: `mint-split-${new Date()
+                            .toISOString()
+                            .slice(0, 10)}.csv`,
+                        delimiter: ',',
+                    }}
+                />
                 <Button variant="text" onClick={setData.bind(this, [])}>
                     <UndoIcon />
                     Reset
@@ -129,11 +138,22 @@ export function UploadCsv(): ReactElement {
                                 },
                             },
                         }}
+                        getRowClassName={(params) =>
+                            params.indexRelativeToCurrentPage % 2 === 0
+                                ? 'Mui-even'
+                                : 'Mui-odd'
+                        }
                         pageSizeOptions={pageSizeOptions}
                         checkboxSelection
                         disableRowSelectionOnClick
                         slots={{
                             toolbar: CustomToolbar,
+                        }}
+                        sx={{
+                            '& .MuiDataGrid-row:hover': {
+                                backgroundColor: 'rgba(226, 246, 221, 0.4)',
+                                // color: "red"
+                            },
                         }}
                     />
                 ) : (

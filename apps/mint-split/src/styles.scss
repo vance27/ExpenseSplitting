@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+}
+
+.Mui-odd {
+    background-color: rgb(233, 233, 233);
+}
+.Mui-even {
+    background-color: rgb(255, 254, 254);
+}
+
+.MuiDataGrid-root {
+    background-color: rgb(255, 255, 255);
+}
