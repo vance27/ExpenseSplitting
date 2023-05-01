@@ -1,9 +1,9 @@
 # Expense Splitting
+
 Users have preferences that determine how they want their data to be imported (what values are filtered out, regex for values that should be variable, etc.)
 -filter object is based off of column names from the csv file
 
 MongoDB
-
 
 document database??
 UX
@@ -15,8 +15,10 @@ shows list of uploaded files and allows users to edit the data. updates made wil
 
 exportable to expense splitting format to double check values
 
+## Filter list
 
-
+uploadable txt file list of values to filter out of the csv file
+saves list to profile, deduplicates list and sorts alphabetically
 
 Take exported csv data from Mint and convert to an automated total of what is owed to that individual.
 

@@ -1,0 +1,64 @@
+{
+    "name": "mint-split-backend",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/mint-split-backend/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nx/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "target": "node",
+                "compiler": "tsc",
+                "outputPath": "dist/apps/mint-split-backend",
+                "main": "apps/mint-split-backend/src/main.ts",
+                "tsConfig": "apps/mint-split-backend/tsconfig.app.json",
+                "assets": ["apps/mint-split-backend/src/assets"],
+                "isolatedConfig": true,
+                "webpackConfig": "apps/mint-split-backend/webpack.config.js"
+            },
+            "configurations": {
+                "development": {},
+                "production": {}
+            }
+        },
+        "serve": {
+            "executor": "@nx/js:node",
+            "defaultConfiguration": "development",
+            "options": {
+                "buildTarget": "mint-split-backend:build"
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "mint-split-backend:build:development"
+                },
+                "production": {
+                    "buildTarget": "mint-split-backend:build:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/mint-split-backend/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/mint-split-backend/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        }
+    },
+    "tags": []
+}
