@@ -4,22 +4,12 @@ import { MintTheme } from './theme-provider';
 import { UploadCsv } from './upload-csv';
 import { Dashboard } from './components/dashboard';
 import { Preferences } from './components/preferences';
-import { useState } from 'react';
 import { Login } from './components/login';
-
-function setToken(userToken: any): void {
-    sessionStorage.setItem('token', JSON.stringify(userToken));
-}
-
-function getToken(): any {
-  const tokenString = sessionStorage.getItem('token');
-  const userToken = JSON.parse(tokenString);
-  return userToken?.token;
-}
+import useToken from './useToken';
 
 export function App() {
-    const token = getToken();
-    
+    const { token, setToken } = useToken();
+
     if (!token) {
         return <Login setToken={setToken} />;
     }
