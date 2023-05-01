@@ -3325,10 +3325,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.3.2":
-  version: 1.3.2
-  resolution: "@remix-run/router@npm:1.3.2"
-  checksum: 517a7372a7b9051b80b333e7b20cb98fd6c5bf3412e941dca3d2c45f72b3b3e94744ae9f3f23fbbf76d5eb5436016155a0d490e3d36c402dc443cdf6b5376eb9
+"@remix-run/router@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@remix-run/router@npm:1.6.0"
+  checksum: 31678070ce15849c376c31d31e2d2263d7fb4ed4a67c3f1cb56e02bcfedb29754009dae7e74d437ebf3e267eeae2998be747194e48979cb494f925bd5dab5c07
   languageName: node
   linkType: hard
 
@@ -3728,6 +3728,15 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 1fffce36ab2abf23023d8bb0f5c35c481cb97d116e6a1b206668be9dd57ffa9ae705256d232461fe05c6007c03a0fb7f1600256643ccc08b62d6f67214b1bb75
+  languageName: node
+  linkType: hard
+
+"@types/cors@npm:^2.8.13":
+  version: 2.8.13
+  resolution: "@types/cors@npm:2.8.13"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 9c8b1c732295603fcc0e1e8e8f0a332e7ec03d10bb18b9398225e5e2fbf6a2fd64758926204d306ef100a5bdd7b35324bdc34bc57fc49ed9807446930bc678f9
   languageName: node
   linkType: hard
 
@@ -5932,6 +5941,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cors@npm:^2.8.5":
+  version: 2.8.5
+  resolution: "cors@npm:2.8.5"
+  dependencies:
+    object-assign: "npm:^4"
+    vary: "npm:^1"
+  checksum: 8451ae4bb9710e6cc03c61283b226747397162b54d12cf77e257184e6bd568387864d6a817bba9752c2febb686fe45a14b7b0ce6f68e3e70d25df2ba6e17e80e
+  languageName: node
+  linkType: hard
+
 "cosmiconfig@npm:^6.0.0":
   version: 6.0.0
   resolution: "cosmiconfig@npm:6.0.0"
@@ -7414,6 +7433,7 @@ __metadata:
     "@nx/node": "npm:16.0.1"
     "@nx/webpack": "npm:16.0.1"
     "@testing-library/react": "npm:14.0.0"
+    "@types/cors": "npm:^2.8.13"
     "@types/express": "npm:4.17.13"
     "@types/jest": "npm:^29.5.1"
     "@types/node": "npm:18.14.2"
@@ -7427,6 +7447,7 @@ __metadata:
     "@vitest/coverage-c8": "npm:~0.25.8"
     "@vitest/ui": "npm:^0.25.8"
     axios: "npm:^1.0.0"
+    cors: "npm:^2.8.5"
     cypress: "npm:^12.2.0"
     eslint: "npm:~8.15.0"
     eslint-config-prettier: "npm:8.1.0"
@@ -7445,7 +7466,7 @@ __metadata:
     prettier: "npm:^2.6.2"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
-    react-router-dom: "npm:6.8.1"
+    react-router-dom: "npm:^6.11.0"
     react-test-renderer: "npm:18.2.0"
     sass: "npm:^1.55.0"
     ts-jest: "npm:^29.1.0"
@@ -11148,7 +11169,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object-assign@npm:^4.1.1":
+"object-assign@npm:^4, object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: f5cd1f2f1e82e12207e4f2377d9d7d90fbc0d9822a6afa717a6dcab6930d8925e1ebbbb25df770c31ff11335ee423459ba65ffa2e53999926c328b806b4d73d6
@@ -12230,27 +12251,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:6.8.1":
-  version: 6.8.1
-  resolution: "react-router-dom@npm:6.8.1"
+"react-router-dom@npm:^6.11.0":
+  version: 6.11.0
+  resolution: "react-router-dom@npm:6.11.0"
   dependencies:
-    "@remix-run/router": "npm:1.3.2"
-    react-router: "npm:6.8.1"
+    "@remix-run/router": "npm:1.6.0"
+    react-router: "npm:6.11.0"
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: e2d385fbbda29bf1a143fe353e0267c3380b0ad1122f12814d3ce080d922a7389f06eb9d737fc71644ae8752b59f21cbed0d0816389f1039a876dffd1e829f3f
+  checksum: f0c816453981f4739946ca5ff95f270109ed678ce4018f5bfeaae6e939bb7dc9ec178cf55d460afc6a2c176be64c05f5b6aaefc694cfe2d4664de77b6b846105
   languageName: node
   linkType: hard
 
-"react-router@npm:6.8.1":
-  version: 6.8.1
-  resolution: "react-router@npm:6.8.1"
+"react-router@npm:6.11.0":
+  version: 6.11.0
+  resolution: "react-router@npm:6.11.0"
   dependencies:
-    "@remix-run/router": "npm:1.3.2"
+    "@remix-run/router": "npm:1.6.0"
   peerDependencies:
     react: ">=16.8"
-  checksum: 24e4b12e86a01c0491ec3188a0d1503cf52c59324d395a0967ea4a8eb9f09120da9533f2758d098d3435ed5a8788f2996d7fb4a53614fdbe37eca164cb5d58b8
+  checksum: 12ffd962bba42df85947b78d959395587221a78dfb116e04b874cf23ab45fa4e8d5ce82934f8e288088c338b5c694310e6e7e5154038d61cada5a3b91788f938
   languageName: node
   linkType: hard
 
@@ -14182,7 +14203,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vary@npm:~1.1.2":
+"vary@npm:^1, vary@npm:~1.1.2":
   version: 1.1.2
   resolution: "vary@npm:1.1.2"
   checksum: b1db20d4be443aec48b8efab73386f83d947b7033b6b2f5a0c7ba4a1f9bc0200cb4cb396712468761f8edfe48dd68a6fdee7c65689b90937a2d767c714d25883

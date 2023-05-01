@@ -5,13 +5,20 @@
 
 import express from 'express';
 import * as path from 'path';
+import * as cors from 'cors';
 
 const app = express();
 
+app.use(cors.default());
+
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-app.get('/api', (req, res) => {
+app.get('/api', (_, res) => {
     res.send({ message: 'Welcome to mint-split-backend!' });
+});
+
+app.post('/api/login', (_, res) => {
+    res.send({ token: '1234567890' });
 });
 
 const port = process.env.PORT || 3333;

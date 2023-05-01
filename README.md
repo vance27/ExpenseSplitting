@@ -15,6 +15,11 @@ shows list of uploaded files and allows users to edit the data. updates made wil
 
 exportable to expense splitting format to double check values
 
+##
+to start
+brew services start mongodb-community@6.0
+
+
 ## Filter list
 
 uploadable txt file list of values to filter out of the csv file
