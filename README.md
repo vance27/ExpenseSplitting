@@ -2,8 +2,6 @@
 ### About
 This project is a work in progress. The goal is to take exported csv data from Mint and convert to an automated total of what is owed to that individual. This is useful for roommates who want to split expenses evenly.
 
-Test
-
 ### Tools
 PERN stack (postgres, express, react, node)
 - Nx Workspace
