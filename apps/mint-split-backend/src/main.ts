@@ -5,14 +5,20 @@
 
 import express from 'express';
 import { join } from 'path';
-// import * as path from 'path';
 import * as cors from 'cors';
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
 const app = express();
-
 app.use(cors.default());
+app.use(express.json());
 
-// app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.get('/users', async (_, res) => {
+    console.log('get users');
+    const users = await prisma.user.findMany();
+    res.json(users);
+});
+
 // Start Auth0
 app.use(express.static(join(__dirname, 'public')));
 
@@ -24,10 +30,6 @@ app.get('/', (_, res) => {
     res.sendFile(join(__dirname, 'public', 'index.html'));
 });
 // end Auth0
-
-// app.get('/api', (_, res) => {
-//     res.send({ message: 'Welcome to mint-split-backend!' });
-// });
 
 // app.post('/api/login', (_, res) => {
 //     res.send({ token: '1234567890' });

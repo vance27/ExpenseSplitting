@@ -9,3 +9,24 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  name         String?
+  transactions Transaction[]
+}
+
+model Transaction {
+  id               Int      @id @default(autoincrement())
+  createdAt        DateTime @default(now()) @db.Timestamp(3)
+  updatedAt        DateTime @default(now()) @db.Timestamp(3)
+  title            String
+  date             DateTime @db.Date
+  notes            String
+  price            Int
+  shared           Boolean  @default(false)
+  sharedPercentage Int
+  User             User?    @relation(fields: [userId], references: [id])
+  userId           Int?
+}

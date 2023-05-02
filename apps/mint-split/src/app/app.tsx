@@ -8,11 +8,11 @@ import { Login } from './components/login';
 import useToken from './useToken';
 
 export function App() {
-    const { token, setToken } = useToken();
+    // const { token, setToken } = useToken();
 
-    if (!token) {
-        return <Login setToken={setToken} />;
-    }
+    // if (!token) {
+    //     return <Login setToken={setToken} />;
+    // }
 
     return (
         <MintTheme>
