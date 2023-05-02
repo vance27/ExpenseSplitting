@@ -14,7 +14,10 @@
                 "outputPath": "dist/apps/mint-split-backend",
                 "main": "apps/mint-split-backend/src/main.ts",
                 "tsConfig": "apps/mint-split-backend/tsconfig.app.json",
-                "assets": ["apps/mint-split-backend/src/assets"],
+                "assets": [
+                    "apps/mint-split-backend/src/assets",
+                    "apps/mint-split-backend/src/public"
+                ],
                 "isolatedConfig": true,
                 "webpackConfig": "apps/mint-split-backend/webpack.config.js"
             },
