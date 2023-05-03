@@ -1,14 +1,18 @@
 import ResponsiveAppBar from '../components/app-bar';
-import { MintTheme } from '../components/theme-provider';
-import { Dashboard } from '../components/dashboard';
-import styles from './index.module.scss';
+import { MintTheme } from './theme-provider';
+import { UploadCsv } from './upload-csv';
+import { Dashboard } from './components/dashboard';
+import { Preferences } from './components/preferences';
+import { Login } from './components/login';
+import useToken from './useToken';
 
-export function Index() {
-    /*
-     * Replace the elements below with your own.
-     *
-     * Note: The corresponding styles are in the ./index.scss file.
-     */
+export function App() {
+    // const { token, setToken } = useToken(true);
+
+    // if (!token) {
+    //     return <Login setToken={setToken} />;
+    // }
+
     return (
         <MintTheme>
             <ResponsiveAppBar />
@@ -22,4 +26,4 @@ export function Index() {
     );
 }
 
-export default Index;
+export default App;
