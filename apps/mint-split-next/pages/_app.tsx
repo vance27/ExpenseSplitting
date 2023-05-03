@@ -1,15 +1,20 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import ResponsiveAppBar from '../components/app-bar';
 import './styles.css';
+import { MintTheme } from '../components/theme-provider';
 
 function CustomApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>
-                <title>Welcome to mint-split-next!</title>
+                <title>MintSplit</title>
             </Head>
             <main className="app">
-                <Component {...pageProps} />
+                <MintTheme>
+                    <ResponsiveAppBar />
+                    <Component {...pageProps} />
+                </MintTheme>
             </main>
         </>
     );

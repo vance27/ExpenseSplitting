@@ -11,7 +11,7 @@ import { Alert, Button, Tooltip } from '@mui/material';
 import UndoIcon from '@mui/icons-material/Undo';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import React from 'react';
-import { MintCsvSchema } from '../../components/zod/csv-schema';
+import { MintCsvSchema } from '../components/zod/csv-schema';
 
 const columns: GridColDef[] = [
     {
@@ -59,7 +59,7 @@ const columns: GridColDef[] = [
 // TODO: add saved state cookie/local storage (in progress)
 const pageSizeOptions: number[] = [5, 10, 25, 50];
 
-export function UploadCsv(): ReactElement {
+export default function UploadCsv(): ReactElement {
     const [data, setData] = React.useState<MintCsvSchema>([]);
     const [error, setError] = React.useState<string | undefined>(undefined);
     // "Date","Description","Original Description","Amount","Transaction Type","Category","Account Name","Labels","Notes"

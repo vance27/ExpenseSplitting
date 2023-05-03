@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { ReactElement, useState } from 'react';
 import PropTypes from 'prop-types';
-import './login.scss';
+import './login.module.scss';
 
 async function loginUser(credentials: { username: string; password: string }) {
     return fetch('http://localhost:3333/api/login', {
