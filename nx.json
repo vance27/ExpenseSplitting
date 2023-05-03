@@ -58,6 +58,17 @@
                 "style": "scss",
                 "linter": "eslint"
             }
+        },
+        "@nx/react": {
+            "application": {
+                "babel": true
+            }
+        },
+        "@nx/next": {
+            "application": {
+                "style": "scss",
+                "linter": "eslint"
+            }
         }
     }
 }

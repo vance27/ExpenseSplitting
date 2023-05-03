@@ -1,0 +1,71 @@
+{
+    "name": "mint-split-next",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/mint-split-next",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nx/next:build",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "root": "apps/mint-split-next",
+                "outputPath": "dist/apps/mint-split-next"
+            },
+            "configurations": {
+                "development": {
+                    "outputPath": "apps/mint-split-next"
+                },
+                "production": {}
+            }
+        },
+        "serve": {
+            "executor": "@nx/next:server",
+            "defaultConfiguration": "development",
+            "options": {
+                "buildTarget": "mint-split-next:build",
+                "dev": true
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "mint-split-next:build:development",
+                    "dev": true
+                },
+                "production": {
+                    "buildTarget": "mint-split-next:build:production",
+                    "dev": false
+                }
+            }
+        },
+        "export": {
+            "executor": "@nx/next:export",
+            "options": {
+                "buildTarget": "mint-split-next:build:production"
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/mint-split-next/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": [
+                    "apps/mint-split-next/**/*.{ts,tsx,js,jsx}"
+                ]
+            }
+        }
+    },
+    "tags": []
+}
