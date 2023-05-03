@@ -22,19 +22,31 @@ PERN stack (postgres, express, react, node)
 
 - CONVERT floats to integers (multiply by 100) to avoid floating point errors
 
+- add expense splitting window that contains all transactions that are within the window of time that the user wants to split expenses for.
+
 ### Frontend
 - Allow select duplicates or all duplicates and click a button to merge them into one transaction.
 
 
 ## UX Flow
 ### Basic Use-case
-- open page, option to view past records or upload a new file
-
-- only allows csv files from mint export to be imported, will error otherwise
-
-- shows list of uploaded files and allows users to edit the data. updates made will save the request to the database
-
-- exportable to expense splitting format to double check values
+#### Dashboard
+- A user logs in to the application.
+- The user is brought to the dashboard page.
+- The user will see a current amount owed or that they owe and the transactions that are in the current expense splitting window.
+- The user also has a list of authorized users that they can add or remove from the list.
+- The list of authroized users are whom they can charge or be charged by. (1..1 connection)
+- The user can see a list of transactions that are in the current expense splitting window.
+- There are options to edit any of the transactions in the list.
+- There is also a dedupe feature that will allow the user to select which transactions are duplicates and merge them into one transaction.
+- The user will also be able to select other authorized users list of transactions to view.
+- The user can COMPLETE the expense splitting window and start a new one changing the expense splitting window's status.
+- The user can also select a different expense splitting window to view transactions from.
+#### UploadCsv
+- The user can upload a csv file from mint.
+- The csv transactions are automatically included in the current expense splitting window. A preview is shown before the records are added, allowing the user to edit the records before they are added (dedupe)
+- There will be warnings for transactions that occur outside of the expense splitting window date range.
+---
 
 ### Filter list
 - uploadable txt file list of values to filter out of the csv file

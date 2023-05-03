@@ -30,3 +30,18 @@ model Transaction {
   User             User?    @relation(fields: [userId], references: [id])
   userId           Int?
 }
+
+// TODO: Add ExpenseSplittingWindow
+// model ExpenseSplittingWindow {
+//   id               Int      @id @default(autoincrement())
+//   createdAt        DateTime @default(now()) @db.Timestamp(3)
+//   updatedAt        DateTime @default(now()) @db.Timestamp(3)
+//   title            String
+//   date             DateTime @db.Date
+//   notes            String
+//   User             User?    @relation(fields: [userId], references: [id])
+//   userId           Int?
+//   startDate       DateTime @db.Date
+//   endDate         DateTime @db.Date
+// }
+
