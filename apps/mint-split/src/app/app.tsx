@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import ResponsiveAppBar from './app-bar';
 import { MintTheme } from './theme-provider';
 import { UploadCsv } from './upload-csv';
@@ -8,7 +8,7 @@ import { Login } from './components/login';
 import useToken from './useToken';
 
 export function App() {
-    // const { token, setToken } = useToken();
+    const { token, setToken } = useToken(true);
 
     // if (!token) {
     //     return <Login setToken={setToken} />;
@@ -18,6 +18,7 @@ export function App() {
         <MintTheme>
             <ResponsiveAppBar />
             <Routes>
+                {/* <Route path="/" children={<Dashboard />} /> */}
                 <Route path="/dashboard" element={<Dashboard />}></Route>
                 <Route path="/preferences" element={<Preferences />}></Route>
                 <Route path="/uploadCsv" element={<UploadCsv />}></Route>

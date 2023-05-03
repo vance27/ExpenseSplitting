@@ -42,7 +42,6 @@ function ResponsiveAppBar() {
         <AppBar position="static" style={{ margin: 0 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <LocalAtmIcon />
                     <Typography
                         variant="h6"
                         noWrap
@@ -58,6 +57,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
+                        <LocalAtmIcon />
                         MintSplit
                     </Typography>
 
@@ -123,6 +123,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
+                        <LocalAtmIcon />
                         MintSplit
                     </Typography>
                     <Box
@@ -148,10 +149,7 @@ function ResponsiveAppBar() {
                                 onClick={handleOpenUserMenu}
                                 sx={{ p: 0 }}
                             >
-                                <Avatar
-                                    alt="Remy Sharp"
-                                    src="/static/images/avatar/2.jpg"
-                                />
+                                <Avatar alt="Remy Sharp" />
                             </IconButton>
                         </Tooltip>
                         <Menu

@@ -10,7 +10,10 @@ PERN stack (postgres, express, react, node)
 - React
 - Material UI
 - Node
-  
+- Express
+- Next.js (??? replace express server entirely)
+
+
 
 ## TODO
 ### User preferences

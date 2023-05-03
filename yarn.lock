@@ -4002,7 +4002,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-router-dom@npm:5.3.3":
+"@types/react-router-dom@npm:^5.3.3":
   version: 5.3.3
   resolution: "@types/react-router-dom@npm:5.3.3"
   dependencies:
@@ -7477,7 +7477,7 @@ __metadata:
     "@types/papaparse": "npm:^5.3.7"
     "@types/react": "npm:18.0.28"
     "@types/react-dom": "npm:18.0.11"
-    "@types/react-router-dom": "npm:5.3.3"
+    "@types/react-router-dom": "npm:^5.3.3"
     "@typescript-eslint/eslint-plugin": "npm:^5.36.1"
     "@typescript-eslint/parser": "npm:^5.36.1"
     "@vitejs/plugin-react": "npm:^3.0.0"
