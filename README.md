@@ -83,6 +83,10 @@ Prisma is a database toolkit that consists of these tools:
 - Prism Migrate: Declarative data modeling & migrations
 - Prism Studio: GUI to view and edit data in your database
 
+Use the following command to start Prisma Studio:
+npx prisma studio
+Prisma Studio is now running on http://localhost:5555 and allows us to visualize and interact with the postgres database.
+
 ## Understand this workspace
 
 Run `nx graph` to see a diagram of the dependencies of the projects.

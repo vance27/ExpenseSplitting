@@ -3,6 +3,7 @@ import Head from 'next/head';
 import ResponsiveAppBar from '../components/app-bar';
 import './styles.css';
 import { MintTheme } from '../components/theme-provider';
+import Box from '@mui/material/Box';
 
 function CustomApp({ Component, pageProps }: AppProps) {
     return (
@@ -13,7 +14,9 @@ function CustomApp({ Component, pageProps }: AppProps) {
             <main className="app">
                 <MintTheme>
                     <ResponsiveAppBar />
-                    <Component {...pageProps} />
+                    <Box m={2}>
+                        <Component {...pageProps} />
+                    </Box>
                 </MintTheme>
             </main>
         </>

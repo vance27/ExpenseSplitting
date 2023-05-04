@@ -12,7 +12,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
-const pages: string[] = [];
+import AppBarLink from './shared/app-bar-link';
+const pages: string[] = ['dashboard'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -42,6 +43,8 @@ function ResponsiveAppBar() {
         <AppBar position="static" style={{ margin: 0 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
+                    <LocalAtmIcon />
+
                     <Typography
                         variant="h6"
                         noWrap
@@ -57,10 +60,8 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        <LocalAtmIcon />
                         MintSplit
                     </Typography>
-
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -99,19 +100,23 @@ function ResponsiveAppBar() {
                                 <MenuItem
                                     key={page}
                                     onClick={handleCloseNavMenu}
+                                    href={`/${page}`}
                                 >
                                     <Typography textAlign="center">
-                                        {page}
+                                        <Button href={`/${page}`}>
+                                            {page}
+                                        </Button>
                                     </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
+
                     <Typography
                         variant="h5"
                         noWrap
                         component="a"
-                        href=""
+                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -123,25 +128,12 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        <LocalAtmIcon />
                         MintSplit
                     </Typography>
-                    <Box
-                        sx={{
-                            flexGrow: 1,
-                            display: { xs: 'none', md: 'flex' },
-                        }}
-                    >
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
-                    </Box>
+                    <AppBarLink
+                        pages={pages}
+                        handleCloseNavMenu={handleCloseNavMenu}
+                    />
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
