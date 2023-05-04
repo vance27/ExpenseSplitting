@@ -11,7 +11,7 @@ import { Alert, Button, Tooltip } from '@mui/material';
 import UndoIcon from '@mui/icons-material/Undo';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import React from 'react';
-import { MintCsvSchema } from '../components/zod/csv-schema';
+import { MintCsvSchema } from './zod/csv-schema';
 
 const columns: GridColDef[] = [
     {

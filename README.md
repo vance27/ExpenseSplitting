@@ -16,6 +16,9 @@ PERN stack (postgres, express, react, node)
 
 
 ## TODO
+
+- Investigate figma for design
+
 ### User preferences
 - Users have preferences that determine how they want their data to be imported (what values are filtered out, regex for values that should be variable, etc.)  
 - filter object is based off of column names from the csv file

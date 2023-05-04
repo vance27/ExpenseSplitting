@@ -1,15 +1,23 @@
-import { Box, Button, Grid } from '@mui/material';
+import { Button, Card, Grid } from '@mui/material';
 import { ReactElement, useState } from 'react';
+import { getTransaction, getUsers } from '../services/transaction.service';
 
 function OwedDisplay(): ReactElement {
     return <div>Current Amount Owed $0.00</div>;
 }
 
 function CurrentExpenseSplittingWindow(): ReactElement {
+    const [transactions, setTransactions] = useState([]);
+
     return (
         <div>
             Current Expense Splitting Window
             <div>Transactions Display</div>
+            {transactions.length ? (
+                <div>Transactions</div>
+            ) : (
+                <div>No Transactions</div>
+            )}
         </div>
     );
 }
@@ -26,26 +34,23 @@ function AuthorizedUsersDisplay(props: any): ReactElement {
 function GetData(): ReactElement {
     const [users, setUsers] = useState([]);
     const [transaction, setTransaction] = useState<any>(null);
-    const getUsers = async () => {
-        const response = await fetch('http://localhost:3333/users');
-        const users = await response.json();
-        console.log(users);
-        users.length ? setUsers(users) : setUsers([]);
+    const getUsersLocal = async () => {
+        const users = await getUsers();
+        setUsers(users);
     };
-    const getTransactions = async () => {
-        const response = await fetch('http://localhost:3333/transactions/1');
-        const transactions = await response.json();
-        console.log(transactions);
-        setTransaction(transactions);
+
+    const getTransactionLocal = async () => {
+        const transaction = await getTransaction({ id: '1' });
+        setTransaction(transaction);
     };
     return (
         <>
             <div>GetData</div>
-            <Button variant="contained" onClick={getUsers}>
+            <Button variant="contained" onClick={getUsersLocal}>
                 Get Users {users.length}
             </Button>
-            <Button variant="contained" onClick={getTransactions}>
-                Get Transactions
+            <Button variant="contained" onClick={getTransactionLocal}>
+                Get Transaction
             </Button>
             {users.length ? (
                 <ul>
@@ -75,16 +80,25 @@ export default function Dashboard(): ReactElement {
         <>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
-                    <AuthorizedUsersDisplay />
+                    <Card variant="outlined">
+                        <OwedDisplay />
+                    </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <OwedDisplay />
+                    <Card variant="outlined">
+                        <AuthorizedUsersDisplay />
+                    </Card>
                 </Grid>
+
                 <Grid item xs={12} md={4}>
-                    <GetData />
+                    <Card variant="outlined">
+                        <GetData />
+                    </Card>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <CurrentExpenseSplittingWindow />
+                    <Card variant="outlined">
+                        <CurrentExpenseSplittingWindow />
+                    </Card>
                 </Grid>
             </Grid>
         </>
