@@ -5,10 +5,12 @@ function ImportGrid({
     data,
     columns,
     pageSizeOptions,
+    setData
 }: {
     data: any;
     columns: any;
     pageSizeOptions: any;
+    setData: () => any;
 }) {
     return (
         <DataGrid
@@ -30,7 +32,7 @@ function ImportGrid({
             checkboxSelection
             disableRowSelectionOnClick
             slots={{
-                toolbar: ImportBar,
+                toolbar: () => <ImportBar setData={setData}/>,
             }}
             sx={{
                 '& .MuiDataGrid-row:hover': {

@@ -115,6 +115,7 @@ export default function Import(): ReactElement {
                         data={data}
                         columns={columns}
                         pageSizeOptions={pageSizeOptions}
+                        setData={setData}
                     />
                 ) : (
                     <Tooltip title="Select csv file from file system">
