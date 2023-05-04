@@ -34,6 +34,12 @@ PERN stack (postgres, express, react, node)
 ## UX Flow
 ### Basic Use-case
 #### Dashboard
+##### Sections
+* current amount owed (OwedDisplay)
+* current expense splitting window (CurrentExpenseSplittingWindow, takes in a prop of who's current expense splitting window to display)
+* IFF authorized users, show table of that user's transactions, and selectable tabs for each user (selection brings up that user's transactions) (AuthorizedUsersDisplay - uses current expense splitting window)
+
+##### Dashboard experience
 - A user logs in to the application.
 - The user is brought to the dashboard page.
 - The user will see a current amount owed or that they owe and the transactions that are in the current expense splitting window.

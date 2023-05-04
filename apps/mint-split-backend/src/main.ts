@@ -19,6 +19,17 @@ app.get('/users', async (_, res) => {
     res.json(users);
 });
 
+app.get('/transactions/:id', async (req, res) => {
+    console.log('get users');
+    const id = req.params.id;
+    const transactions = await prisma.transaction.findUnique({
+        where: {
+            id: +id,
+        },
+    });
+    res.json(transactions);
+});
+
 // Start Auth0
 app.use(express.static(join(__dirname, 'public')));
 
