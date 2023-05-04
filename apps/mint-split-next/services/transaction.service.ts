@@ -1,20 +1,16 @@
-import { GetStaticProps } from 'next';
 import prisma from '../prisma/prisma';
 
-// export const getStaticProps: GetStaticProps = async () => {
-//     const users = await prisma.user.findMany();
-//     return {
-//         props: { users },
-//         revalidate: 30,
-//     };
-// };
+export type Transaction = any;
 
-export async function getTransaction({ id }: { id: string }): Promise<any> {
-    const data = await fetch(`http://localhost:3333/transactions/${id}`);
-    return data.json();
+// TODO: Add types
+export async function getAllTransactions(): Promise<any> {
+    return prisma.transaction.findMany();
 }
 
-export async function getUsers(): Promise<any> {
-    const data = await fetch(`http://localhost:3333/users`);
-    return data.json();
+export async function postBulkTransactions(data: Transaction[]): Promise<any> {
+    return prisma.transaction.createMany({ data });
+}
+
+export async function postTransaction(data: Transaction): Promise<any> {
+    return prisma.transaction.create({ data });
 }

@@ -1,7 +1,9 @@
-import Dashboard from './dashboard';
-
 export function Index() {
-    return <Dashboard />;
+    return (
+        <>
+            <div>Welcome to mint split</div>
+        </>
+    );
 }
 
 export default Index;
