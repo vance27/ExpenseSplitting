@@ -18,6 +18,7 @@ PERN stack (postgres, express, react, node)
 ## TODO
 
 - Investigate figma for design
+- Secret storage for env files, postgres, etc.
 
 ### User preferences
 - Users have preferences that determine how they want their data to be imported (what values are filtered out, regex for values that should be variable, etc.)  
