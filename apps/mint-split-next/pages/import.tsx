@@ -1,18 +1,11 @@
 import { ChangeEvent, ReactElement } from 'react';
 import Papa from 'papaparse';
-import {
-    DataGrid,
-    GridColDef,
-    GridToolbarContainer,
-    GridToolbarExport,
-} from '@mui/x-data-grid';
+import { GridColDef } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import { Alert, Button, Tooltip } from '@mui/material';
-import UndoIcon from '@mui/icons-material/Undo';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import React from 'react';
 import { MintCsvSchema } from '../components/zod/csv-schema';
-import ImportBar from '../components/import/import-bar';
 import ImportGrid from '../components/import/import-grid';
 const pageSizeOptions: number[] = [5, 10, 25, 50];
 
@@ -62,6 +55,8 @@ const columns: GridColDef[] = [
 // TODO: add delete row capability
 // TODO: add saved state cookie/local storage (in progress)
 
+// TODO: ONLY display data in the way that it will be imported into the database, instead of the way mint shows it
+
 export default function Import(): ReactElement {
     const [data, setData] = React.useState<MintCsvSchema>([]);
     const [error, setError] = React.useState<string | undefined>(undefined);
@@ -108,7 +103,7 @@ export default function Import(): ReactElement {
 
     return (
         <div>
-            <Box sx={{ height: '90vh', width: '100%' }}>
+            <Box sx={{ maxHeight: '90vh', width: '100%' }}>
                 {error ? <Alert severity="error">{error}</Alert> : null}
                 {data.length ? (
                     <ImportGrid
@@ -121,7 +116,7 @@ export default function Import(): ReactElement {
                     <Tooltip title="Select csv file from file system">
                         <Button variant="text" component="label">
                             <FileUploadIcon />
-                            Upload
+                            Upload File
                             <input
                                 type="file"
                                 onChange={handleCsvFile}

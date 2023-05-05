@@ -2,46 +2,69 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-  id           Int           @id @default(autoincrement())
-  email        String        @unique
-  name         String?
-  transactions Transaction[]
+    id                      Int                      @id @default(autoincrement())
+    email                   String                   @unique
+    name                    String?
+    transactions            Transaction[]
+    expenseSplittingWindows ExpenseSplittingWindow[]
+    authorizedUsers         User[]                   @relation("authorizedUsers")
+    authorizedRelation      User[]                   @relation("authorizedUsers")
+    userPreferences         UserPreferences?
+    userPreferencesId       Int?
 }
 
 model Transaction {
-  id               Int      @id @default(autoincrement())
-  createdAt        DateTime @default(now()) @db.Timestamp(3)
-  updatedAt        DateTime @default(now()) @db.Timestamp(3)
-  title            String
-  date             DateTime @db.Date
-  notes            String
-  price            Int
-  shared           Boolean  @default(false)
-  sharedPercentage Int
-  User             User?    @relation(fields: [userId], references: [id])
-  userId           Int?
+    id                       Int                     @id @default(autoincrement())
+    createdAt                DateTime                @default(now()) @db.Timestamp(3)
+    updatedAt                DateTime                @default(now()) @db.Timestamp(3)
+    title                    String
+    date                     DateTime                @db.Date
+    notes                    String
+    price                    Int
+    shared                   Boolean                 @default(false)
+    sharedPercentage         Int
+    User                     User?                   @relation(fields: [userId], references: [id])
+    userId                   Int?
+    ExpenseSplittingWindow   ExpenseSplittingWindow? @relation(fields: [expenseSplittingWindowId], references: [id])
+    expenseSplittingWindowId Int?
 }
 
-// TODO: Add ExpenseSplittingWindow
-// model ExpenseSplittingWindow {
-//   id               Int      @id @default(autoincrement())
-//   createdAt        DateTime @default(now()) @db.Timestamp(3)
-//   updatedAt        DateTime @default(now()) @db.Timestamp(3)
-//   title            String
-//   date             DateTime @db.Date
-//   notes            String
-//   User             User?    @relation(fields: [userId], references: [id])
-//   userId           Int?
-//   startDate       DateTime @db.Date
-//   endDate         DateTime @db.Date
-// }
+model ExpenseSplittingWindow {
+    id              Int           @id @default(autoincrement())
+    createdAt       DateTime      @default(now()) @db.Timestamp(3)
+    updatedAt       DateTime      @default(now()) @db.Timestamp(3)
+    startDate       DateTime      @db.Date
+    endDate         DateTime      @db.Date
+    title           String        @default("Expense Splitting Window")
+    notes           String
+    authorizedUsers User[]
+    transactions    Transaction[]
+    inactive        Boolean       @default(false)
+}
 
+model UserPreferences {
+    id                Int      @id @default(autoincrement())
+    user              User     @relation(fields: [userId], references: [id])
+    userId            Int      @unique
+    createdAt         DateTime @default(now()) @db.Timestamp(3)
+    updatedAt         DateTime @default(now()) @db.Timestamp(3)
+    defaultSplitting  String   @default("equal")
+    defaultCurrency   String   @default("USD")
+    defaultLanguage   String   @default("en")
+    defaultTimezone   String   @default("America/Chicago")
+    defaultDateFormat String   @default("MM/dd/yyyy")
+    defaultTimeFormat String   @default("hh:mm a")
+    defaultWeekStart  String   @default("monday")
+    defaultTheme      String   @default("dark")
+    defaultView       String   @default("list")
+    defaultSort       String   @default("date")
+}
