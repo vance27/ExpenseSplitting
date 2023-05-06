@@ -1,19 +1,22 @@
-import { ReactElement, useState } from "react";
+import { useSession } from 'next-auth/react';
+import { ReactElement, useState } from 'react';
 
 function CurrentExpenseSplittingWindow(): ReactElement {
-    const [transactions, setTransactions] = useState([]);
+    // const [transactions, setTransactions] = useState([]);
+    const { data: session, status } = useSession();
 
     return (
         <div>
             Current Expense Splitting Window
             <div>Transactions Display</div>
-            {transactions.length ? (
-                <div>Transactions</div>
-            ) : (
-                <div>No Transactions</div>
-            )}
+            {session?.user?.currentTransactions.map((transaction: any) => (
+                <div key={transaction.id}>
+                    Id: {transaction.id}, Name: {transaction.name}, Amount:
+                    {transaction.amount}
+                </div>
+            ))}
         </div>
     );
-};
+}
 
 export default CurrentExpenseSplittingWindow;

@@ -1,12 +1,15 @@
-import { Button, Card, Grid } from '@mui/material';
-import { ReactElement, useState } from 'react';
-import { getTransaction, getUsers } from '../services/transaction.service';
+import { Card, Grid } from '@mui/material';
+import { ReactElement } from 'react';
 import { GetStaticProps } from 'next';
 import prisma from '../prisma/prisma';
 import OwedDisplay from '../components/owed-display';
 import AuthorizedUsersDisplay from '../components/authorized-users-display';
 import CurrentExpenseSplittingWindow from '../components/current-expense-splitting-window';
 import GetData from '../components/get-data';
+import { getAuthorizedUsers } from '../services/user.service';
+import { getSession } from 'next-auth/react';
+import { User } from '@prisma/client';
+import { getServerSession } from 'next-auth';
 
 export const getStaticProps: GetStaticProps = async () => {
     const users = await prisma.user.findMany();
@@ -16,7 +19,13 @@ export const getStaticProps: GetStaticProps = async () => {
     };
 };
 
-export default function Dashboard({ users }: { users: any[] }): ReactElement {
+export default function Dashboard({
+    users,
+    authorizedUsers,
+}: {
+    users: any[];
+    authorizedUsers: any[];
+}): ReactElement {
     return (
         <>
             <Grid container spacing={2}>

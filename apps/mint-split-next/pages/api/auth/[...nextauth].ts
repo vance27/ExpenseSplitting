@@ -5,6 +5,8 @@ import NextAuth from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import GitHubProvider from 'next-auth/providers/github';
 import prisma from 'apps/mint-split-next/prisma/prisma';
+import { getAuthorizedUsers } from 'apps/mint-split-next/services/user.service';
+import { getAllTransactionsInExpenseSplittingWindow } from 'apps/mint-split-next/services/transaction.service';
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
 export default authHandler;
@@ -12,10 +14,22 @@ export default authHandler;
 const options = {
     providers: [
         GitHubProvider({
-            clientId: process.env.GITHUB_ID,
-            clientSecret: process.env.GITHUB_SECRET,
+            clientId: process.env.GITHUB_ID ?? '',
+            clientSecret: process.env.GITHUB_SECRET ?? '',
         }),
     ],
+    callbacks: {
+        session: async (session, user) => {
+            const authorizedUsers = await getAuthorizedUsers(session.user.id);
+            const transactions =
+                await getAllTransactionsInExpenseSplittingWindow(
+                    session.user.id
+                );
+            session.authorizedUsers = authorizedUsers;
+            session.user.currentTransactions = transactions;
+            return session;
+        },
+    },
     adapter: PrismaAdapter(prisma),
     secret: process.env.SECRET,
 };
