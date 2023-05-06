@@ -14,15 +14,41 @@ export async function getAllTransactions(id: string): Promise<any> {
 export async function getAllTransactionsInExpenseSplittingWindow(
     id: string
 ): Promise<any> {
-    return prisma.expenseSplittingWindow.findMany({
+    const expenseSplittingWindow = await prisma.expenseSplittingWindow.findMany(
+        {
+            where: {
+                authorizedUsers: {
+                    some: {
+                        id,
+                    },
+                },
+            },
+            include: {
+                transactions: true,
+            },
+        }
+    );
+    return expenseSplittingWindow.flatMap((window) => window.transactions);
+}
+
+export async function getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers(
+    authorizedUsers: any[]
+) {
+    const transactions = await prisma.expenseSplittingWindow.findMany({
         where: {
             authorizedUsers: {
                 some: {
-                    id,
+                    id: {
+                        in: authorizedUsers,
+                    },
                 },
             },
         },
+        include: {
+            transactions: true,
+        },
     });
+    return transactions.flatMap((window) => window.transactions);
 }
 
 export async function postBulkTransactions(data: Transaction[]): Promise<any> {

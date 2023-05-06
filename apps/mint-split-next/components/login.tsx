@@ -23,7 +23,6 @@ export const Login = ({ setToken }): ReactElement => {
             username: username ?? '',
             password: password ?? '',
         });
-        console.log(`token is ${token}`);
         setToken(token);
     };
 

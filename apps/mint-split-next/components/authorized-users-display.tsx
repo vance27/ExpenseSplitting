@@ -12,7 +12,7 @@ function AuthorizedUsersDisplay(): ReactElement {
                     Id: {user.id}, Name: {user.name}, Email: {user.email}
                 </div>
             ))}
-            <CurrentExpenseSplittingWindow />
+            <CurrentExpenseSplittingWindow transactions />
         </div>
     );
 }

@@ -6,28 +6,28 @@ import OwedDisplay from '../components/owed-display';
 import AuthorizedUsersDisplay from '../components/authorized-users-display';
 import CurrentExpenseSplittingWindow from '../components/current-expense-splitting-window';
 import GetData from '../components/get-data';
-import { getAuthorizedUsers } from '../services/user.service';
 import { getSession } from 'next-auth/react';
 import { User } from '@prisma/client';
-import { getServerSession } from 'next-auth';
+import { getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers } from '../services/transaction.service';
 
-export const getStaticProps: GetStaticProps = async () => {
-    const users = await prisma.user.findMany();
+export const getServerSideProps = async (context: any) => {
+    const { id } = context.query;
+    const session = await getSession(context);
+    const authorizedUserTransactions =
+        await getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers(
+            session?.user?.id
+        );
+    console.log(authorizedUserTransactions);
+
     return {
-        props: { users: users },
-        revalidate: 30,
+        props: { id: id ?? null, session: session },
     };
 };
 
-export default function Dashboard({
-    users,
-    authorizedUsers,
-}: {
-    users: any[];
-    authorizedUsers: any[];
-}): ReactElement {
+function Dashboard({ id, session }: { id: any; session: any }) {
     return (
         <>
+            {session ? <div>Welcome {session.session.user.name} </div> : null}
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
                     <Card variant="outlined">
@@ -47,20 +47,12 @@ export default function Dashboard({
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <Card variant="outlined">
-                        <CurrentExpenseSplittingWindow />
+                        <CurrentExpenseSplittingWindow props={undefined} />
                     </Card>
                 </Grid>
-                {users.map((user: any) => (
-                    <Grid item xs={12} md={6}>
-                        <Card variant="outlined">
-                            <div key={user.id}>
-                                Id: {user.id}, Name: {user.name}, Email:
-                                {user.email}
-                            </div>
-                        </Card>
-                    </Grid>
-                ))}
             </Grid>
         </>
     );
 }
+
+export default Dashboard;

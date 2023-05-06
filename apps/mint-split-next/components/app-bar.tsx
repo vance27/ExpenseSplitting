@@ -100,7 +100,7 @@ function ResponsiveAppBar() {
         alternateLinks = pages.map((page) => (
             <MenuItem key={page} onClick={handleCloseNavMenu} href={`/${page}`}>
                 <Typography textAlign="center">
-                    <Button href={`/${page}`}>{page}</Button>
+                    <Button href={`/${page}/${session.user.id}`}>{page}</Button>
                 </Typography>
             </MenuItem>
         ));
