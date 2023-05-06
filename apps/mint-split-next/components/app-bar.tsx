@@ -56,7 +56,11 @@ function ResponsiveAppBar() {
     }
     if (session) {
         links = (
-            <AppBarLink pages={pages} handleCloseNavMenu={handleCloseNavMenu} />
+            <AppBarLink
+                pages={pages}
+                handleCloseNavMenu={handleCloseNavMenu}
+                id={session?.user?.id}
+            />
         );
         avatar = (
             <Box sx={{ flexGrow: 0 }}>
@@ -100,7 +104,9 @@ function ResponsiveAppBar() {
         alternateLinks = pages.map((page) => (
             <MenuItem key={page} onClick={handleCloseNavMenu} href={`/${page}`}>
                 <Typography textAlign="center">
-                    <Button href={`/${page}/${session.user.id}`}>{page}</Button>
+                    <Button href={`/${page}/${session?.user?.id}`}>
+                        {page}
+                    </Button>
                 </Typography>
             </MenuItem>
         ));

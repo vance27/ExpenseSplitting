@@ -4,9 +4,11 @@ import { ReactElement } from 'react';
 function AppBarLink({
     pages,
     handleCloseNavMenu,
+    id,
 }: {
     pages: string[];
     handleCloseNavMenu: () => any;
+    id: string;
 }): ReactElement {
     return (
         <Box
@@ -21,7 +23,7 @@ function AppBarLink({
                     key={page}
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: 'secondary.light', display: 'block' }}
-                    href={`/${page}`}
+                    href={`/${page}/${id}`}
                 >
                     {page}
                 </Button>
