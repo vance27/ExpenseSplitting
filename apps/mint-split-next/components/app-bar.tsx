@@ -13,10 +13,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AppBarLink from './shared/app-bar-link';
+import { signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
 const pages: string[] = ['dashboard', 'import'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard'];
 
 function ResponsiveAppBar() {
+    const { data: session, status } = useSession();
+
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     );
@@ -38,13 +42,72 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    let links = null;
+    let avatar = null;
+    let alternateLinks = null;
+    if (status === 'loading') {
+    }
+    if (!session) {
+        links = (
+            <Link href="/api/auth/signin">
+                <Button variant="contained">Sign in</Button>
+            </Link>
+        );
+    }
+    if (session) {
+        links = (
+            <AppBarLink pages={pages} handleCloseNavMenu={handleCloseNavMenu} />
+        );
+        avatar = (
+            <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <Avatar alt="Remy Sharp" />
+                    </IconButton>
+                </Tooltip>
+                <Menu
+                    sx={{ mt: '45px' }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                >
+                    {settings.map((setting) => (
+                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                            <Typography textAlign="center">
+                                {setting}
+                            </Typography>
+                        </MenuItem>
+                    ))}
+                    <MenuItem key="logout" onClick={() => signOut()}>
+                        <Typography textAlign="center">Logout</Typography>
+                    </MenuItem>
+                </Menu>
+            </Box>
+        );
+        alternateLinks = pages.map((page) => (
+            <MenuItem key={page} onClick={handleCloseNavMenu} href={`/${page}`}>
+                <Typography textAlign="center">
+                    <Button href={`/${page}`}>{page}</Button>
+                </Typography>
+            </MenuItem>
+        ));
+    }
 
     return (
         <AppBar position="static" style={{ margin: 0 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <LocalAtmIcon />
-
                     <Typography
                         variant="h6"
                         noWrap
@@ -96,19 +159,7 @@ function ResponsiveAppBar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    href={`/${page}`}
-                                >
-                                    <Typography textAlign="center">
-                                        <Button href={`/${page}`}>
-                                            {page}
-                                        </Button>
-                                    </Typography>
-                                </MenuItem>
-                            ))}
+                            {alternateLinks}
                         </Menu>
                     </Box>
 
@@ -130,48 +181,9 @@ function ResponsiveAppBar() {
                     >
                         MintSplit
                     </Typography>
-                    <AppBarLink
-                        pages={pages}
-                        handleCloseNavMenu={handleCloseNavMenu}
-                    />
 
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton
-                                onClick={handleOpenUserMenu}
-                                sx={{ p: 0 }}
-                            >
-                                <Avatar alt="Remy Sharp" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem
-                                    key={setting}
-                                    onClick={handleCloseUserMenu}
-                                >
-                                    <Typography textAlign="center">
-                                        {setting}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
+                    {links}
+                    {avatar}
                 </Toolbar>
             </Container>
         </AppBar>

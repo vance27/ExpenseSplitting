@@ -4,10 +4,12 @@ import ResponsiveAppBar from '../components/app-bar';
 import './styles.css';
 import { MintTheme } from '../components/theme-provider';
 import Box from '@mui/material/Box';
+import { SessionProvider } from 'next-auth/react';
+import AuthContainer from '../components/auth-container';
 
 function CustomApp({ Component, pageProps }: AppProps) {
     return (
-        <>
+        <SessionProvider session={pageProps.session}>
             <Head>
                 <title>MintSplit</title>
             </Head>
@@ -15,11 +17,13 @@ function CustomApp({ Component, pageProps }: AppProps) {
                 <MintTheme>
                     <ResponsiveAppBar />
                     <Box m={2}>
-                        <Component {...pageProps} />
+                        <AuthContainer>
+                            <Component {...pageProps} />
+                        </AuthContainer>
                     </Box>
                 </MintTheme>
             </main>
-        </>
+        </SessionProvider>
     );
 }
 
