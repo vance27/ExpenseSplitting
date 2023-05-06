@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { ReactElement } from 'react';
-import ImportGrid from './import/import-grid';
+import MintSplitGrid from './import/mint-split-grid';
 
 const columns: GridColDef[] = [
     {
@@ -42,12 +42,12 @@ function CurrentExpenseSplittingWindow({
             Current Expense Splitting Window
             <div>Transactions Display</div>
             <Box sx={{ maxHeight: '90vh', width: '100%' }}>
-                <ImportGrid
+                <MintSplitGrid
                     data={transactions}
                     columns={columns}
                     setData={() => {}}
                     toolbar={() => {}}
-                ></ImportGrid>
+                ></MintSplitGrid>
             </Box>
         </div>
     );

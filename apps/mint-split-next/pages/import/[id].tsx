@@ -6,7 +6,7 @@ import { Alert, Button, Tooltip } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import React from 'react';
 import { MintCsvSchema } from '../../components/zod/csv-schema';
-import ImportGrid from '../../components/import/import-grid';
+import ImportGrid from '../../components/import/mint-split-grid';
 import ImportBar from 'apps/mint-split-next/components/import/import-bar';
 
 // TODO: export to the zod definition file because the columns represent the data schema

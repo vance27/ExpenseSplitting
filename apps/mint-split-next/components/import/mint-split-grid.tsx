@@ -3,12 +3,11 @@ import ImportBar from './import-bar';
 
 const pageSizeOptions: number[] = [5, 10, 25, 50];
 
-
-function ImportGrid({
+function MintSplitGrid({
     data,
     columns,
     setData,
-    toolbar
+    toolbar,
 }: {
     data: any;
     columns: any;
@@ -47,4 +46,4 @@ function ImportGrid({
     );
 }
 
-export default ImportGrid;
+export default MintSplitGrid;
