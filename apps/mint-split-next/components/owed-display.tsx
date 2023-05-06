@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 
-function OwedDisplay(): ReactElement {
-    return <div>Current Amount Owed $0.00</div>;
+function OwedDisplay({ amount }: { amount: number }): ReactElement {
+    return <div>Current Amount Owed ${amount}</div>;
 };
 
 export default OwedDisplay;

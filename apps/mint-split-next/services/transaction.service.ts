@@ -51,6 +51,29 @@ export async function getAllTransactionsInExpenseSplittingWindowForAuthorizedUse
     return transactions.flatMap((window) => window.transactions);
 }
 
+export async function getUserAmountOwed(id: string): Promise<any> {
+    const sharedPercentages = await prisma.sharedPercentage.findMany({
+        where: {
+            userId: id,
+        },
+        include: {
+            sharedTransaction: {
+                include: {
+                    transaction: true,
+                },
+            },
+        },
+    });
+    return sharedPercentages.reduce(
+        (acc, curr) =>
+            acc +
+            Math.round(
+                curr.sharedTransaction.transaction.price * (curr.sharedPercentage/100)
+            ),
+        0
+    );
+}
+
 export async function postBulkTransactions(data: Transaction[]): Promise<any> {
     return prisma.transaction.createMany({ data });
 }

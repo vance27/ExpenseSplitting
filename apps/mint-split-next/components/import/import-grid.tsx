@@ -1,16 +1,19 @@
 import { DataGrid } from '@mui/x-data-grid';
 import ImportBar from './import-bar';
 
+const pageSizeOptions: number[] = [5, 10, 25, 50];
+
+
 function ImportGrid({
     data,
     columns,
-    pageSizeOptions,
-    setData
+    setData,
+    toolbar
 }: {
     data: any;
     columns: any;
-    pageSizeOptions: any;
     setData: () => any;
+    toolbar: () => any;
 }) {
     return (
         <DataGrid
@@ -32,7 +35,7 @@ function ImportGrid({
             checkboxSelection
             disableRowSelectionOnClick
             slots={{
-                toolbar: () => <ImportBar setData={setData}/>,
+                toolbar: toolbar,
             }}
             sx={{
                 '& .MuiDataGrid-row:hover': {

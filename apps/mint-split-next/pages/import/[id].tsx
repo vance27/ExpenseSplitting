@@ -7,7 +7,7 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import React from 'react';
 import { MintCsvSchema } from '../../components/zod/csv-schema';
 import ImportGrid from '../../components/import/import-grid';
-const pageSizeOptions: number[] = [5, 10, 25, 50];
+import ImportBar from 'apps/mint-split-next/components/import/import-bar';
 
 // TODO: export to the zod definition file because the columns represent the data schema
 const columns: GridColDef[] = [
@@ -109,8 +109,8 @@ export default function Import(): ReactElement {
                     <ImportGrid
                         data={data}
                         columns={columns}
-                        pageSizeOptions={pageSizeOptions}
                         setData={setData}
+                        toolbar={() => <ImportBar setData={setData} />}
                     />
                 ) : (
                     <Tooltip title="Select csv file from file system">

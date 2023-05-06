@@ -6,6 +6,7 @@ import OwedDisplay from '../../components/owed-display';
 import {
     getAllTransactionsInExpenseSplittingWindow,
     getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers,
+    getUserAmountOwed,
 } from '../../services/transaction.service';
 
 export const getServerSideProps = async (context: any) => {
@@ -16,8 +17,8 @@ export const getServerSideProps = async (context: any) => {
     );
     const authorizedUserTransactions =
         await getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers(id);
-    console.log('usertransactions', userTransactions);
-    console.log('authorizedtransactions', authorizedUserTransactions);
+    const amountOwed = await getUserAmountOwed(id);
+    console.log('amountOwed', amountOwed);
 
     return {
         props: {
@@ -27,6 +28,7 @@ export const getServerSideProps = async (context: any) => {
             authorizedtransactions: JSON.parse(
                 JSON.stringify(authorizedUserTransactions)
             ),
+            amountOwed: amountOwed,
         },
     };
 };
@@ -36,11 +38,13 @@ function Dashboard({
     session,
     userTransactions,
     authorizedtransactions,
+    amountOwed,
 }: {
     id: any;
     session: any;
     userTransactions: any;
     authorizedtransactions: any;
+    amountOwed: number;
 }) {
     return (
         <>
@@ -48,7 +52,7 @@ function Dashboard({
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
                     <Card variant="outlined">
-                        <OwedDisplay />
+                        <OwedDisplay amount={amountOwed} />
                     </Card>
                 </Grid>
                 {/* TODO: add authorized users section<Grid item xs={12} md={4}>
@@ -56,13 +60,7 @@ function Dashboard({
                         <AuthorizedUsersDisplay />
                     </Card>
                 </Grid> */}
-
-                <Grid item xs={12} md={4}>
-                    <Card variant="outlined">
-                        <GetData />
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={12}>
                     <Card variant="outlined">
                         <CurrentExpenseSplittingWindow
                             transactions={userTransactions}

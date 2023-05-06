@@ -1,4 +1,35 @@
+import { Box } from '@mui/material';
+import { GridColDef } from '@mui/x-data-grid';
 import { ReactElement } from 'react';
+import ImportGrid from './import/import-grid';
+
+const columns: GridColDef[] = [
+    {
+        field: 'date',
+        headerName: 'Date',
+        width: 150,
+        editable: false,
+    },
+    {
+        field: 'title',
+        headerName: 'Title',
+        width: 150,
+        editable: true,
+    },
+    {
+        field: 'price',
+        headerName: 'Price',
+        width: 150,
+        editable: true,
+    },
+    {
+        field: 'sharedId',
+        headerName: 'Shared',
+        width: 150,
+        editable: true,
+        valueFormatter: ({ value }) => (value ? 'Yes' : 'No'),
+    },
+];
 
 function CurrentExpenseSplittingWindow({
     transactions,
@@ -10,11 +41,14 @@ function CurrentExpenseSplittingWindow({
         <div>
             Current Expense Splitting Window
             <div>Transactions Display</div>
-            {transactions?.map((transaction: any, index: number) => (
-                <div>
-                    Transaction {index}: {transaction.id}{' '}
-                </div>
-            ))}
+            <Box sx={{ maxHeight: '90vh', width: '100%' }}>
+                <ImportGrid
+                    data={transactions}
+                    columns={columns}
+                    setData={() => {}}
+                    toolbar={() => {}}
+                ></ImportGrid>
+            </Box>
         </div>
     );
 }

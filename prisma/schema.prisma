@@ -11,19 +11,20 @@ datasource db {
 }
 
 model User {
-    id                      String                      @id @default(cuid())
+    id                      String                   @id @default(cuid())
     email                   String                   @unique
     emailVerified           DateTime?
     image                   String?
     name                    String?
+    userPreferences         UserPreferences?
+    userPreferencesId       Int?
     transactions            Transaction[]
     expenseSplittingWindows ExpenseSplittingWindow[]
     authorizedUsers         User[]                   @relation("authorizedUsers")
     authorizedRelation      User[]                   @relation("authorizedUsers")
-    userPreferences         UserPreferences?
-    userPreferencesId       Int?
-    accounts               Account[]
-    sessions               Session[]
+    accounts                Account[]
+    sessions                Session[]
+    SharedPercentage        SharedPercentage[]
 }
 
 model Transaction {
@@ -34,12 +35,33 @@ model Transaction {
     date                     DateTime                @db.Date
     notes                    String
     price                    Int
-    shared                   Boolean                 @default(false)
-    sharedPercentage         Int
+    shared                   SharedTransaction?
+    sharedId                 Int?
     User                     User?                   @relation(fields: [userId], references: [id])
     userId                   String?
     ExpenseSplittingWindow   ExpenseSplittingWindow? @relation(fields: [expenseSplittingWindowId], references: [id])
     expenseSplittingWindowId Int?
+}
+
+model SharedTransaction {
+    id               Int                @id @default(autoincrement())
+    createdAt        DateTime           @default(now()) @db.Timestamp(3)
+    updatedAt        DateTime           @default(now()) @db.Timestamp(3)
+    transaction      Transaction        @relation(fields: [transactionId], references: [id])
+    transactionId    Int                @unique
+    sharedPercentage Int
+    SharedPercentage SharedPercentage[]
+}
+
+model SharedPercentage {
+    id                  Int               @id @default(autoincrement())
+    createdAt           DateTime          @default(now()) @db.Timestamp(3)
+    updatedAt           DateTime          @default(now()) @db.Timestamp(3)
+    sharedPercentage    Int
+    sharedTransaction   SharedTransaction @relation(fields: [sharedTransactionId], references: [id])
+    sharedTransactionId Int
+    user                User              @relation(fields: [userId], references: [id])
+    userId              String
 }
 
 model ExpenseSplittingWindow {
@@ -58,7 +80,7 @@ model ExpenseSplittingWindow {
 model UserPreferences {
     id                Int      @id @default(autoincrement())
     user              User     @relation(fields: [userId], references: [id])
-    userId            String      @unique
+    userId            String   @unique
     createdAt         DateTime @default(now()) @db.Timestamp(3)
     updatedAt         DateTime @default(now()) @db.Timestamp(3)
     defaultSplitting  String   @default("equal")
@@ -74,36 +96,36 @@ model UserPreferences {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+    id                String  @id @default(cuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String? @db.Text
+    session_state     String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerAccountId])
+    @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
+    identifier String
+    token      String   @unique
+    expires    DateTime
 
-  @@unique([identifier, token])
+    @@unique([identifier, token])
 }

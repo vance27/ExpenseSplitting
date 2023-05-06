@@ -19,6 +19,10 @@ PERN stack (postgres, express, react, node)
 
 - Investigate figma for design
 - Secret storage for env files, postgres, etc.
+- make sure users cant navigate to id routes that they aren't authorized to view (dashboard/nottheirid )
+- callbacks vs making calls on pages (getServerSideProps)
+- possibility to add transactions manually
+- valueFormatter for currency
 
 ### User preferences
 - Users have preferences that determine how they want their data to be imported (what values are filtered out, regex for values that should be variable, etc.)  
