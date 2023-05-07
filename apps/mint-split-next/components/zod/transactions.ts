@@ -1,7 +1,6 @@
 import { GridColDef } from '@mui/x-data-grid';
 import Zod from 'zod';
 
-// "Date","Description","Original Description","Amount","Transaction Type","Category","Account Name","Labels","Notes"
 export const MintCsvRow = Zod.object({
     date: Zod.string(),
     description: Zod.string(),
@@ -14,6 +13,7 @@ export const MintCsvRow = Zod.object({
     notes: Zod.string(),
     id: Zod.number(),
     shared: Zod.boolean().default(false),
+    userName: Zod.string(),
 });
 
 export const MintCsvSchema = Zod.array(MintCsvRow);
@@ -43,6 +43,7 @@ export const TransactionSchema = Zod.object({
     shared: SharedTransactionSchema.optional(),
     userId: Zod.number().int().positive(),
     id: Zod.number(),
+    userName: Zod.string(),
 });
 export const TransactionBulkSchema = Zod.array(TransactionSchema);
 export type TransactionBulkSchema = Zod.infer<typeof TransactionBulkSchema>;
@@ -52,6 +53,12 @@ export const TransactionBulkColumns: GridColDef[] = [
     {
         field: 'date',
         headerName: 'Date',
+        width: 150,
+        editable: true,
+    },
+    {
+        field: 'userName',
+        headerName: 'Name',
         width: 150,
         editable: true,
     },

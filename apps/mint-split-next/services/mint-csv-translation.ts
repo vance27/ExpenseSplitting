@@ -77,6 +77,7 @@ function TransformMintCsvToMintSplit(row: MintCsvRow): TransactionSchema {
         userId: 0, //TODO: get user id from context
         id: row.id,
         shared: row.shared ? CreateSharedTransaction(row) : undefined,
+        userName: row.userName,
     };
 }
 
@@ -92,6 +93,7 @@ function CreateSharedTransaction(row: MintCsvRow): SharedTransactionSchema {
 
 export function ParseMintCsv(
     file: File,
+    userName: string,
     handleResult: (data: MintCsvSchema) => any
 ): void {
     Papa.parse(file, {
@@ -109,6 +111,7 @@ export function ParseMintCsv(
                     labels: item[7],
                     notes: item[8],
                     shared: false,
+                    userName: userName ?? 'NO USER SET',
                 };
             });
             handleResult(res);

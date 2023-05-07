@@ -5,7 +5,12 @@ import Box from '@mui/material/Box';
 import { Alert, Button, Tooltip } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import React from 'react';
-import { MintCsvSchema, TransactionBulkColumns, TransactionBulkSchema } from '../../components/zod/transactions';
+import {
+    MintCsvSchema,
+    TransactionBulkColumns,
+    TransactionBulkSchema,
+    TransactionSchema,
+} from '../../components/zod/transactions';
 import ImportGrid from '../../components/import/mint-split-grid';
 import ImportBar from 'apps/mint-split-next/components/import/import-bar';
 import { AddCard, PlusOne, PostAdd } from '@mui/icons-material';
@@ -14,8 +19,7 @@ import {
     ParseMintCsv,
 } from 'apps/mint-split-next/services/mint-csv-translation';
 import { ZodError } from 'zod';
-
-
+import { getSession, useSession } from 'next-auth/react';
 
 // TODO: Add loading spinner for data grid
 // TODO: color code values to easily see large transactions
@@ -32,10 +36,21 @@ import { ZodError } from 'zod';
  * - Allow user to import data into database
  *
  */
+export const getServerSideProps = async (context: any) => {
+    const session = await getSession(context);
+    console.log(session);
+    return {
+        props: {
+            session: session,
+        },
+    };
+};
 
-export default function Import(): ReactElement {
+export default function Import({ session }: { session: any }): ReactElement {
     const [data, setData] = React.useState<TransactionBulkSchema>([]);
     const [error, setError] = React.useState<string | undefined>(undefined);
+
+    console.log('in import ', session);
 
     const handleCsvFile = (e: ChangeEvent): void => {
         const files = (e.target as HTMLInputElement).files;
@@ -55,7 +70,13 @@ export default function Import(): ReactElement {
                 setData([]);
             }
         };
-        files ? ParseMintCsv(files[0], handleParsedData) : null;
+        files
+            ? ParseMintCsv(
+                  files[0],
+                  session?.session?.user?.name,
+                  handleParsedData
+              )
+            : null;
     };
 
     return (
