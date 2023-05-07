@@ -40,6 +40,7 @@ import {
 
 // TODO: convert to server side functions WILL HAVE TO USE DB
 export function MintCsvTranslation(data: any): TransactionBulkSchema {
+    console.log(data);
     return MintCsvSchema.parse(data.filter(PrepareRawMintCsv))
         .filter(FilterWithPreferences)
         .map(TransformMintCsvToMintSplit);

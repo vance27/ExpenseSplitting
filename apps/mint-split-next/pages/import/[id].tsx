@@ -38,7 +38,6 @@ import { getSession, useSession } from 'next-auth/react';
  */
 export const getServerSideProps = async (context: any) => {
     const session = await getSession(context);
-    console.log(session);
     return {
         props: {
             session: session,
@@ -50,33 +49,27 @@ export default function Import({ session }: { session: any }): ReactElement {
     const [data, setData] = React.useState<TransactionBulkSchema>([]);
     const [error, setError] = React.useState<string | undefined>(undefined);
 
-    console.log('in import ', session);
-
-    const handleCsvFile = (e: ChangeEvent): void => {
+    const handleCsvFile = async (e: ChangeEvent): Promise<any> => {
         const files = (e.target as HTMLInputElement).files;
-        const handleParsedData = (data: MintCsvSchema): void => {
-            console.log('in import ', data);
-            try {
-                setData(MintCsvTranslation(data));
-                setError(undefined);
-            } catch (e) {
-                if (e instanceof ZodError) {
-                    console.error('error', e);
-                    setError(e.message);
-                } else {
-                    console.error('error', e);
-                    setError('An unknown error occurred');
-                }
-                setData([]);
+        if (!files) {
+            setError('No file selected');
+            return;
+        }
+        try {
+            const res = await fetch('/api/import/mint-csv', {
+                method: 'POST',
+                body: files[0],
+            });
+            if (!res.ok) {
+                throw new Error('Error occured importing file');
             }
-        };
-        files
-            ? ParseMintCsv(
-                  files[0],
-                  session?.session?.user?.name,
-                  handleParsedData
-              )
-            : null;
+            const json = await res.json();
+            setData(json);
+            setError(undefined);
+        } catch (e) {
+            console.error(e);
+            setError('Error occured');
+        }
     };
 
     return (
