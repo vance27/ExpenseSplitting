@@ -32,7 +32,7 @@ model Transaction {
     createdAt                DateTime                @default(now()) @db.Timestamp(3)
     updatedAt                DateTime                @default(now()) @db.Timestamp(3)
     title                    String
-    date                     DateTime                @db.Date
+    date                     String
     notes                    String
     price                    Int
     shared                   SharedTransaction?

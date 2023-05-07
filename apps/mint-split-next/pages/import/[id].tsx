@@ -5,51 +5,17 @@ import Box from '@mui/material/Box';
 import { Alert, Button, Tooltip } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import React from 'react';
-import { MintCsvSchema } from '../../components/zod/csv-schema';
+import { MintCsvSchema, TransactionBulkColumns, TransactionBulkSchema } from '../../components/zod/transactions';
 import ImportGrid from '../../components/import/mint-split-grid';
 import ImportBar from 'apps/mint-split-next/components/import/import-bar';
 import { AddCard, PlusOne, PostAdd } from '@mui/icons-material';
+import {
+    MintCsvTranslation,
+    ParseMintCsv,
+} from 'apps/mint-split-next/services/mint-csv-translation';
+import { ZodError } from 'zod';
 
-// TODO: export to the zod definition file because the columns represent the data schema
-const columns: GridColDef[] = [
-    {
-        field: 'date',
-        headerName: 'Date',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'description',
-        headerName: 'Description',
-        width: 300,
-        editable: true,
-    },
-    {
-        field: 'amount',
-        headerName: 'Amount',
-        width: 160,
-        editable: true,
-        valueFormatter: ({ value }) => `$${value}`,
-    },
-    {
-        field: 'transactionType',
-        headerName: 'Transaction Type',
-        width: 160,
-        editable: true,
-    },
-    {
-        field: 'category',
-        headerName: 'Category',
-        width: 160,
-        editable: true,
-    },
-    {
-        field: 'accountName',
-        headerName: 'Account Name',
-        width: 160,
-        editable: true,
-    },
-];
+
 
 // TODO: Add loading spinner for data grid
 // TODO: color code values to easily see large transactions
@@ -67,79 +33,29 @@ const columns: GridColDef[] = [
  *
  */
 
-/**
- * Comes in as DATA:
-    * Date
-    * Description
-    * Original Description
-    * AmountTransaction
-    * Type
-    * Category
-    * Account Name
-    * Labels
-    * Notes
-    *
-* Needs to be filtered:
-    * filterWithPreferences(DATA)
-    *
-* Filtered data needs to be transformed into:
-    * Title
-    * Date
-    * Notes
-    * Price
-    * Shared: SharedTransaction
-    *   * SharedTransaction: {
-    *      * transactionId: string
-    *      * sharedPercentage: SharedPercentage[]
-    *         * SharedPercentage: {
-    *               * sharedPercentage: number
-    *               * userId: string
-    *               * sharedTransactionId: string
-    * userId: string
- */
-
 export default function Import(): ReactElement {
-    const [data, setData] = React.useState<MintCsvSchema>([]);
+    const [data, setData] = React.useState<TransactionBulkSchema>([]);
     const [error, setError] = React.useState<string | undefined>(undefined);
 
-    const handleCsvFile = (e: ChangeEvent) => {
+    const handleCsvFile = (e: ChangeEvent): void => {
         const files = (e.target as HTMLInputElement).files;
-        console.log(files);
-        if (files) {
-            const file = files[0];
-            Papa.parse(file, {
-                complete: function (results) {
-                    const res = results.data.map((item: any, index) => {
-                        return {
-                            id: index,
-                            date: item[0],
-                            description: item[1],
-                            originalDescription: item[2],
-                            amount: item[3],
-                            transactionType: item[4],
-                            category: item[5],
-                            accountName: item[6],
-                            labels: item[7],
-                            notes: item[8],
-                        };
-                    });
-                    console.log('data', res);
-
-                    const parse = MintCsvSchema.safeParse(res);
-                    if (!parse.success) {
-                        console.log('parse failed', parse);
-                        setError(
-                            "Unable to parse CSV file. Please verify the csv file's format."
-                        );
-                        return;
-                    }
-                    console.log('res', res);
-                    setData(res);
-                    setError(undefined);
-                    return results.data;
-                },
-            });
-        }
+        const handleParsedData = (data: MintCsvSchema): void => {
+            console.log('in import ', data);
+            try {
+                setData(MintCsvTranslation(data));
+                setError(undefined);
+            } catch (e) {
+                if (e instanceof ZodError) {
+                    console.error('error', e);
+                    setError(e.message);
+                } else {
+                    console.error('error', e);
+                    setError('An unknown error occurred');
+                }
+                setData([]);
+            }
+        };
+        files ? ParseMintCsv(files[0], handleParsedData) : null;
     };
 
     return (
@@ -149,7 +65,7 @@ export default function Import(): ReactElement {
                 {data.length ? (
                     <ImportGrid
                         data={data}
-                        columns={columns}
+                        columns={TransactionBulkColumns}
                         setData={setData}
                         toolbar={() => <ImportBar setData={setData} />}
                     />
