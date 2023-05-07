@@ -65,7 +65,10 @@ export const TransactionBulkColumns: GridColDef[] = [
         headerName: 'Price',
         width: 160,
         editable: true,
-        valueFormatter: ({ value }) => `$${value}`,
+        valueFormatter: ({ value }) => {
+            value = value.toString();
+            return `$${value.substr(0, value.length - 2)}.${value.substr(-2)}`;
+        },
     },
     {
         field: 'notes',
@@ -78,6 +81,6 @@ export const TransactionBulkColumns: GridColDef[] = [
         headerName: 'Shared',
         width: 160,
         editable: true,
-        valueFormatter: ({ value }) => value ? 'Yes' : 'No',
+        valueFormatter: ({ value }) => (value ? 'Yes' : 'No'),
     },
 ];

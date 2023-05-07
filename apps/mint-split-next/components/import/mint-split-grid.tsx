@@ -11,7 +11,7 @@ function MintSplitGrid({
 }: {
     data: any;
     columns: any;
-    setData: () => any;
+    setData: (event: any) => void;
     toolbar: () => any;
 }) {
     return (

@@ -56,7 +56,7 @@ function TransformMintCsvToMintSplit(row: MintCsvRow): TransactionSchema {
         title: row.description,
         date: new Date(row.date),
         notes: row.notes,
-        price: parseInt(row.amount),
+        price: Math.round(parseFloat(row.amount) * 100),
         shared: CreateSharedTransaction(row),
         userId: 0, //TODO: get user id from context
         id: row.id,

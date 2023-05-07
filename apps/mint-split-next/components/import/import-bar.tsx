@@ -2,8 +2,13 @@ import { Button } from '@mui/material';
 import { GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import UndoIcon from '@mui/icons-material/Undo';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+import { ReactElement } from 'react';
 
-function ImportBar({ setData }: { setData: () => any }) {
+function ImportBar({
+    setData,
+}: {
+    setData: (event: any) => void;
+}): ReactElement {
     return (
         <GridToolbarContainer>
             <GridToolbarExport
