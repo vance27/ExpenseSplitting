@@ -8,6 +8,7 @@ import React from 'react';
 import { MintCsvSchema } from '../../components/zod/csv-schema';
 import ImportGrid from '../../components/import/mint-split-grid';
 import ImportBar from 'apps/mint-split-next/components/import/import-bar';
+import { AddCard, PlusOne, PostAdd } from '@mui/icons-material';
 
 // TODO: export to the zod definition file because the columns represent the data schema
 const columns: GridColDef[] = [
@@ -56,6 +57,46 @@ const columns: GridColDef[] = [
 // TODO: add saved state cookie/local storage (in progress)
 
 // TODO: ONLY display data in the way that it will be imported into the database, instead of the way mint shows it
+
+/**
+ *  Import page
+ * - Upload csv file (mint csv, translates data into MintSplitFormat) OR manually add transactions
+ * - Display csv file in data grid (editable columns)
+ * - Allow user to create shared transactions (shared percentages, based on authorized users)
+ * - Allow user to import data into database
+ *
+ */
+
+/**
+ * Comes in as DATA:
+    * Date
+    * Description
+    * Original Description
+    * AmountTransaction
+    * Type
+    * Category
+    * Account Name
+    * Labels
+    * Notes
+    *
+* Needs to be filtered:
+    * filterWithPreferences(DATA)
+    *
+* Filtered data needs to be transformed into:
+    * Title
+    * Date
+    * Notes
+    * Price
+    * Shared: SharedTransaction
+    *   * SharedTransaction: {
+    *      * transactionId: string
+    *      * sharedPercentage: SharedPercentage[]
+    *         * SharedPercentage: {
+    *               * sharedPercentage: number
+    *               * userId: string
+    *               * sharedTransactionId: string
+    * userId: string
+ */
 
 export default function Import(): ReactElement {
     const [data, setData] = React.useState<MintCsvSchema>([]);
@@ -113,18 +154,26 @@ export default function Import(): ReactElement {
                         toolbar={() => <ImportBar setData={setData} />}
                     />
                 ) : (
-                    <Tooltip title="Select csv file from file system">
-                        <Button variant="text" component="label">
-                            <FileUploadIcon />
-                            Upload File
-                            <input
-                                type="file"
-                                onChange={handleCsvFile}
-                                accept=".csv"
-                                hidden
-                            />
-                        </Button>
-                    </Tooltip>
+                    <>
+                        <Tooltip title="Select csv file from file system">
+                            <Button variant="text" component="label">
+                                <FileUploadIcon />
+                                Upload File
+                                <input
+                                    type="file"
+                                    onChange={handleCsvFile}
+                                    accept=".csv"
+                                    hidden
+                                />
+                            </Button>
+                        </Tooltip>
+                        <Tooltip title="Allows a user to manually add transactions in a table format">
+                            <Button variant="text" component="label">
+                                <PostAdd />
+                                Manually Add Transactions
+                            </Button>
+                        </Tooltip>
+                    </>
                 )}
             </Box>
         </div>

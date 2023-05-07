@@ -21,7 +21,7 @@ model User {
     transactions            Transaction[]
     expenseSplittingWindows ExpenseSplittingWindow[]
     authorizedUsers         User[]                   @relation("authorizedUsers")
-    authorizedRelation      User[]                   @relation("authorizedUsers")
+    authorizedBy      User[]                   @relation("authorizedUsers")
     accounts                Account[]
     sessions                Session[]
     SharedPercentage        SharedPercentage[]

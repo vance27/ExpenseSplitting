@@ -23,6 +23,7 @@ PERN stack (postgres, express, react, node)
 - callbacks vs making calls on pages (getServerSideProps)
 - possibility to add transactions manually
 - valueFormatter for currency
+- import mint dates as strings???
 
 ### User preferences
 - Users have preferences that determine how they want their data to be imported (what values are filtered out, regex for values that should be variable, etc.)  
