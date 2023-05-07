@@ -6,7 +6,6 @@ import {
     TransactionBulkSchema,
     TransactionSchema,
 } from '../components/zod/transactions';
-import { SharedTransaction } from '@prisma/client';
 
 /**
  * Comes in as DATA: MintCsvSchema
@@ -39,11 +38,29 @@ import { SharedTransaction } from '@prisma/client';
  * userId: string
  */
 
+// TODO: convert to server side functions WILL HAVE TO USE DB
 export function MintCsvTranslation(data: any): TransactionBulkSchema {
-    console.log('mintcsvtranslation', data);
-    return MintCsvSchema.parse(data)
+    return MintCsvSchema.parse(data.filter(PrepareRawMintCsv))
         .filter(FilterWithPreferences)
         .map(TransformMintCsvToMintSplit);
+}
+
+function PrepareRawMintCsv(row: MintCsvRow): Boolean {
+    // Check For header row
+    if (
+        row.date === 'Date' &&
+        row.description === 'Description' &&
+        row.originalDescription === 'Original Description' &&
+        row.amount === 'Amount' &&
+        row.transactionType === 'Transaction Type' &&
+        row.category === 'Category' &&
+        row.accountName === 'Account Name' &&
+        row.labels === 'Labels' &&
+        row.notes === 'Notes'
+    ) {
+        return false;
+    }
+    return true;
 }
 
 function FilterWithPreferences(row: MintCsvRow): Boolean {
@@ -54,12 +71,12 @@ function FilterWithPreferences(row: MintCsvRow): Boolean {
 function TransformMintCsvToMintSplit(row: MintCsvRow): TransactionSchema {
     return {
         title: row.description,
-        date: new Date(row.date),
+        date: row.date,
         notes: row.notes,
         price: Math.round(parseFloat(row.amount) * 100),
-        shared: CreateSharedTransaction(row),
         userId: 0, //TODO: get user id from context
         id: row.id,
+        shared: row.shared ? CreateSharedTransaction(row) : undefined,
     };
 }
 
@@ -77,7 +94,6 @@ export function ParseMintCsv(
     file: File,
     handleResult: (data: MintCsvSchema) => any
 ): void {
-    let result: MintCsvSchema = [];
     Papa.parse(file, {
         complete: function (results) {
             const res = results.data.map((item: any, index) => {
@@ -92,6 +108,7 @@ export function ParseMintCsv(
                     accountName: item[6],
                     labels: item[7],
                     notes: item[8],
+                    shared: false,
                 };
             });
             handleResult(res);

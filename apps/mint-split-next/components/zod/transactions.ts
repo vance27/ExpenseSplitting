@@ -13,6 +13,7 @@ export const MintCsvRow = Zod.object({
     labels: Zod.string(),
     notes: Zod.string(),
     id: Zod.number(),
+    shared: Zod.boolean().default(false),
 });
 
 export const MintCsvSchema = Zod.array(MintCsvRow);
@@ -36,7 +37,7 @@ export type SharedTransactionSchema = Zod.infer<typeof SharedTransactionSchema>;
 
 export const TransactionSchema = Zod.object({
     title: Zod.string(),
-    date: Zod.date(),
+    date: Zod.string(),
     notes: Zod.string().optional(),
     price: Zod.number().int().positive(),
     shared: SharedTransactionSchema.optional(),
@@ -71,16 +72,16 @@ export const TransactionBulkColumns: GridColDef[] = [
         },
     },
     {
-        field: 'notes',
-        headerName: 'Notes',
-        width: 160,
-        editable: true,
-    },
-    {
         field: 'shared',
         headerName: 'Shared',
         width: 160,
         editable: true,
         valueFormatter: ({ value }) => (value ? 'Yes' : 'No'),
+    },
+    {
+        field: 'notes',
+        headerName: 'Notes',
+        width: 160,
+        editable: true,
     },
 ];
