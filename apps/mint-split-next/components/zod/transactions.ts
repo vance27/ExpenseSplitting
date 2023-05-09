@@ -13,7 +13,7 @@ export const MintCsvRow = Zod.object({
     notes: Zod.string(),
     id: Zod.number(),
     shared: Zod.boolean().default(false),
-    userName: Zod.string(),
+    userName: Zod.string().optional(),
 });
 
 export const MintCsvSchema = Zod.array(MintCsvRow);
@@ -31,6 +31,7 @@ export const SharedPercentageSchema = Zod.object({
 export const SharedTransactionSchema = Zod.object({
     transactionId: Zod.string(),
     userId: Zod.string(),
+    userName: Zod.string(),
     sharedPercentage: Zod.array(SharedPercentageSchema),
 });
 export type SharedTransactionSchema = Zod.infer<typeof SharedTransactionSchema>;
@@ -40,10 +41,10 @@ export const TransactionSchema = Zod.object({
     date: Zod.string(),
     notes: Zod.string().optional(),
     price: Zod.number().int().positive(),
-    shared: SharedTransactionSchema.optional(),
+    variable: SharedTransactionSchema.array().optional(),
     userId: Zod.number().int().positive(),
-    id: Zod.number(),
     userName: Zod.string(),
+    id: Zod.number(),
 });
 export const TransactionBulkSchema = Zod.array(TransactionSchema);
 export type TransactionBulkSchema = Zod.infer<typeof TransactionBulkSchema>;
@@ -53,24 +54,24 @@ export const TransactionBulkColumns: GridColDef[] = [
     {
         field: 'date',
         headerName: 'Date',
-        width: 150,
+        width: 85,
         editable: true,
     },
     {
         field: 'userName',
-        headerName: 'Name',
-        width: 150,
+        headerName: 'User',
+        width: 140,
         editable: true,
     },
     {
         field: 'title',
         headerName: 'Title',
-        width: 300,
+        width: 350,
         editable: true,
     },
     {
         field: 'price',
-        headerName: 'Price',
+        headerName: 'Cost',
         width: 160,
         editable: true,
         valueFormatter: ({ value }) => {
@@ -79,11 +80,14 @@ export const TransactionBulkColumns: GridColDef[] = [
         },
     },
     {
-        field: 'shared',
-        headerName: 'Shared',
+        field: 'variable',
+        headerName: 'Equal Split ',
         width: 160,
         editable: true,
-        valueFormatter: ({ value }) => (value ? 'Yes' : 'No'),
+        valueFormatter: ({ value }) => {
+            console.log(value);
+            return value ? 'No' : 'Yes';
+        },
     },
     {
         field: 'notes',

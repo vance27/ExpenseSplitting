@@ -36,7 +36,6 @@ function CurrentExpenseSplittingWindow({
 }: {
     transactions: any[];
 }): ReactElement {
-    console.log('transactions in expense splitting window', transactions);
     return (
         <div>
             Current Expense Splitting Window

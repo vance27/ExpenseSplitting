@@ -16,10 +16,11 @@ import AppBarLink from './shared/app-bar-link';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 const pages: string[] = ['dashboard', 'import'];
-const settings = ['Profile', 'Account', 'Dashboard'];
+const settings = ['Profile', 'Account', 'Dashboard', 'user-preferences'];
 
 function ResponsiveAppBar() {
     const { data: session, status } = useSession();
+    const id = session?.id ?? 'NOID';
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
@@ -59,7 +60,7 @@ function ResponsiveAppBar() {
             <AppBarLink
                 pages={pages}
                 handleCloseNavMenu={handleCloseNavMenu}
-                id={session?.user?.id}
+                id={id}
             />
         );
         avatar = (
@@ -90,13 +91,11 @@ function ResponsiveAppBar() {
                 >
                     {settings.map((setting) => (
                         <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                            <Typography textAlign="center">
-                                {setting}
-                            </Typography>
+                            <Button href={`/${setting}`}>{setting}</Button>
                         </MenuItem>
                     ))}
                     <MenuItem key="logout" onClick={() => signOut()}>
-                        <Typography textAlign="center">Logout</Typography>
+                        <Button>Logout</Button>
                     </MenuItem>
                 </Menu>
             </Box>
@@ -104,9 +103,7 @@ function ResponsiveAppBar() {
         alternateLinks = pages.map((page) => (
             <MenuItem key={page} onClick={handleCloseNavMenu} href={`/${page}`}>
                 <Typography textAlign="center">
-                    <Button href={`/${page}/${session?.user?.id}`}>
-                        {page}
-                    </Button>
+                    <Button href={`/${page}/${id}`}>{page}</Button>
                 </Typography>
             </MenuItem>
         ));

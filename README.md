@@ -17,6 +17,7 @@ PERN stack (postgres, express, react, node)
 
 ## TODO
 
+- Create variables like name
 - Investigate figma for design
 - Secret storage for env files, postgres, etc.
 - make sure users cant navigate to id routes that they aren't authorized to view (dashboard/nottheirid )
@@ -24,6 +25,12 @@ PERN stack (postgres, express, react, node)
 - possibility to add transactions manually
 - valueFormatter for currency
 - import mint dates as strings???
+- add check to routes to verify slugs are users id
+- add view of current cost to authrorized users on import
+- sharedTransactions can be equal or not equal but it's the same interface
+- add "PossibleDuplicates" flag to import
+- add "GetPossibleDuplicates" api to backend for user to cleanup
+- don't allow users to import if default split is not set
 
 ### User preferences
 - Users have preferences that determine how they want their data to be imported (what values are filtered out, regex for values that should be variable, etc.)  

@@ -14,13 +14,11 @@ app.use(cors.default());
 app.use(express.json());
 
 app.get('/users', async (_, res) => {
-    console.log('get users');
     const users = await prisma.user.findMany();
     res.json(users);
 });
 
 app.get('/transactions/:id', async (req, res) => {
-    console.log('get users');
     const id = req.params.id;
     const transactions = await prisma.transaction.findUnique({
         where: {

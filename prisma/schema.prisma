@@ -83,15 +83,13 @@ model UserPreferences {
     userId            String   @unique
     createdAt         DateTime @default(now()) @db.Timestamp(3)
     updatedAt         DateTime @default(now()) @db.Timestamp(3)
-    defaultSplitting  String   @default("equal")
+    defaultSplittingUserId String?
     defaultCurrency   String   @default("USD")
     defaultLanguage   String   @default("en")
     defaultTimezone   String   @default("America/Chicago")
     defaultDateFormat String   @default("MM/dd/yyyy")
     defaultTimeFormat String   @default("hh:mm a")
-    defaultWeekStart  String   @default("monday")
     defaultTheme      String   @default("dark")
-    defaultView       String   @default("list")
     defaultSort       String   @default("date")
 }
 

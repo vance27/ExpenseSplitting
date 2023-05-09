@@ -1,20 +1,29 @@
 // pages/api/auth/[...nextauth].ts
 
 import { NextApiHandler } from 'next';
-import NextAuth from 'next-auth';
+import NextAuth, { NextAuthOptions, Session } from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import GitHubProvider from 'next-auth/providers/github';
 import prisma from 'apps/mint-split-next/prisma/prisma';
-import { getAuthorizedUsers } from 'apps/mint-split-next/services/user.service';
 import {
     getAllTransactionsInExpenseSplittingWindow,
     getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers,
 } from 'apps/mint-split-next/services/transaction.service';
+import { getAuthorizedUsers } from 'apps/mint-split-next/services/user.service';
+import { AdapterUser } from 'next-auth/adapters';
+import { JWT } from 'next-auth/jwt';
 
-const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
+const authHandler: NextApiHandler = (req, res) =>
+    NextAuth(req, res, authOptions);
 export default authHandler;
 
-const options = {
+export const authOptions: NextAuthOptions = {
+    session: {
+        // strategy: 'jwt', // TODO: should be doing this???
+        strategy: 'database',
+        maxAge: 30 * 60, // 15 minutes
+        updateAge: 0,
+    },
     providers: [
         GitHubProvider({
             clientId: process.env.GITHUB_ID ?? '',
@@ -22,20 +31,28 @@ const options = {
         }),
     ],
     callbacks: {
-        session: async (session, user) => {
-            const authorizedUsers = await getAuthorizedUsers(session.user.id);
+        session: async ({
+            session,
+            token,
+            user,
+        }: {
+            session: Session;
+            token: JWT;
+            user: AdapterUser;
+        }) => {
+            const authorizedUsers = await getAuthorizedUsers(user?.id);
             const transactions =
-                await getAllTransactionsInExpenseSplittingWindow(
-                    session.user.id
-                );
+                await getAllTransactionsInExpenseSplittingWindow(user?.id);
             const authorizedUserTransactions =
                 await getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers(
-                    authorizedUsers.map((user) => user.id)
+                    authorizedUsers.map((user) => user?.id)
                 );
             session.authorizedUsers = authorizedUsers;
-            session.user.currentTransactions = transactions;
-            session.user.authorizedUserTransactions =
-                authorizedUserTransactions;
+            session.id = user?.id;
+            // session.authorizedUsers = authorizedUsers;
+            // session.user.currentTransactions = transactions;
+            // session.user.authorizedUserTransactions =
+            //     authorizedUserTransactions;
             return session;
         },
     },

@@ -18,7 +18,6 @@ export const getServerSideProps = async (context: any) => {
     const authorizedUserTransactions =
         await getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers(id);
     const amountOwed = await getUserAmountOwed(id);
-    console.log('amountOwed', amountOwed);
 
     return {
         props: {
@@ -48,7 +47,7 @@ function Dashboard({
 }) {
     return (
         <>
-            {session ? <div>Welcome {session.session.user.name} </div> : null}
+            {session ? <div>Welcome {session?.user?.name} </div> : null}
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
                     <Card variant="outlined">

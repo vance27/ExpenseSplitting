@@ -36,39 +36,34 @@ import { getSession, useSession } from 'next-auth/react';
  * - Allow user to import data into database
  *
  */
-export const getServerSideProps = async (context: any) => {
-    const session = await getSession(context);
-    return {
-        props: {
-            session: session,
-        },
-    };
-};
 
-export default function Import({ session }: { session: any }): ReactElement {
+export default function Import(): ReactElement {
     const [data, setData] = React.useState<TransactionBulkSchema>([]);
     const [error, setError] = React.useState<string | undefined>(undefined);
 
     const handleCsvFile = async (e: ChangeEvent): Promise<any> => {
         const files = (e.target as HTMLInputElement).files;
         if (!files) {
-            setError('No file selected');
             return;
-        }
-        try {
-            const res = await fetch('/api/import/mint-csv', {
-                method: 'POST',
-                body: files[0],
-            });
-            if (!res.ok) {
-                throw new Error('Error occured importing file');
+        } else {
+            try {
+                const res = await fetch('/api/import/mint-csv', {
+                    method: 'POST',
+                    body: files[0],
+                    headers: {
+                        'Content-Type': 'text/csv',
+                    },
+                });
+                if (!res.ok) {
+                    throw new Error('Error occured importing file');
+                }
+                const json = await res.json();
+                setData(json);
+                setError(undefined);
+            } catch (e) {
+                console.error(e);
+                setError('Error occured');
             }
-            const json = await res.json();
-            setData(json);
-            setError(undefined);
-        } catch (e) {
-            console.error(e);
-            setError('Error occured');
         }
     };
 

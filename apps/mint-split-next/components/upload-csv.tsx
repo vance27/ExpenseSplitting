@@ -66,7 +66,6 @@ export default function UploadCsv(): ReactElement {
 
     const handleCsvFile = (e: ChangeEvent) => {
         const files = (e.target as HTMLInputElement).files;
-        console.log(files);
         if (files) {
             const file = files[0];
             Papa.parse(file, {
@@ -85,17 +84,14 @@ export default function UploadCsv(): ReactElement {
                             notes: item[8],
                         };
                     });
-                    console.log('data', res);
 
                     const parse = MintCsvSchema.safeParse(res);
                     if (!parse.success) {
-                        console.log('parse failed', parse);
                         setError(
                             "Unable to parse CSV file. Please verify the csv file's format."
                         );
                         return;
                     }
-                    console.log('res', res);
                     setData(res);
                     setError(undefined);
                     return results.data;
