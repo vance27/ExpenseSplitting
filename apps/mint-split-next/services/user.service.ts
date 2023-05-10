@@ -29,11 +29,9 @@ export async function getUserPreferences(id: string): Promise<any> {
 
 export async function postUpdateUserPreferences(
     preferences: UserPreferencesForm,
-    session: Session
+    session: Session | null
 ): Promise<any> {
     const sesPref = session?.userPreferences;
-    console.log('preferences', preferences);
-
     const res = await prisma.userPreferences.upsert({
         where: {
             id: sesPref?.id ?? -1,
@@ -64,5 +62,5 @@ export async function postUpdateUserPreferences(
             updatedAt: new Date().toISOString(),
         },
     });
-    return res?.id ?? undefined;
+    return res ?? undefined;
 }

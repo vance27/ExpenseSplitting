@@ -17,10 +17,14 @@ export default async function handler(req: UserPreferencesApiRequest, res) {
     const session = await getServerSession(req, res, authOptions);
     const preferences = req.body;
     const parse = UserPreferencesFormSchema.safeParse(preferences);
-    if (!parse.success && preferences) {
-        res.status(400).json({ error: parse.error });
+    if (!parse.success || !preferences || !session) {
+        res.status(400).json({ error: 'Invalid request' });
     }
 
-    const id = await postUpdateUserPreferences(preferences, session);
-    res.status(200).json({ id });
+    const preferencesRes = await postUpdateUserPreferences(
+        preferences,
+        session
+    );
+
+    res.status(200).json(preferencesRes);
 }

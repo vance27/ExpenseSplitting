@@ -101,9 +101,8 @@ function UserPreferences({
             },
         });
         const json = await res.json();
-        console.log('json is', json);
         setDisabled(true);
-        reset();
+        reset(json);
     };
 
     return (
