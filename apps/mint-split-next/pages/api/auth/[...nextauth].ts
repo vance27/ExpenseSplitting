@@ -45,15 +45,16 @@ export const authOptions: NextAuthOptions = {
         }) => {
             const authorizedUsers = await getAuthorizedUsers(user?.id);
             const userPreferences = await getUserPreferences(user?.id);
-            const transactions =
-                await getAllTransactionsInExpenseSplittingWindow(user?.id);
-            const authorizedUserTransactions =
-                await getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers(
-                    authorizedUsers.map((user) => user?.id)
-                );
+            // const transactions =
+            //     await getAllTransactionsInExpenseSplittingWindow(user?.id);
+            // const authorizedUserTransactions =
+            //     await getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers(
+            //         authorizedUsers.map((user) => user?.id)
+            //     );
             session.authorizedUsers = authorizedUsers;
             session.userPreferences = userPreferences;
             session.id = user?.id;
+            console.log('session', session);
             // session.authorizedUsers = authorizedUsers;
             // session.user.currentTransactions = transactions;
             // session.user.authorizedUserTransactions =

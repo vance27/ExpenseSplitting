@@ -6,8 +6,6 @@ import {
     Container,
     FormControl,
     FormControlLabel,
-    FormLabel,
-    Input,
     InputLabel,
     MenuItem,
     Radio,
@@ -23,16 +21,29 @@ import { authOptions } from './api/auth/[...nextauth]';
 import { Lock } from '@mui/icons-material';
 import { Controller, useForm } from 'react-hook-form';
 import StructuredGrid from '../components/structured-form';
+import Zod from 'zod';
 
-export type UserPreferencesForm = {
-    sharedUser: string;
-    currency: string;
-    language: string;
-    timezone: string;
-    theme: string;
-};
+export const UserPreferencesFormSchema = Zod.object({
+    updatedAt: Zod.string().optional(),
+    splittingUserId: Zod.string().optional(),
+    currency: Zod.string().optional(),
+    language: Zod.string().optional(),
+    timezone: Zod.string().optional(),
+    theme: Zod.string().optional(),
+    dateFormat: Zod.string().optional(),
+    timeFormat: Zod.string().optional(),
+    preferredSort: Zod.string().optional(),
+});
 
-export const getServerSideProps = async (context) => {
+export const UserPreferencesSchema = UserPreferencesFormSchema.extend({
+    id: Zod.string(),
+    userId: Zod.string(),
+    createdAt: Zod.date(),
+});
+export type UserPreferencesType = Zod.infer<typeof UserPreferencesSchema>;
+export type UserPreferencesForm = Zod.infer<typeof UserPreferencesFormSchema>;
+
+export const getServerSideProps = async (context: any) => {
     const session = await getServerSession(
         context.req,
         context.res,
@@ -40,7 +51,6 @@ export const getServerSideProps = async (context) => {
     );
     const authorizedUsers = session?.authorizedUsers ?? [];
     const userPreferences = session?.userPreferences ?? null;
-    console.log(session);
 
     return {
         props: {
@@ -61,18 +71,16 @@ function UserPreferences({
     userPreferences: any;
 }): ReactElement {
     const defaultFormData: UserPreferencesForm = {
-        sharedUser: userPreferences?.sharedUser ?? '',
-        currency: userPreferences?.currency ?? '',
-        language: userPreferences?.language ?? '',
-        timezone: userPreferences?.timezone ?? '',
-        theme: userPreferences?.theme ?? '',
+        splittingUserId: userPreferences?.splittingUserId,
+        currency: userPreferences?.currency,
+        language: userPreferences?.language,
+        timezone: userPreferences?.timezone,
+        theme: userPreferences?.theme,
     };
     const {
-        register,
         handleSubmit,
         control,
         reset,
-        watch,
         formState: { errors },
     } = useForm<UserPreferencesForm>({
         defaultValues: defaultFormData,
@@ -84,12 +92,17 @@ function UserPreferences({
         reset(defaultFormData);
     };
 
-    const onSubmit = (data: any) => {
-        alert(JSON.stringify(data));
+    const onSubmit = async (data: any) => {
+        const res = await fetch('/api/user-preferences/update', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            type: 'application/json',
+        });
+        const json = await res.json();
+        console.log('json is', json);
+        setDisabled(true);
         reset();
     };
-
-    const formData = defaultFormData;
 
     return (
         <div>
@@ -106,9 +119,9 @@ function UserPreferences({
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <StructuredGrid spacing={2}>
                             <Controller
-                                name="sharedUser"
+                                name="splittingUserId"
                                 control={control}
-                                defaultValue={formData.sharedUser}
+                                defaultValue={defaultFormData.splittingUserId}
                                 rules={{ required: true }}
                                 render={({ field }) => (
                                     <FormControl
@@ -139,7 +152,7 @@ function UserPreferences({
                             <Controller
                                 name="currency"
                                 control={control}
-                                defaultValue={formData.currency}
+                                defaultValue={defaultFormData.currency}
                                 rules={{ required: true }}
                                 render={({ field }) => (
                                     <FormControl
@@ -159,7 +172,7 @@ function UserPreferences({
                             <Controller
                                 name="language"
                                 control={control}
-                                defaultValue={formData.language}
+                                defaultValue={defaultFormData.language}
                                 rules={{ required: true }}
                                 render={({ field }) => (
                                     <FormControl
@@ -179,7 +192,7 @@ function UserPreferences({
                             <Controller
                                 name="timezone"
                                 control={control}
-                                defaultValue={formData.timezone}
+                                defaultValue={defaultFormData.timezone}
                                 rules={{ required: true }}
                                 render={({ field }) => (
                                     <FormControl
@@ -190,7 +203,9 @@ function UserPreferences({
                                         <InputLabel>Timezone</InputLabel>
                                         <Select
                                             {...field}
-                                            defaultValue={formData.timezone}
+                                            defaultValue={
+                                                defaultFormData.timezone
+                                            }
                                             label={field.name}
                                         >
                                             <MenuItem value="America/Chicago">
@@ -203,25 +218,25 @@ function UserPreferences({
                             <Controller
                                 name="theme"
                                 control={control}
-                                defaultValue={formData.theme}
+                                defaultValue={defaultFormData.theme}
                                 rules={{ required: true }}
                                 render={({ field }) => (
                                     <>
                                         <InputLabel>Theme</InputLabel>
                                         <RadioGroup
                                             {...field}
-                                            defaultValue={formData.theme}
+                                            defaultValue={defaultFormData.theme}
                                         >
                                             <FormControlLabel
                                                 value="dark"
-                                                control={<Radio />}
                                                 label="Dark"
+                                                control={<Radio />}
                                                 disabled={disabled}
                                             />
                                             <FormControlLabel
                                                 value="light"
-                                                control={<Radio />}
                                                 label="Light"
+                                                control={<Radio />}
                                                 disabled={disabled}
                                             />
                                         </RadioGroup>

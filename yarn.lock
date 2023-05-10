@@ -1551,6 +1551,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@deno/shim-deno-test@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@deno/shim-deno-test@npm:0.4.0"
+  checksum: 2b6cd91607b6dde3b7e1b4a46faeb37bd315cfd90bf521b50899ade038bff469edd92f6aa542ea779b06b937873d4e81cdd5bc61ef3d18e74438b71e7a3265a4
+  languageName: node
+  linkType: hard
+
+"@deno/shim-deno@npm:~0.12.0":
+  version: 0.12.0
+  resolution: "@deno/shim-deno@npm:0.12.0"
+  dependencies:
+    "@deno/shim-deno-test": "npm:^0.4.0"
+    which: "npm:^2.0.2"
+  checksum: 355993c583f7ff9f5af3d75d4a832fd0ea17d193f791039c1f1fec864e18a426bdf97432de65c107cde32b36da4334c831f95105d2f4970968a0c913df158237
+  languageName: node
+  linkType: hard
+
 "@emotion/babel-plugin@npm:^11.10.6":
   version: 11.10.6
   resolution: "@emotion/babel-plugin@npm:11.10.6"
@@ -5982,7 +5999,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"busboy@npm:1.6.0":
+"busboy@npm:1.6.0, busboy@npm:^1.6.0":
   version: 1.6.0
   resolution: "busboy@npm:1.6.0"
   dependencies:
@@ -8222,6 +8239,7 @@ __metadata:
     vite-tsconfig-paths: "npm:^4.0.2"
     vitest: "npm:^0.25.8"
     zod: "npm:^3.21.4"
+    zod_utilz: "npm:^0.7.3"
   languageName: unknown
   linkType: soft
 
@@ -15327,6 +15345,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"undici@npm:^5.14.0":
+  version: 5.22.0
+  resolution: "undici@npm:5.22.0"
+  dependencies:
+    busboy: "npm:^1.6.0"
+  checksum: c70a76499323a23e8e131e33af1e6de4e1e0d3e483ca434f02cff434b14455dcc76daa68510d401fd8c86a31f9c96fe99f6c33b688dd23c9b3319e676487d393
+  languageName: node
+  linkType: hard
+
 "unicode-canonical-property-names-ecmascript@npm:^2.0.0":
   version: 2.0.0
   resolution: "unicode-canonical-property-names-ecmascript@npm:2.0.0"
@@ -16111,5 +16138,17 @@ __metadata:
   version: 3.21.4
   resolution: "zod@npm:3.21.4"
   checksum: f25f384f380c49d05a11541093a8d26f07688aa39f6a8adbd6dc338b43f63617bf138734fb1b79800ba374523f6a1bb561f7d401b3cc051fed2715eae5577d0a
+  languageName: node
+  linkType: hard
+
+"zod_utilz@npm:^0.7.3":
+  version: 0.7.3
+  resolution: "zod_utilz@npm:0.7.3"
+  dependencies:
+    "@deno/shim-deno": "npm:~0.12.0"
+    undici: "npm:^5.14.0"
+  peerDependencies:
+    zod: ^3.21.4
+  checksum: 5b50a47c0a1584dfc47df5369558b5226567566e7cbbd53bef5fd20e0f657e3eec2211806f69d5f73f3b265542d0854d50b3ea92c8fbad7c2338a4562b4466c3
   languageName: node
   linkType: hard

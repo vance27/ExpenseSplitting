@@ -78,19 +78,19 @@ model ExpenseSplittingWindow {
 }
 
 model UserPreferences {
-    id                Int      @id @default(autoincrement())
+    id                Int      @id @default(autoincrement()) @unique
     user              User     @relation(fields: [userId], references: [id])
     userId            String   @unique
-    createdAt         DateTime @default(now()) @db.Timestamp(3)
-    updatedAt         DateTime @default(now()) @db.Timestamp(3)
-    defaultSplittingUserId String?
-    defaultCurrency   String   @default("USD")
-    defaultLanguage   String   @default("en")
-    defaultTimezone   String   @default("America/Chicago")
-    defaultDateFormat String   @default("MM/dd/yyyy")
-    defaultTimeFormat String   @default("hh:mm a")
-    defaultTheme      String   @default("dark")
-    defaultSort       String   @default("date")
+    createdAt         String
+    updatedAt         String
+    splittingUserId String  @default("")
+    currency   String   @default("USD")
+    language   String   @default("en")
+    timezone   String   @default("America/Chicago")
+    dateFormat String   @default("MM/dd/yyyy")
+    timeFormat String   @default("hh:mm a")
+    theme      String   @default("dark")
+    preferredSort       String   @default("date")
 }
 
 model Account {
