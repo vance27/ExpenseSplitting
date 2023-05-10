@@ -2,7 +2,14 @@ import { ChangeEvent, ReactElement } from 'react';
 import Papa from 'papaparse';
 import { GridColDef } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
-import { Alert, Button, Tooltip } from '@mui/material';
+import {
+    Alert,
+    Button,
+    Card,
+    Container,
+    IconButton,
+    Tooltip,
+} from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import React from 'react';
 import {
@@ -13,13 +20,14 @@ import {
 } from '../../components/zod/transactions';
 import ImportGrid from '../../components/import/mint-split-grid';
 import ImportBar from 'apps/mint-split-next/components/import/import-bar';
-import { AddCard, PlusOne, PostAdd } from '@mui/icons-material';
+import { AddCard, PlusOne, PostAdd, Settings } from '@mui/icons-material';
 import {
     MintCsvTranslation,
     ParseMintCsv,
 } from 'apps/mint-split-next/services/mint-csv-translation';
 import { ZodError } from 'zod';
 import { getSession, useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 // TODO: Add loading spinner for data grid
 // TODO: color code values to easily see large transactions
@@ -36,8 +44,21 @@ import { getSession, useSession } from 'next-auth/react';
  * - Allow user to import data into database
  *
  */
+export const getServerSideProps = async (context) => {
+    const session = await getSession(context);
+    const userPreferences = session?.userPreferences ?? null;
+    return {
+        props: {
+            userPreferences: userPreferences,
+        },
+    };
+};
 
-export default function Import(): ReactElement {
+export default function Import({
+    userPreferences,
+}: {
+    userPreferences: any;
+}): ReactElement {
     const [data, setData] = React.useState<TransactionBulkSchema>([]);
     const [error, setError] = React.useState<string | undefined>(undefined);
 
@@ -66,6 +87,20 @@ export default function Import(): ReactElement {
             }
         }
     };
+
+    if (!userPreferences) {
+        return (
+            <Container maxWidth="md">
+                <Alert severity="info">
+                    Please set your user preferences before importing data
+                    <Button href="/user-preferences">
+                        Go to User Preferences
+                        <Settings />
+                    </Button>
+                </Alert>
+            </Container>
+        );
+    }
 
     return (
         <div>

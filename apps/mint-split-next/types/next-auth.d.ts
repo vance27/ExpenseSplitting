@@ -5,6 +5,7 @@ declare module 'next-auth' {
     export interface Session {
         id?: string | null;
         err?: string | null;
-        authorizedUsers?: User[]
+        authorizedUsers?: User[];
+        userPreferences?: any;
     }
 }

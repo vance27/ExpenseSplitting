@@ -9,7 +9,10 @@ import {
     getAllTransactionsInExpenseSplittingWindow,
     getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers,
 } from 'apps/mint-split-next/services/transaction.service';
-import { getAuthorizedUsers } from 'apps/mint-split-next/services/user.service';
+import {
+    getAuthorizedUsers,
+    getUserPreferences,
+} from 'apps/mint-split-next/services/user.service';
 import { AdapterUser } from 'next-auth/adapters';
 import { JWT } from 'next-auth/jwt';
 
@@ -41,6 +44,7 @@ export const authOptions: NextAuthOptions = {
             user: AdapterUser;
         }) => {
             const authorizedUsers = await getAuthorizedUsers(user?.id);
+            const userPreferences = await getUserPreferences(user?.id);
             const transactions =
                 await getAllTransactionsInExpenseSplittingWindow(user?.id);
             const authorizedUserTransactions =
@@ -48,6 +52,7 @@ export const authOptions: NextAuthOptions = {
                     authorizedUsers.map((user) => user?.id)
                 );
             session.authorizedUsers = authorizedUsers;
+            session.userPreferences = userPreferences;
             session.id = user?.id;
             // session.authorizedUsers = authorizedUsers;
             // session.user.currentTransactions = transactions;

@@ -1,5 +1,5 @@
-import { CheckBox, RadioButtonChecked } from '@mui/icons-material';
 import {
+    Alert,
     Box,
     Button,
     Card,
@@ -20,6 +20,7 @@ import { getServerSession } from 'next-auth';
 import React from 'react';
 import { ReactElement } from 'react';
 import { authOptions } from './api/auth/[...nextauth]';
+import { Lock } from '@mui/icons-material';
 
 export const getServerSideProps = async (context) => {
     const session = await getServerSession(
@@ -28,6 +29,7 @@ export const getServerSideProps = async (context) => {
         authOptions
     );
     const authorizedUsers = session?.authorizedUsers ?? [];
+    const userPreferences = session?.userPreferences ?? null;
     console.log(session);
 
     return {
@@ -41,9 +43,11 @@ export const getServerSideProps = async (context) => {
 function UserPreferences({
     title,
     authorizedUsers,
+    userPreferences,
 }: {
     title: any;
     authorizedUsers: any[];
+    userPreferences: any;
 }): ReactElement {
     const [disabled, setDisabled] = React.useState(true);
 
@@ -54,20 +58,36 @@ function UserPreferences({
 
     return (
         <div>
+            {!userPreferences ? (
+                <Alert severity="info">
+                    Setting user preferences is required to import data
+                </Alert>
+            ) : null}
             <Container maxWidth="sm">
                 <Card sx={{ p: 2, mt: 2 }}>
-                    <Typography sx={{ color: 'primary.light' }}>
+                    <Typography sx={{ color: 'primary.light', p: 2 }}>
                         Update {title}
                     </Typography>
-
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
-                                <FormControl fullWidth>
-                                    <InputLabel>Default Shared User</InputLabel>
-                                    <Select label="Default Shared User">
+                                <FormControl
+                                    fullWidth
+                                    required
+                                    disabled={disabled}
+                                >
+                                    <InputLabel>Shared User</InputLabel>
+                                    <Select
+                                        defaultValue={
+                                            authorizedUsers?.[0]?.id ?? ''
+                                        }
+                                        label="Default Shared User"
+                                    >
                                         {authorizedUsers?.map((user) => (
-                                            <MenuItem value={user.id}>
+                                            <MenuItem
+                                                key={`authUsers${user.id}`}
+                                                value={user.id}
+                                            >
                                                 {user.name} [{user.email}]
                                             </MenuItem>
                                         ))}
@@ -75,25 +95,41 @@ function UserPreferences({
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <FormControl fullWidth>
+                                <FormControl
+                                    fullWidth
+                                    required
+                                    disabled={disabled}
+                                >
                                     <InputLabel>Currency</InputLabel>
-                                    <Select label="Currency">
+                                    <Select
+                                        defaultValue="usd"
+                                        label="Currency"
+                                        required
+                                    >
                                         <MenuItem value="usd">$ USD</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <FormControl fullWidth>
+                                <FormControl
+                                    fullWidth
+                                    required
+                                    disabled={disabled}
+                                >
                                     <FormLabel>Language</FormLabel>
-                                    <Select label="Language">
+                                    <Select defaultValue="en" label="Language">
                                         <MenuItem value="en">English</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <FormControl fullWidth>
-                                    <FormLabel>Default Timezone</FormLabel>
-                                    <Select>
+                                <FormControl
+                                    fullWidth
+                                    required
+                                    disabled={disabled}
+                                >
+                                    <FormLabel>Timezone</FormLabel>
+                                    <Select defaultValue="America/Chicago">
                                         <MenuItem value="America/Chicago">
                                             America/Chicago
                                         </MenuItem>
@@ -101,7 +137,7 @@ function UserPreferences({
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <FormControl fullWidth>
+                                <FormControl fullWidth disabled={disabled}>
                                     <FormLabel>Theme</FormLabel>
                                     <RadioGroup defaultValue="dark">
                                         <FormControlLabel
@@ -121,8 +157,12 @@ function UserPreferences({
                     </form>
                     <Box sx={{ flexGrow: 1 }} m={2}>
                         {disabled ? (
-                            <Button onClick={() => setDisabled(!disabled)}>
-                                Edit Form
+                            <Button
+                                variant="contained"
+                                onClick={() => setDisabled(!disabled)}
+                            >
+                                Edit Preferences
+                                <Lock />
                             </Button>
                         ) : (
                             <>

@@ -84,10 +84,7 @@ export const TransactionBulkColumns: GridColDef[] = [
         headerName: 'Equal Split ',
         width: 160,
         editable: true,
-        valueFormatter: ({ value }) => {
-            console.log(value);
-            return value ? 'No' : 'Yes';
-        },
+        valueFormatter: ({ value }) => (value ? 'No' : 'Yes'),
     },
     {
         field: 'notes',
