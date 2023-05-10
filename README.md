@@ -31,6 +31,8 @@ PERN stack (postgres, express, react, node)
 - add "PossibleDuplicates" flag to import
 - add "GetPossibleDuplicates" api to backend for user to cleanup
 - don't allow users to import if default split is not set
+- if clicking import and not all conditions are filled, route to preferences page automatically
+- unlighthouse
 
 ### User preferences
 - Users have preferences that determine how they want their data to be imported (what values are filtered out, regex for values that should be variable, etc.)  
