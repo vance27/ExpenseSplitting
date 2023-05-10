@@ -96,7 +96,9 @@ function UserPreferences({
         const res = await fetch('/api/user-preferences/update', {
             method: 'POST',
             body: JSON.stringify(data),
-            type: 'application/json',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
         const json = await res.json();
         console.log('json is', json);

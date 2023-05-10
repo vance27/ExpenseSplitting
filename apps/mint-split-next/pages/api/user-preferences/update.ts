@@ -6,7 +6,6 @@ import {
     UserPreferencesFormSchema,
 } from '../../user-preferences';
 import { NextApiRequest } from 'next';
-import { zu } from 'zod_utilz';
 
 interface UserPreferencesApiRequest extends NextApiRequest {
     body: UserPreferencesForm;
@@ -16,8 +15,7 @@ export default async function handler(req: UserPreferencesApiRequest, res) {
     // validate request
 
     const session = await getServerSession(req, res, authOptions);
-    const preferencesSchema = zu.stringToJSON();
-    const preferences = preferencesSchema.parse(req.body);
+    const preferences = req.body;
     const parse = UserPreferencesFormSchema.safeParse(preferences);
     if (!parse.success && preferences) {
         res.status(400).json({ error: parse.error });
