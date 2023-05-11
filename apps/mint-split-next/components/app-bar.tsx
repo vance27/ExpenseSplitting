@@ -15,7 +15,7 @@ import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AppBarLink from './shared/app-bar-link';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-const pages: string[] = ['dashboard', 'import'];
+const pages: string[] = ['dashboard', 'import', 'friends'];
 const settings = ['Profile', 'Account', 'Dashboard', 'user-preferences'];
 
 function ResponsiveAppBar() {
