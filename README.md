@@ -33,6 +33,7 @@ PERN stack (postgres, express, react, node)
 - don't allow users to import if default split is not set
 - if clicking import and not all conditions are filled, route to preferences page automatically
 - unlighthouse
+- investigate tRPC
 
 ### User preferences
 - Users have preferences that determine how they want their data to be imported (what values are filtered out, regex for values that should be variable, etc.)  

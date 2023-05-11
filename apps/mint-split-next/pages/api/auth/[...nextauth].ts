@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
         // strategy: 'jwt', // TODO: should be doing this???
         strategy: 'database',
         maxAge: 30 * 60, // 15 minutes
-        updateAge: 0,
+        updateAge: 5 * 60,
     },
     providers: [
         GitHubProvider({
@@ -54,7 +54,6 @@ export const authOptions: NextAuthOptions = {
             session.authorizedUsers = authorizedUsers;
             session.userPreferences = userPreferences;
             session.id = user?.id;
-            console.log('session', session);
             // session.authorizedUsers = authorizedUsers;
             // session.user.currentTransactions = transactions;
             // session.user.authorizedUserTransactions =

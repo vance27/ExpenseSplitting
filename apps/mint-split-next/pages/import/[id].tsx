@@ -1,33 +1,15 @@
-import { ChangeEvent, ReactElement } from 'react';
-import Papa from 'papaparse';
-import { GridColDef } from '@mui/x-data-grid';
-import Box from '@mui/material/Box';
-import {
-    Alert,
-    Button,
-    Card,
-    Container,
-    IconButton,
-    Tooltip,
-} from '@mui/material';
+import { PostAdd, Settings } from '@mui/icons-material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
-import React from 'react';
+import { Alert, Button, Container, Tooltip } from '@mui/material';
+import Box from '@mui/material/Box';
+import ImportBar from 'apps/mint-split-next/components/import/import-bar';
+import { getSession } from 'next-auth/react';
+import React, { ChangeEvent, ReactElement } from 'react';
+import ImportGrid from '../../components/import/mint-split-grid';
 import {
-    MintCsvSchema,
     TransactionBulkColumns,
     TransactionBulkSchema,
-    TransactionSchema,
 } from '../../components/zod/transactions';
-import ImportGrid from '../../components/import/mint-split-grid';
-import ImportBar from 'apps/mint-split-next/components/import/import-bar';
-import { AddCard, PlusOne, PostAdd, Settings } from '@mui/icons-material';
-import {
-    MintCsvTranslation,
-    ParseMintCsv,
-} from 'apps/mint-split-next/services/mint-csv-translation';
-import { ZodError } from 'zod';
-import { getSession, useSession } from 'next-auth/react';
-import Link from 'next/link';
 
 // TODO: Add loading spinner for data grid
 // TODO: color code values to easily see large transactions
@@ -128,7 +110,15 @@ export default function Import({
                             </Button>
                         </Tooltip>
                         <Tooltip title="Allows a user to manually add transactions in a table format">
-                            <Button variant="text" component="label">
+                            <Button
+                                variant="text"
+                                component="label"
+                                onClick={() =>
+                                    alert(
+                                        "I'm trash and haven't implemented this yet"
+                                    )
+                                }
+                            >
                                 <PostAdd />
                                 Manually Add Transactions
                             </Button>
