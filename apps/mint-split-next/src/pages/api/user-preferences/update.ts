@@ -1,4 +1,4 @@
-import { postUpdateUserPreferences } from 'apps/mint-split-next/services/user.service';
+import { postUpdateUserPreferences } from 'apps/mint-split-next/src/services/user.service';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]';
 import {

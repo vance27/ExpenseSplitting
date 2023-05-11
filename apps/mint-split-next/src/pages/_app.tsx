@@ -6,8 +6,10 @@ import { MintTheme } from '../components/theme-provider';
 import Box from '@mui/material/Box';
 import { SessionProvider } from 'next-auth/react';
 import AuthContainer from '../components/auth-container';
+import type { AppType } from 'next/app';
+import { trpc } from '../utils/trpc';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+const MintSplitApp: AppType = ({ Component, pageProps }: AppProps) => {
     return (
         <SessionProvider session={pageProps.session}>
             <Head>
@@ -25,6 +27,6 @@ function CustomApp({ Component, pageProps }: AppProps) {
             </main>
         </SessionProvider>
     );
-}
+};
 
-export default CustomApp;
+export default trpc.withTRPC(MintSplitApp);

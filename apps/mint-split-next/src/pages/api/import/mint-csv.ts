@@ -1,6 +1,6 @@
 import { Session, getServerSession } from 'next-auth';
 import { ZodError } from 'zod';
-import { authOptions } from 'apps/mint-split-next/pages/api/auth/[...nextauth]';
+import { authOptions } from 'apps/mint-split-next/src/pages/api/auth/[...nextauth]';
 import Papa from 'papaparse';
 import {
     MintCsvRow,

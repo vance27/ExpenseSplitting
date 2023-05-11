@@ -8,11 +8,11 @@ import prisma from 'apps/mint-split-next/prisma/prisma';
 import {
     getAllTransactionsInExpenseSplittingWindow,
     getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers,
-} from 'apps/mint-split-next/services/transaction.service';
+} from 'apps/mint-split-next/src/services/transaction.service';
 import {
     getAuthorizedUsers,
     getUserPreferences,
-} from 'apps/mint-split-next/services/user.service';
+} from 'apps/mint-split-next/src/services/user.service';
 import { AdapterUser } from 'next-auth/adapters';
 import { JWT } from 'next-auth/jwt';
 
