@@ -10,7 +10,7 @@ export const appRouter = router({
         )
         .query((opts) => {
             return {
-                greeting: `hello ${opts.input.text}`,
+                greetings: `hello ${opts.input.text}`,
             };
         }),
 });
