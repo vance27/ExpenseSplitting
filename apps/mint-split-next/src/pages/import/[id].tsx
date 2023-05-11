@@ -2,7 +2,7 @@ import { PostAdd, Settings } from '@mui/icons-material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { Alert, Button, Container, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
-import ImportBar from 'apps/mint-split-next/components/import/import-bar';
+import ImportBar from 'apps/mint-split-next/src/components/import/import-bar';
 import { getSession } from 'next-auth/react';
 import React, { ChangeEvent, ReactElement } from 'react';
 import ImportGrid from '../../components/import/mint-split-grid';

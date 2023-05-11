@@ -3,37 +3,30 @@
 This project is a work in progress. The goal is to take exported csv data from Mint and convert to an automated total of what is owed to that individual. This is useful for roommates who want to split expenses evenly.
 
 ### Tools
-PERN stack (postgres, express, react, node)
+(postgres, next, tRPC)
 - Nx Workspace
+- Next.js
+- tRPC
 - Prisma
 - Postgres
 - React
 - Material UI
-- Node
-- Express
-- Next.js (??? replace express server entirely)
-
-
 
 ## TODO
 
-- Create variables like name
 - Investigate figma for design
 - Secret storage for env files, postgres, etc.
 - make sure users cant navigate to id routes that they aren't authorized to view (dashboard/nottheirid )
+  - add check to routes to verify slugs are users id
 - callbacks vs making calls on pages (getServerSideProps)
 - possibility to add transactions manually
 - valueFormatter for currency
-- import mint dates as strings???
-- add check to routes to verify slugs are users id
+- dates are not being formatted correctly (strings in db how to handle on client)
 - add view of current cost to authrorized users on import
-- sharedTransactions can be equal or not equal but it's the same interface
 - add "PossibleDuplicates" flag to import
 - add "GetPossibleDuplicates" api to backend for user to cleanup
-- don't allow users to import if default split is not set
 - if clicking import and not all conditions are filled, route to preferences page automatically
 - unlighthouse
-- investigate tRPC
 
 ### User preferences
 - Users have preferences that determine how they want their data to be imported (what values are filtered out, regex for values that should be variable, etc.)  
@@ -105,6 +98,10 @@ npx prisma migrate dev --name [NAME OF THE MIGRATION]
 Use the following command to start Prisma Studio:
 npx prisma studio
 Prisma Studio is now running on http://localhost:5555 and allows us to visualize and interact with the postgres database.
+
+## Next.js
+
+## tRPC
 
 ## Understand this workspace
 

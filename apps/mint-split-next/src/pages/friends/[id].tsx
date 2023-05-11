@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { authOptions } from '../api/auth/[...nextauth]';
-import { getAuthorizedUsers } from 'apps/mint-split-next/services/user.service';
+import { getAuthorizedUsers } from 'apps/mint-split-next/src/services/user.service';
 import { getServerSession } from 'next-auth';
 import {
     Avatar,

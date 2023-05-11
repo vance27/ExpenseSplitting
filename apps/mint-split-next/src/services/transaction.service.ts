@@ -1,4 +1,4 @@
-import prisma from '../prisma/prisma';
+import prisma from '../../prisma/prisma';
 
 export type Transaction = any;
 
@@ -68,7 +68,8 @@ export async function getUserAmountOwed(id: string): Promise<any> {
         (acc, curr) =>
             acc +
             Math.round(
-                curr.sharedTransaction.transaction.price * (curr.sharedPercentage/100)
+                curr.sharedTransaction.transaction.price *
+                    (curr.sharedPercentage / 100)
             ),
         0
     );
