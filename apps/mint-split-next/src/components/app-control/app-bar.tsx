@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
-import AppBarLink from './shared/app-bar-link';
+import AppBarLink from '../shared/app-bar-link';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 const pages: string[] = ['dashboard', 'import', 'friends'];
