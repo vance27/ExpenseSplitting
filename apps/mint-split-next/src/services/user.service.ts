@@ -12,6 +12,34 @@ export async function getAllUsers(): Promise<User[]> {
     return users ?? [];
 }
 
+export async function getFriendRequests(id: string): Promise<any> {
+    const user = await prisma.user.findUnique({
+        where: {
+            id: id,
+        },
+        include: {
+            FriendRequestSent: {
+                include: {
+                    receiver: true,
+                },
+            },
+        },
+    });
+    const requestedUsers = user?.FriendRequestSent.map((f) => f.receiver);
+    // const res = users?.map((u) => u.FriendRequestSent.map((f) => f.receiver));
+    console.log(requestedUsers);
+    return requestedUsers ?? [];
+    // const users = await prisma.user.findUnique({
+    //     where: {
+    //         id: id,
+    //     },
+    //     include: {
+    //         FriendRequestSent: true,
+    //     },
+    // });
+    // return users?.FriendRequestSent ?? [];
+}
+
 export async function getAuthorizedUsers(id: string): Promise<User[]> {
     const users = await prisma.user.findUnique({
         where: {

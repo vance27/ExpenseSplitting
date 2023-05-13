@@ -3,6 +3,7 @@ import { authOptions } from '../api/auth/[...nextauth]';
 import {
     getAllUsers,
     getAuthorizedUsers,
+    getFriendRequests,
 } from 'apps/mint-split-next/src/services/user.service';
 import { getServerSession } from 'next-auth';
 import {
@@ -29,10 +30,12 @@ export const getServerSideProps = async (context: any) => {
         authOptions
     );
     const allUsers = await getAllUsers();
+    const currentFriendRequests = await getFriendRequests(session?.id);
     return {
         props: {
             session: session,
             allUsers: allUsers,
+            friendRequests: currentFriendRequests,
         },
     };
 };
@@ -72,7 +75,8 @@ const filterData = (query: string, data: User[]): User[] => {
 function FriendsPage(props: any): ReactElement {
     const [searchQuery, setSearchQuery] = React.useState('');
     const dataFiltered = filterData(searchQuery, props?.allUsers);
-    console.log(props?.session?.authorizedUsers);
+    console.log(props?.friendRequests);
+    // const handleAddFriend = async (friendId: number) => {};
 
     return (
         <>
@@ -91,6 +95,18 @@ function FriendsPage(props: any): ReactElement {
 
                 <Container>
                     {props.session?.authorizedUsers?.map((user: any) => {
+                        return (
+                            <FriendCard user={user} key={user.id}></FriendCard>
+                        );
+                    })}
+                </Container>
+            </Paper>
+            <Paper elevation={4} sx={{ m: 2, p: 2 }}>
+                <Typography variant="h6" component="h4">
+                    Current Friend Requests:
+                </Typography>
+                <Container>
+                    {props.friendRequests?.map((user: any) => {
                         return (
                             <FriendCard user={user} key={user.id}></FriendCard>
                         );
@@ -124,10 +140,20 @@ function FriendsPage(props: any): ReactElement {
                                 props?.session?.authorizedUsers.filter(
                                     (authUser: User) => authUser.id === user.id
                                 ).length === 0
+                        )
+                        .filter(
+                            (user) =>
+                                props?.friendRequests.filter(
+                                    (authUser: User) => authUser.id === user.id
+                                ).length === 0
                         ) // filter out current user, TODO: filter out current friends
                         .map((d) => (
                             <FriendCard user={d} key={d?.id}>
-                                <Button variant="contained" color="primary">
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    // onClick={}
+                                >
                                     Add as friend
                                 </Button>
                             </FriendCard>

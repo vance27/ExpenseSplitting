@@ -21,10 +21,12 @@ model User {
     transactions            Transaction[]
     expenseSplittingWindows ExpenseSplittingWindow[]
     authorizedUsers         User[]                   @relation("authorizedUsers")
-    authorizedBy      User[]                   @relation("authorizedUsers")
+    authorizedBy            User[]                   @relation("authorizedUsers")
     accounts                Account[]
     sessions                Session[]
     SharedPercentage        SharedPercentage[]
+    FriendRequestSent           FriendRequest[] @relation("sender")
+    FriendRequestReceived           FriendRequest[] @relation("receiver")
 }
 
 model Transaction {
@@ -78,19 +80,29 @@ model ExpenseSplittingWindow {
 }
 
 model UserPreferences {
-    id                Int      @id @default(autoincrement()) @unique
-    user              User     @relation(fields: [userId], references: [id])
-    userId            String   @unique
-    createdAt         String
-    updatedAt         String
-    splittingUserId String  @default("")
-    currency   String   @default("USD")
-    language   String   @default("en")
-    timezone   String   @default("America/Chicago")
-    dateFormat String   @default("MM/dd/yyyy")
-    timeFormat String   @default("hh:mm a")
-    theme      String   @default("dark")
-    preferredSort       String   @default("date")
+    id              Int    @id @unique @default(autoincrement())
+    user            User   @relation(fields: [userId], references: [id])
+    userId          String @unique
+    createdAt       String
+    updatedAt       String
+    splittingUserId String @default("")
+    currency        String @default("USD")
+    language        String @default("en")
+    timezone        String @default("America/Chicago")
+    dateFormat      String @default("MM/dd/yyyy")
+    timeFormat      String @default("hh:mm a")
+    theme           String @default("dark")
+    preferredSort   String @default("date")
+}
+
+model FriendRequest {
+    id         Int    @id @default(autoincrement())
+    createdAt  String
+    updatedAt  String
+    sender     User   @relation(name: "sender", fields: [senderId], references: [id])
+    senderId   String
+    receiver   User   @relation(name: "receiver", fields: [receiverId], references: [id])
+    receiverId String
 }
 
 model Account {
