@@ -14,6 +14,7 @@ export default function FriendCard({ user, children }: any) {
                 display: 'inline-flex',
                 justifyContent: 'center',
                 flexDirection: 'column',
+                m: 1,
             }}
         >
             <CardContent

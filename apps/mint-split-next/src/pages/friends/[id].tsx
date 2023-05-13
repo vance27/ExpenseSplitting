@@ -75,7 +75,6 @@ const filterData = (query: string, data: User[]): User[] => {
 function FriendsPage(props: any): ReactElement {
     const [searchQuery, setSearchQuery] = React.useState('');
     const dataFiltered = filterData(searchQuery, props?.allUsers);
-    console.log(props?.friendRequests);
     // const handleAddFriend = async (friendId: number) => {};
 
     return (
@@ -96,7 +95,15 @@ function FriendsPage(props: any): ReactElement {
                 <Container>
                     {props.session?.authorizedUsers?.map((user: any) => {
                         return (
-                            <FriendCard user={user} key={user.id}></FriendCard>
+                            <FriendCard user={user} key={user.id}>
+                                <Button
+                                    variant="text"
+                                    color="primary"
+                                    // onClick={}
+                                >
+                                    - Remove friend
+                                </Button>
+                            </FriendCard>
                         );
                     })}
                 </Container>
@@ -108,7 +115,19 @@ function FriendsPage(props: any): ReactElement {
                 <Container>
                     {props.friendRequests?.map((user: any) => {
                         return (
-                            <FriendCard user={user} key={user.id}></FriendCard>
+                            <FriendCard user={user} key={user.id}>
+                                <Typography
+                                    variant="overline"
+                                    display={'block'}
+                                    component="div"
+                                    sx={{
+                                        color: 'gray',
+                                    }}
+                                    noWrap={true}
+                                >
+                                    Request Sent
+                                </Typography>
+                            </FriendCard>
                         );
                     })}
                 </Container>
@@ -131,7 +150,12 @@ function FriendsPage(props: any): ReactElement {
                 </Container>
 
                 <Container
-                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        flexDirection: 'row',
+                        flexWrap: 'wrap',
+                    }}
                 >
                     {dataFiltered
                         .filter((user: User) => user.id !== props.session?.id)
@@ -146,15 +170,15 @@ function FriendsPage(props: any): ReactElement {
                                 props?.friendRequests.filter(
                                     (authUser: User) => authUser.id === user.id
                                 ).length === 0
-                        ) // filter out current user, TODO: filter out current friends
+                        )
                         .map((d) => (
                             <FriendCard user={d} key={d?.id}>
                                 <Button
-                                    variant="contained"
+                                    variant="text"
                                     color="primary"
                                     // onClick={}
                                 >
-                                    Add as friend
+                                    + Add as friend
                                 </Button>
                             </FriendCard>
                         ))}
