@@ -1,29 +1,23 @@
-import { ReactElement } from 'react';
-import { authOptions } from '../api/auth/[...nextauth]';
+import { Search } from '@mui/icons-material';
 import {
-    getAllUsers,
-    getAuthorizedUsers,
-    getFriendRequests,
-    getFriendRequestsReceived,
-} from 'apps/mint-split-next/src/services/user.service';
-import { getServerSession } from 'next-auth';
-import {
-    Avatar,
     Button,
-    Card,
-    CardContent,
     Container,
     Grid,
     IconButton,
     Paper,
     TextField,
-    Tooltip,
     Typography,
 } from '@mui/material';
-import { Search } from '@mui/icons-material';
-import React from 'react';
 import { User } from '@prisma/client';
+import {
+    getAllUsers,
+    getFriendRequests,
+    getFriendRequestsReceived,
+} from 'apps/mint-split-next/src/services/user.service';
+import { getServerSession } from 'next-auth';
+import React, { ReactElement } from 'react';
 import FriendCard from '../../components/friends/friend-card';
+import { authOptions } from '../api/auth/[...nextauth]';
 
 export const getServerSideProps = async (context: any) => {
     const session = await getServerSession(
