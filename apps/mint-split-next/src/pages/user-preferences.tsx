@@ -81,6 +81,7 @@ function UserPreferences({
         handleSubmit,
         control,
         reset,
+        register,
         formState: { errors },
     } = useForm<UserPreferencesForm>({
         defaultValues: defaultFormData,
@@ -241,6 +242,27 @@ function UserPreferences({
                                                 disabled={disabled}
                                             />
                                         </RadioGroup>
+                                    </>
+                                )}
+                            />
+                            <Controller
+                                name="filteredList"
+                                control={control}
+                                defaultValue={''}
+                                render={({ field }) => (
+                                    <>
+                                        <InputLabel>Filtered List</InputLabel>
+                                        <input
+                                            {...field}
+                                            type="file"
+                                            value={field.value}
+                                            name="filteredList"
+                                            onChange={(e) => {
+                                                field.onChange(
+                                                    e.target.files?.[0]
+                                                );
+                                            }}
+                                        />
                                     </>
                                 )}
                             />

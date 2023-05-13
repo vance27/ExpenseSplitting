@@ -93,6 +93,7 @@ model UserPreferences {
     timeFormat      String @default("hh:mm a")
     theme           String @default("dark")
     preferredSort   String @default("date")
+    filterOutList String[] @default([])
 }
 
 model FriendRequest {
