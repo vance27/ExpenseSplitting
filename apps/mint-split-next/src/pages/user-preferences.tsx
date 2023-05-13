@@ -20,7 +20,7 @@ import { ReactElement } from 'react';
 import { authOptions } from './api/auth/[...nextauth]';
 import { Lock } from '@mui/icons-material';
 import { Controller, useForm } from 'react-hook-form';
-import StructuredGrid from '../components/structured-form';
+import StructuredGrid from '../components/ui-lib-candidates/structured-form';
 import Zod from 'zod';
 
 export const UserPreferencesFormSchema = Zod.object({

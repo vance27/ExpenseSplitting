@@ -1,9 +1,13 @@
 import { ReactElement } from 'react';
 import { authOptions } from '../api/auth/[...nextauth]';
-import { getAuthorizedUsers } from 'apps/mint-split-next/src/services/user.service';
+import {
+    getAllUsers,
+    getAuthorizedUsers,
+} from 'apps/mint-split-next/src/services/user.service';
 import { getServerSession } from 'next-auth';
 import {
     Avatar,
+    Button,
     Card,
     CardContent,
     Container,
@@ -16,6 +20,7 @@ import {
 import { Search } from '@mui/icons-material';
 import React from 'react';
 import { User } from '@prisma/client';
+import FriendCard from '../../components/friends/friend-card';
 
 export const getServerSideProps = async (context: any) => {
     const session = await getServerSession(
@@ -23,9 +28,11 @@ export const getServerSideProps = async (context: any) => {
         context.res,
         authOptions
     );
+    const allUsers = await getAllUsers();
     return {
         props: {
             session: session,
+            allUsers: allUsers,
         },
     };
 };
@@ -51,21 +58,21 @@ const SearchBar = ({ setSearchQuery }: any): ReactElement => {
     );
 };
 
-const filterData = (query: string, data: User[]) => {
+const filterData = (query: string, data: User[]): User[] => {
     if (!query) {
         return data;
     } else {
-        return data.filter((d) => d?.name?.toLowerCase().includes(query));
+        return data.filter((d) =>
+            d?.name?.toLowerCase().includes(query.toLowerCase())
+        );
     }
 };
 
 // TODO: change this to all users instead of just authorized
 function FriendsPage(props: any): ReactElement {
     const [searchQuery, setSearchQuery] = React.useState('');
-    const dataFiltered = filterData(
-        searchQuery,
-        props?.session?.authorizedUsers
-    );
+    const dataFiltered = filterData(searchQuery, props?.allUsers);
+    console.log(props?.session?.authorizedUsers);
 
     return (
         <>
@@ -85,74 +92,47 @@ function FriendsPage(props: any): ReactElement {
                 <Container>
                     {props.session?.authorizedUsers?.map((user: any) => {
                         return (
-                            <Tooltip title={user.name} placement="top">
-                                <Card
-                                    sx={{
-                                        display: 'inline-flex',
-                                        justifyContent: 'center',
-                                        flexDirection: 'column',
-                                    }}
-                                >
-                                    <CardContent
-                                        sx={{
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            flexDirection: 'column',
-                                            display: 'flex',
-                                            flex: '1 0 auto',
-                                            maxWidth: 100,
-                                            minWidth: 100,
-                                        }}
-                                    >
-                                        <Avatar
-                                            alt={user.name}
-                                            src={user.image}
-                                        />
-                                        <Typography
-                                            noWrap
-                                            variant="body1"
-                                            display="block"
-                                            sx={{
-                                                textAlign: 'center',
-                                                minWidth: 100,
-                                                maxWidth: 100,
-                                            }}
-                                        >
-                                            {user.name}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Tooltip>
+                            <FriendCard user={user} key={user.id}></FriendCard>
                         );
                     })}
                 </Container>
             </Paper>
-            <Paper elevation={4} sx={{ m: 2, p: 2 }}>
-                <SearchBar
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                />
-                <div style={{ padding: 3 }}>
-                    Top Users:
-                    {dataFiltered.map((d) => (
-                        <div
-                            className="text"
-                            style={{
-                                padding: 5,
-                                justifyContent: 'normal',
-                                fontSize: 20,
-                                color: 'blue',
-                                margin: 1,
-                                width: '250px',
-                                borderColor: 'green',
-                                borderWidth: '10px',
-                            }}
-                            key={d?.id}
-                        >
-                            {d?.name}
-                        </div>
-                    ))}
-                </div>
+            <Paper
+                elevation={4}
+                sx={{
+                    m: 2,
+                    p: 2,
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    flexDirection: 'column',
+                }}
+            >
+                <Container sx={{ p: 2 }}>
+                    <SearchBar
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
+                    />
+                </Container>
+
+                <Container
+                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                    {dataFiltered
+                        .filter((user: User) => user.id !== props.session?.id)
+                        .filter(
+                            (user) =>
+                                props?.session?.authorizedUsers.filter(
+                                    (authUser: User) => authUser.id === user.id
+                                ).length === 0
+                        ) // filter out current user, TODO: filter out current friends
+                        .map((d) => (
+                            <FriendCard user={d} key={d?.id}>
+                                <Button variant="contained" color="primary">
+                                    Add as friend
+                                </Button>
+                            </FriendCard>
+                        ))}
+                </Container>
             </Paper>
         </>
     );
