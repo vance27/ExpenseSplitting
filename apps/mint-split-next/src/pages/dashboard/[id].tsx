@@ -1,8 +1,8 @@
 import { Card, Grid } from '@mui/material';
 import { getSession } from 'next-auth/react';
-import CurrentExpenseSplittingWindow from '../../components/current-expense-splitting-window';
+import CurrentExpenseSplittingWindow from '../../components/dashboard/current-expense-splitting-window';
 import GetData from '../../components/get-data';
-import OwedDisplay from '../../components/owed-display';
+import OwedDisplay from '../../components/dashboard/owed-display';
 import {
     getAllTransactionsInExpenseSplittingWindow,
     getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers,

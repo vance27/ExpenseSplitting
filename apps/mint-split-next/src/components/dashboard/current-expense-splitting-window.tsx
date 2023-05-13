@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { ReactElement } from 'react';
-import MintSplitGrid from './import/mint-split-grid';
+import MintSplitGrid from '../import/mint-split-grid';
 
 const columns: GridColDef[] = [
     {
