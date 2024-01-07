@@ -1,0 +1,64 @@
+{
+    "name": "plaid-backend",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/plaid-backend/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nx/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "target": "node",
+                "compiler": "tsc",
+                "outputPath": "dist/apps/plaid-backend",
+                "main": "apps/plaid-backend/src/main.ts",
+                "tsConfig": "apps/plaid-backend/tsconfig.app.json",
+                "assets": ["apps/plaid-backend/src/assets"],
+                "isolatedConfig": true,
+                "webpackConfig": "apps/plaid-backend/webpack.config.js"
+            },
+            "configurations": {
+                "development": {},
+                "production": {}
+            }
+        },
+        "serve": {
+            "executor": "@nx/js:node",
+            "defaultConfiguration": "development",
+            "options": {
+                "buildTarget": "plaid-backend:build"
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "plaid-backend:build:development"
+                },
+                "production": {
+                    "buildTarget": "plaid-backend:build:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/plaid-backend/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/plaid-backend/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        }
+    },
+    "tags": []
+}
