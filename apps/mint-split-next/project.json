@@ -24,8 +24,7 @@
             "defaultConfiguration": "development",
             "options": {
                 "buildTarget": "mint-split-next:build",
-                "dev": true,
-                "proxyConfig": "apps/mint-split-next/proxy.conf.json"
+                "dev": true
             },
             "configurations": {
                 "development": {

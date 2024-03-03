@@ -9,9 +9,12 @@ import AuthContainer from '../components/app-control/auth-container';
 import type { AppType } from 'next/app';
 import { trpc } from '../utils/trpc';
 
-const MintSplitApp: AppType = ({ Component, pageProps }: AppProps) => {
+const MintSplitApp: AppType = ({
+    Component,
+    pageProps: { session, ...pageProps },
+}: AppProps) => {
     return (
-        <SessionProvider session={pageProps.session}>
+        <SessionProvider session={session}>
             <Head>
                 <title>MintSplit</title>
             </Head>

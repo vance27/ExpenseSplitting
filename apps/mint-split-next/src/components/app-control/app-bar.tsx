@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AppBarLink from '../shared/app-bar-link';
-import { signOut, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 const pages: string[] = ['dashboard', 'import', 'friends'];
 const settings = ['Profile', 'Account', 'Dashboard', 'user-preferences'];
@@ -50,6 +50,9 @@ function ResponsiveAppBar() {
     }
     if (!session) {
         links = (
+            // <Button variant="contained" onClick={() => signIn()}>
+            //     Sign in
+            // </Button>
             <Link href="/api/auth/signin">
                 <Button variant="contained">Sign in</Button>
             </Link>
