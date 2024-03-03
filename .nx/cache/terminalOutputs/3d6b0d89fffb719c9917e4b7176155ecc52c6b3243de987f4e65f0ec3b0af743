@@ -1,0 +1,136 @@
+(node:98277) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[35mevent[39m - compiled client and server successfully in 5.7s (1250 modules)
+[ [32mready[39m ] on http://localhost:4200
+[36mwait[39m  - compiling / (client and server)...
+[35mevent[39m - compiled client and server successfully in 400 ms (1253 modules)
+[36mwait[39m  - compiling /api/auth/[...nextauth] (client and server)...
+[35mevent[39m - compiled successfully in 63 ms (94 modules)
+[next-auth][warn][NO_SECRET] 
+https://next-auth.js.org/warnings#no_secret
+[next-auth][error][adapter_error_getUserByAccount] 
+https://next-auth.js.org/errors#adapter_error_getuserbyaccount 
+Invalid `p.account.findUnique()` invocation in
+/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45
+
+  210 getUserByEmail: (email) => p.user.findUnique({ where: { email } }),
+  211 async getUserByAccount(provider_providerAccountId) {
+  212     var _a;
+→ 213     const account = await p.account.findUnique(
+User `bvancejr` was denied access on the database `mintsplit.public` {
+  message: [32m'\n'[39m +
+    [32m'Invalid `p.account.findUnique()` invocation in\n'[39m +
+    [32m'/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45\n'[39m +
+    [32m'\n'[39m +
+    [32m'  210 getUserByEmail: (email) => p.user.findUnique({ where: { email } }),\n'[39m +
+    [32m'  211 async getUserByAccount(provider_providerAccountId) {\n'[39m +
+    [32m'  212     var _a;\n'[39m +
+    [32m'→ 213     const account = await p.account.findUnique(\n'[39m +
+    [32m'User `bvancejr` was denied access on the database `mintsplit.public`'[39m,
+  stack: [32m'Error: \n'[39m +
+    [32m'Invalid `p.account.findUnique()` invocation in\n'[39m +
+    [32m'/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45\n'[39m +
+    [32m'\n'[39m +
+    [32m'  210 getUserByEmail: (email) => p.user.findUnique({ where: { email } }),\n'[39m +
+    [32m'  211 async getUserByAccount(provider_providerAccountId) {\n'[39m +
+    [32m'  212     var _a;\n'[39m +
+    [32m'→ 213     const account = await p.account.findUnique(\n'[39m +
+    [32m'User `bvancejr` was denied access on the database `mintsplit.public`\n'[39m +
+    [32m'    at Pn.handleRequestError (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:7205)\n'[39m +
+    [32m'    at Pn.handleAndLogRequestError (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:6358)\n'[39m +
+    [32m'    at /Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:2908\n'[39m +
+    [32m'    at async /Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:3123\n'[39m +
+    [32m'    at async t._executeRequest (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:10621)\n'[39m +
+    [32m'    at async getUserByAccount (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:29)'[39m,
+  name: [32m'Error'[39m
+}
+[next-auth][error][OAUTH_CALLBACK_HANDLER_ERROR] 
+https://next-auth.js.org/errors#oauth_callback_handler_error 
+Invalid `p.account.findUnique()` invocation in
+/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45
+
+  210 getUserByEmail: (email) => p.user.findUnique({ where: { email } }),
+  211 async getUserByAccount(provider_providerAccountId) {
+  212     var _a;
+→ 213     const account = await p.account.findUnique(
+User `bvancejr` was denied access on the database `mintsplit.public` Error: 
+Invalid `p.account.findUnique()` invocation in
+/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45
+
+  210 getUserByEmail: (email) => p.user.findUnique({ where: { email } }),
+  211 async getUserByAccount(provider_providerAccountId) {
+  212     var _a;
+→ 213     const account = await p.account.findUnique(
+User `bvancejr` was denied access on the database `mintsplit.public`
+    at Pn.handleRequestError [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:7205[90m)[39m
+    at Pn.handleAndLogRequestError [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:6358[90m)[39m
+    at [90m/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:2908
+    at async [90m/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:3123
+    at async t._executeRequest [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:10621[90m)[39m
+    at async getUserByAccount [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@next-auth[24m/prisma-adapter/dist/index.js:213:29[90m)[39m {
+  name: [32m'GetUserByAccountError'[39m,
+  code: [90mundefined[39m
+}
+[next-auth][error][adapter_error_getUserByAccount] 
+https://next-auth.js.org/errors#adapter_error_getuserbyaccount 
+Invalid `p.account.findUnique()` invocation in
+/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45
+
+  210 getUserByEmail: (email) => p.user.findUnique({ where: { email } }),
+  211 async getUserByAccount(provider_providerAccountId) {
+  212     var _a;
+→ 213     const account = await p.account.findUnique(
+User `bvancejr` was denied access on the database `mintsplit.public` {
+  message: [32m'\n'[39m +
+    [32m'Invalid `p.account.findUnique()` invocation in\n'[39m +
+    [32m'/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45\n'[39m +
+    [32m'\n'[39m +
+    [32m'  210 getUserByEmail: (email) => p.user.findUnique({ where: { email } }),\n'[39m +
+    [32m'  211 async getUserByAccount(provider_providerAccountId) {\n'[39m +
+    [32m'  212     var _a;\n'[39m +
+    [32m'→ 213     const account = await p.account.findUnique(\n'[39m +
+    [32m'User `bvancejr` was denied access on the database `mintsplit.public`'[39m,
+  stack: [32m'Error: \n'[39m +
+    [32m'Invalid `p.account.findUnique()` invocation in\n'[39m +
+    [32m'/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45\n'[39m +
+    [32m'\n'[39m +
+    [32m'  210 getUserByEmail: (email) => p.user.findUnique({ where: { email } }),\n'[39m +
+    [32m'  211 async getUserByAccount(provider_providerAccountId) {\n'[39m +
+    [32m'  212     var _a;\n'[39m +
+    [32m'→ 213     const account = await p.account.findUnique(\n'[39m +
+    [32m'User `bvancejr` was denied access on the database `mintsplit.public`\n'[39m +
+    [32m'    at Pn.handleRequestError (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:7205)\n'[39m +
+    [32m'    at Pn.handleAndLogRequestError (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:6358)\n'[39m +
+    [32m'    at /Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:2908\n'[39m +
+    [32m'    at async /Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:3123\n'[39m +
+    [32m'    at async t._executeRequest (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:10621)\n'[39m +
+    [32m'    at async getUserByAccount (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:29)'[39m,
+  name: [32m'Error'[39m
+}
+[next-auth][error][OAUTH_CALLBACK_HANDLER_ERROR] 
+https://next-auth.js.org/errors#oauth_callback_handler_error 
+Invalid `p.account.findUnique()` invocation in
+/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45
+
+  210 getUserByEmail: (email) => p.user.findUnique({ where: { email } }),
+  211 async getUserByAccount(provider_providerAccountId) {
+  212     var _a;
+→ 213     const account = await p.account.findUnique(
+User `bvancejr` was denied access on the database `mintsplit.public` Error: 
+Invalid `p.account.findUnique()` invocation in
+/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45
+
+  210 getUserByEmail: (email) => p.user.findUnique({ where: { email } }),
+  211 async getUserByAccount(provider_providerAccountId) {
+  212     var _a;
+→ 213     const account = await p.account.findUnique(
+User `bvancejr` was denied access on the database `mintsplit.public`
+    at Pn.handleRequestError [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:7205[90m)[39m
+    at Pn.handleAndLogRequestError [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:6358[90m)[39m
+    at [90m/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:2908
+    at async [90m/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:3123
+    at async t._executeRequest [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:10621[90m)[39m
+    at async getUserByAccount [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@next-auth[24m/prisma-adapter/dist/index.js:213:29[90m)[39m {
+  name: [32m'GetUserByAccountError'[39m,
+  code: [90mundefined[39m
+}
