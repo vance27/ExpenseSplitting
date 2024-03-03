@@ -1,11 +1,7 @@
 import { User } from '@prisma/client';
 import prisma from '../../prisma/prisma';
-import {
-    UserPreferencesForm,
-    UserPreferencesFormSchema,
-} from '../pages/user-preferences';
+import { UserPreferencesForm } from '../pages/user-preferences';
 import { Session } from 'next-auth';
-
 
 export async function getAllUsers(): Promise<User[]> {
     const users = await prisma.user.findMany();
@@ -47,7 +43,6 @@ export async function getFriendRequestsReceived(id: string): Promise<any> {
     console.log(senderUsers);
     return senderUsers ?? [];
 }
-
 
 export async function getAuthorizedUsers(id: string): Promise<User[]> {
     const users = await prisma.user.findUnique({

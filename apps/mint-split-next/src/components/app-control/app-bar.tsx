@@ -43,9 +43,9 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-    let links = null;
-    let avatar = null;
-    let alternateLinks = null;
+    let links;
+    let avatar;
+    let alternateLinks;
     if (status === 'loading') {
     }
     if (!session) {

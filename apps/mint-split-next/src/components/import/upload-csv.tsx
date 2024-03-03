@@ -11,7 +11,7 @@ import { Alert, Button, Tooltip } from '@mui/material';
 import UndoIcon from '@mui/icons-material/Undo';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import React from 'react';
-import { MintCsvSchema } from './zod/csv-schema';
+import { MintCsvSchema } from '../zod/transactions';
 
 const columns: GridColDef[] = [
     {
@@ -92,7 +92,7 @@ export default function UploadCsv(): ReactElement {
                         );
                         return;
                     }
-                    setData(res);
+                    setData(parse.data);
                     setError(undefined);
                     return results.data;
                 },
@@ -111,7 +111,7 @@ export default function UploadCsv(): ReactElement {
                         delimiter: ',',
                     }}
                 />
-                <Button variant="text" onClick={setData.bind(this, [])}>
+                <Button variant="text" onClick={() => setData([])}>
                     <UndoIcon />
                     Reset
                 </Button>

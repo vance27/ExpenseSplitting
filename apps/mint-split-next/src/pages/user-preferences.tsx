@@ -246,7 +246,7 @@ function UserPreferences({
                                 )}
                             />
                             <Controller
-                                name="filteredList"
+                                name="preferredSort"
                                 control={control}
                                 defaultValue={''}
                                 render={({ field }) => (

@@ -6,10 +6,6 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import GitHubProvider from 'next-auth/providers/github';
 import prisma from 'apps/mint-split-next/prisma/prisma';
 import {
-    getAllTransactionsInExpenseSplittingWindow,
-    getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers,
-} from 'apps/mint-split-next/src/services/transaction.service';
-import {
     getAuthorizedUsers,
     getUserPreferences,
 } from 'apps/mint-split-next/src/services/user.service';

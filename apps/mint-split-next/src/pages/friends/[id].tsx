@@ -26,8 +26,10 @@ export const getServerSideProps = async (context: any) => {
         authOptions
     );
     const allUsers = await getAllUsers();
-    const friendRequestsSent = await getFriendRequests(session?.id);
-    const friendRequestsReceived = await getFriendRequestsReceived(session?.id);
+    const friendRequestsSent = await getFriendRequests(session?.id ?? '');
+    const friendRequestsReceived = await getFriendRequestsReceived(
+        session?.id ?? ''
+    );
     return {
         props: {
             session: session,
@@ -45,7 +47,7 @@ const SearchBar = ({ setSearchQuery }: any): ReactElement => {
                 id="search-bar"
                 className="text"
                 onInput={(e) => {
-                    setSearchQuery(e.target.value);
+                    setSearchQuery((e.target as HTMLTextAreaElement).value);
                 }}
                 label="Search for friends"
                 variant="outlined"
