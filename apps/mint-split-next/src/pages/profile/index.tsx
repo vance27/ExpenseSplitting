@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
-import { useState } from 'react';
+import { AnyQueryProcedure } from '@trpc/server';
+import { useEffect, useState } from 'react';
 import {
     usePlaidLink,
     PlaidLinkOptions,
@@ -56,7 +57,7 @@ export default function Profile() {
                 return;
             });
     };
-
+    const [accounts, setAccounts] = useState([]); // [
     const getAccounts = () => {
         fetch('/api/plaid/transactions', {
             method: 'POST',
@@ -67,6 +68,7 @@ export default function Profile() {
             .then(async (res) => {
                 console.log(res);
                 const json = await res.json();
+                setAccounts(json.accounts);
                 console.log(json);
             })
             .catch((e) => {
@@ -74,11 +76,12 @@ export default function Profile() {
             });
     };
 
+    useEffect(() => {
+        onConnectToBank();
+    }, []);
+
     return (
         <>
-            <Button variant="outlined" onClick={onConnectToBank}>
-                Connect bank with plaid
-            </Button>
             <div>Link Token: {linkToken}</div>
             <div>Public Token: {publicToken}</div>
             <Button variant="outlined" onClick={() => open()} disabled={!ready}>
@@ -87,6 +90,11 @@ export default function Profile() {
             <Button variant="outlined" onClick={getAccounts}>
                 Get Accounts
             </Button>
+            <div>
+                {accounts.map((account: any) => (
+                    <div key={account.account_id}>{account.name}</div>
+                ))}
+            </div>
         </>
     );
 }
