@@ -8322,6 +8322,7 @@ __metadata:
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     react-hook-form: "npm:^7.43.9"
+    react-plaid-link: "npm:^3.5.1"
     react-test-renderer: "npm:18.2.0"
     sass: "npm:1.61.0"
     ts-jest: "npm:^29.1.0"
@@ -13495,7 +13496,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -13679,10 +13680,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-plaid-link@npm:^3.5.1":
+  version: 3.5.1
+  resolution: "react-plaid-link@npm:3.5.1"
+  dependencies:
+    prop-types: "npm:^15.7.2"
+    react-script-hook: "npm:^1.6.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 8702d0d5a2929d1cf05c57cd8668fe3fb053830a20054216ee8af10f590fc4f6af7b37d1120c9fe908331947487ccfb7f8c82eb7831d4199bac6d458b681a80e
+  languageName: node
+  linkType: hard
+
 "react-refresh@npm:^0.14.0":
   version: 0.14.0
   resolution: "react-refresh@npm:0.14.0"
   checksum: 0dc7d5a197ae193f0bddea2f8d712a2b8477ae401c9e3b04c85d0a046ac7847b24af573923ab4c3ca67735583a6b421edc43b39a07b4d1a46056289249f4f897
+  languageName: node
+  linkType: hard
+
+"react-script-hook@npm:^1.6.0":
+  version: 1.7.2
+  resolution: "react-script-hook@npm:1.7.2"
+  peerDependencies:
+    react: ^16.8.6 || 17 - 18
+    react-dom: ^16.8.6 || 17 - 18
+  checksum: bdff944762a38a133231f4aa04e9db327aa3f8e94917af7dacf41ba00b71836096513a0a3c974ec4e85c2abfc92a949a0822490f04e82d05db33f812206553a9
   languageName: node
   linkType: hard
 

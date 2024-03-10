@@ -996,6 +996,32 @@
             ]
           },
           {
+            "file": "apps/mint-split-next/src/pages/api/plaid/index.ts",
+            "hash": "15679989917242979522",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:next-auth",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:plaid",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:next",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:@mui/icons-material",
+                "type": "static"
+              }
+            ]
+          },
+          {
             "file": "apps/mint-split-next/src/pages/api/trpc/[trpc].ts",
             "hash": "3321617735351322700",
             "dependencies": [
@@ -1102,6 +1128,17 @@
           {
             "file": "apps/mint-split-next/src/pages/index.tsx",
             "hash": "12122627426035887197"
+          },
+          {
+            "file": "apps/mint-split-next/src/pages/profile/index.tsx",
+            "hash": "14326121508344938595",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:@mui/material",
+                "type": "static"
+              }
+            ]
           },
           {
             "file": "apps/mint-split-next/src/pages/styles.css",
@@ -1259,28 +1296,6 @@
               {
                 "source": "mint-split-next",
                 "target": "npm:next-auth",
-                "type": "static"
-              }
-            ]
-          },
-          {
-            "file": "apps/mint-split-next/src/pages/api/plaid/index.ts",
-            "hash": "8236591176486156412",
-            "dependencies": [
-              {
-                "source": "mint-split-next",
-                "target": "npm:next-auth",
-                "type": "static"
-              }
-            ]
-          },
-          {
-            "file": "apps/mint-split-next/src/pages/profile/index.tsx",
-            "hash": "7819699451255386835",
-            "dependencies": [
-              {
-                "source": "mint-split-next",
-                "target": "npm:@mui/material",
                 "type": "static"
               }
             ]
@@ -34658,6 +34673,11 @@
       {
         "source": "mint-split-next",
         "target": "npm:@trpc/next",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:plaid",
         "type": "static"
       }
     ],
