@@ -4,12 +4,9 @@ import {
     Configuration,
     PlaidEnvironments,
     PlaidApi,
-    LinkTokenCreateRequest,
     CountryCode,
     Products,
 } from 'plaid';
-import Link from 'next/link';
-import { ProductionQuantityLimitsTwoTone } from '@mui/icons-material';
 const configuration = new Configuration({
     basePath: PlaidEnvironments.sandbox,
     baseOptions: {
