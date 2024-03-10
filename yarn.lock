@@ -5616,6 +5616,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.6.2":
+  version: 1.6.7
+  resolution: "axios@npm:1.6.7"
+  dependencies:
+    follow-redirects: "npm:^1.15.4"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 0d2d1eaaeeace71ea53a543c98a9d11d2316d288f80252641500c4ba7b1104f96f86a1b716cb51b982c3bd646ab6e95a5dd81d9a21bcd9ef894c7d3984b9c049
+  languageName: node
+  linkType: hard
+
 "axobject-query@npm:^3.1.1":
   version: 3.1.1
   resolution: "axobject-query@npm:3.1.1"
@@ -8305,6 +8316,7 @@ __metadata:
     next-auth: "npm:4"
     nx: "npm:^15.9.2"
     papaparse: "npm:^5.4.1"
+    plaid: "npm:^21.0.0"
     prettier: "npm:^2.6.2"
     prisma: "npm:^4.14.0"
     react: "npm:18.2.0"
@@ -8611,6 +8623,16 @@ __metadata:
     debug:
       optional: true
   checksum: 930171f8b81bf00e9368df4b17f3b835934762d51192632af53a51a8a608d5510a1ffbc6da5761dce9996cdbd750740490ca844320e5ff11cdaf2329a5a69647
+  languageName: node
+  linkType: hard
+
+"follow-redirects@npm:^1.15.4":
+  version: 1.15.5
+  resolution: "follow-redirects@npm:1.15.5"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 4307a49f63724a0d72626765083b02ed7e286dedd68432d789f45307e2f2f8a115588febd634922ba5f22ba63778c0010eb8958bad48697c4ef49427f23f6822
   languageName: node
   linkType: hard
 
@@ -12893,6 +12915,15 @@ __metadata:
   dependencies:
     find-up: "npm:^4.0.0"
   checksum: 220ae78b93ef48d6cd81958ff3bdda5f5e6268c9887ca430aa974370499669c72886d85db0a768898a0a09114be14aab9a7171356033c082c0d2e65f384a5886
+  languageName: node
+  linkType: hard
+
+"plaid@npm:^21.0.0":
+  version: 21.0.0
+  resolution: "plaid@npm:21.0.0"
+  dependencies:
+    axios: "npm:^1.6.2"
+  checksum: 68cb4e961b4931ddfc806f2f46c7404013bf907b92c7d6331b38dfb4b0e60bd37812e1921b1abfa83cf89f86f395a7e7e4b6cc359d87b4205b9b2fea1f2c9285
   languageName: node
   linkType: hard
 

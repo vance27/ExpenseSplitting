@@ -1,11 +1,9 @@
-(node:98277) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
+(node:2343) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-[35mevent[39m - compiled client and server successfully in 5.7s (1250 modules)
+[35mevent[39m - compiled client and server successfully in 2s (1250 modules)
 [ [32mready[39m ] on http://localhost:4200
-[36mwait[39m  - compiling / (client and server)...
-[35mevent[39m - compiled client and server successfully in 400 ms (1253 modules)
 [36mwait[39m  - compiling /api/auth/[...nextauth] (client and server)...
-[35mevent[39m - compiled successfully in 63 ms (94 modules)
+[35mevent[39m - compiled successfully in 40 ms (93 modules)
 [next-auth][warn][NO_SECRET] 
 https://next-auth.js.org/warnings#no_secret
 [next-auth][error][adapter_error_getUserByAccount] 
@@ -17,7 +15,7 @@ Invalid `p.account.findUnique()` invocation in
   211 async getUserByAccount(provider_providerAccountId) {
   212     var _a;
 → 213     const account = await p.account.findUnique(
-User `bvancejr` was denied access on the database `mintsplit.public` {
+The table `public.Account` does not exist in the current database. {
   message: [32m'\n'[39m +
     [32m'Invalid `p.account.findUnique()` invocation in\n'[39m +
     [32m'/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45\n'[39m +
@@ -26,7 +24,7 @@ User `bvancejr` was denied access on the database `mintsplit.public` {
     [32m'  211 async getUserByAccount(provider_providerAccountId) {\n'[39m +
     [32m'  212     var _a;\n'[39m +
     [32m'→ 213     const account = await p.account.findUnique(\n'[39m +
-    [32m'User `bvancejr` was denied access on the database `mintsplit.public`'[39m,
+    [32m'The table `public.Account` does not exist in the current database.'[39m,
   stack: [32m'Error: \n'[39m +
     [32m'Invalid `p.account.findUnique()` invocation in\n'[39m +
     [32m'/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45\n'[39m +
@@ -35,12 +33,10 @@ User `bvancejr` was denied access on the database `mintsplit.public` {
     [32m'  211 async getUserByAccount(provider_providerAccountId) {\n'[39m +
     [32m'  212     var _a;\n'[39m +
     [32m'→ 213     const account = await p.account.findUnique(\n'[39m +
-    [32m'User `bvancejr` was denied access on the database `mintsplit.public`\n'[39m +
-    [32m'    at Pn.handleRequestError (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:7205)\n'[39m +
+    [32m'The table `public.Account` does not exist in the current database.\n'[39m +
+    [32m'    at Pn.handleRequestError (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:6929)\n'[39m +
     [32m'    at Pn.handleAndLogRequestError (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:6358)\n'[39m +
-    [32m'    at /Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:2908\n'[39m +
-    [32m'    at async /Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:3123\n'[39m +
-    [32m'    at async t._executeRequest (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:10621)\n'[39m +
+    [32m'    at Pn.request (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:6237)\n'[39m +
     [32m'    at async getUserByAccount (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:29)'[39m,
   name: [32m'Error'[39m
 }
@@ -53,7 +49,7 @@ Invalid `p.account.findUnique()` invocation in
   211 async getUserByAccount(provider_providerAccountId) {
   212     var _a;
 → 213     const account = await p.account.findUnique(
-User `bvancejr` was denied access on the database `mintsplit.public` Error: 
+The table `public.Account` does not exist in the current database. Error: 
 Invalid `p.account.findUnique()` invocation in
 /Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45
 
@@ -61,16 +57,16 @@ Invalid `p.account.findUnique()` invocation in
   211 async getUserByAccount(provider_providerAccountId) {
   212     var _a;
 → 213     const account = await p.account.findUnique(
-User `bvancejr` was denied access on the database `mintsplit.public`
-    at Pn.handleRequestError [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:7205[90m)[39m
+The table `public.Account` does not exist in the current database.
+    at Pn.handleRequestError [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:6929[90m)[39m
     at Pn.handleAndLogRequestError [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:6358[90m)[39m
-    at [90m/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:2908
-    at async [90m/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:3123
-    at async t._executeRequest [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:10621[90m)[39m
+    at Pn.request [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:6237[90m)[39m
     at async getUserByAccount [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@next-auth[24m/prisma-adapter/dist/index.js:213:29[90m)[39m {
   name: [32m'GetUserByAccountError'[39m,
-  code: [90mundefined[39m
+  code: [32m'P2021'[39m
 }
+[36mwait[39m  - compiling / (client and server)...
+[35mevent[39m - compiled client and server successfully in 346 ms (1268 modules)
 [next-auth][error][adapter_error_getUserByAccount] 
 https://next-auth.js.org/errors#adapter_error_getuserbyaccount 
 Invalid `p.account.findUnique()` invocation in
@@ -80,7 +76,7 @@ Invalid `p.account.findUnique()` invocation in
   211 async getUserByAccount(provider_providerAccountId) {
   212     var _a;
 → 213     const account = await p.account.findUnique(
-User `bvancejr` was denied access on the database `mintsplit.public` {
+The table `public.Account` does not exist in the current database. {
   message: [32m'\n'[39m +
     [32m'Invalid `p.account.findUnique()` invocation in\n'[39m +
     [32m'/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45\n'[39m +
@@ -89,7 +85,7 @@ User `bvancejr` was denied access on the database `mintsplit.public` {
     [32m'  211 async getUserByAccount(provider_providerAccountId) {\n'[39m +
     [32m'  212     var _a;\n'[39m +
     [32m'→ 213     const account = await p.account.findUnique(\n'[39m +
-    [32m'User `bvancejr` was denied access on the database `mintsplit.public`'[39m,
+    [32m'The table `public.Account` does not exist in the current database.'[39m,
   stack: [32m'Error: \n'[39m +
     [32m'Invalid `p.account.findUnique()` invocation in\n'[39m +
     [32m'/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45\n'[39m +
@@ -98,12 +94,10 @@ User `bvancejr` was denied access on the database `mintsplit.public` {
     [32m'  211 async getUserByAccount(provider_providerAccountId) {\n'[39m +
     [32m'  212     var _a;\n'[39m +
     [32m'→ 213     const account = await p.account.findUnique(\n'[39m +
-    [32m'User `bvancejr` was denied access on the database `mintsplit.public`\n'[39m +
-    [32m'    at Pn.handleRequestError (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:7205)\n'[39m +
+    [32m'The table `public.Account` does not exist in the current database.\n'[39m +
+    [32m'    at Pn.handleRequestError (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:6929)\n'[39m +
     [32m'    at Pn.handleAndLogRequestError (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:6358)\n'[39m +
-    [32m'    at /Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:2908\n'[39m +
-    [32m'    at async /Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:3123\n'[39m +
-    [32m'    at async t._executeRequest (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:174:10621)\n'[39m +
+    [32m'    at Pn.request (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@prisma/client/runtime/library.js:171:6237)\n'[39m +
     [32m'    at async getUserByAccount (/Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:29)'[39m,
   name: [32m'Error'[39m
 }
@@ -116,7 +110,7 @@ Invalid `p.account.findUnique()` invocation in
   211 async getUserByAccount(provider_providerAccountId) {
   212     var _a;
 → 213     const account = await p.account.findUnique(
-User `bvancejr` was denied access on the database `mintsplit.public` Error: 
+The table `public.Account` does not exist in the current database. Error: 
 Invalid `p.account.findUnique()` invocation in
 /Users/brianvance/bvancejr/git/ExpenseSplitting/node_modules/@next-auth/prisma-adapter/dist/index.js:213:45
 
@@ -124,13 +118,125 @@ Invalid `p.account.findUnique()` invocation in
   211 async getUserByAccount(provider_providerAccountId) {
   212     var _a;
 → 213     const account = await p.account.findUnique(
-User `bvancejr` was denied access on the database `mintsplit.public`
-    at Pn.handleRequestError [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:7205[90m)[39m
+The table `public.Account` does not exist in the current database.
+    at Pn.handleRequestError [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:6929[90m)[39m
     at Pn.handleAndLogRequestError [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:6358[90m)[39m
-    at [90m/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:2908
-    at async [90m/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:3123
-    at async t._executeRequest [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:174:10621[90m)[39m
+    at Pn.request [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@prisma[24m/client/runtime/library.js:171:6237[90m)[39m
     at async getUserByAccount [90m(/Users/brianvance/bvancejr/git/ExpenseSplitting/[39mnode_modules/[4m@next-auth[24m/prisma-adapter/dist/index.js:213:29[90m)[39m {
   name: [32m'GetUserByAccountError'[39m,
-  code: [90mundefined[39m
+  code: [32m'P2021'[39m
+}
+[36mwait[39m  - compiling /api/trpc/[trpc] (client and server)...
+[35mevent[39m - compiled successfully in 99 ms (101 modules)
+[36mwait[39m  - compiling /dashboard/[id] (client and server)...
+[35mevent[39m - compiled client and server successfully in 1592 ms (1632 modules)
+[36mwait[39m  - compiling /import/[id] (client and server)...
+[35mevent[39m - compiled client and server successfully in 10.2s (12235 modules)
+[36mwait[39m  - compiling /api/auth/[...nextauth] (client and server)...
+[35mevent[39m - compiled successfully in 25 ms (107 modules)
+[36mwait[39m  - compiling /user-preferences (client and server)...
+[35mevent[39m - compiled client and server successfully in 1815 ms (12251 modules)
+[36mwait[39m  - compiling /_error (client and server)...
+[35mevent[39m - compiled client and server successfully in 833 ms (12252 modules)
+[36mwait[39m  - compiling / (client and server)...
+[35mevent[39m - compiled client and server successfully in 271 ms (1611 modules)
+[36mwait[39m  - compiling /api/auth/[...nextauth] (client and server)...
+[35mevent[39m - compiled successfully in 28 ms (101 modules)
+[36mwait[39m  - compiling /api/trpc/[trpc] (client and server)...
+[35mevent[39m - compiled successfully in 55 ms (108 modules)
+[36mwait[39m  - compiling...
+[35mevent[39m - compiled client and server successfully in 1654 ms (1608 modules)
+[36mwait[39m  - compiling /api/auth/[...nextauth] (client and server)...
+[35mevent[39m - compiled successfully in 22 ms (100 modules)
+[36mwait[39m  - compiling...
+[35mevent[39m - compiled client and server successfully in 226 ms (1622 modules)
+[36mwait[39m  - compiling...
+[35mevent[39m - compiled client and server successfully in 236 ms (1608 modules)
+[36mwait[39m  - compiling...
+[35mevent[39m - compiled client and server successfully in 237 ms (1608 modules)
+[36mwait[39m  - compiling /api/auth/[...nextauth] (client and server)...
+[35mevent[39m - compiled successfully in 46 ms (100 modules)
+[next-auth][error][CLIENT_FETCH_ERROR] 
+https://next-auth.js.org/errors#client_fetch_error fetch failed {
+  error: {
+    message: [32m'fetch failed'[39m,
+    stack: [32m'TypeError: fetch failed\n'[39m +
+      [32m'    at Object.processResponse (node:internal/deps/undici/undici:6277:34)\n'[39m +
+      [32m'    at node:internal/deps/undici/undici:6602:42\n'[39m +
+      [32m'    at node:internal/process/task_queues:140:7\n'[39m +
+      [32m'    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n'[39m +
+      [32m'    at AsyncResource.runMicrotask (node:internal/process/task_queues:137:8)\n'[39m +
+      [32m'    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)'[39m,
+    name: [32m'TypeError'[39m
+  },
+  url: [32m'http://localhost:4200/api/auth/session'[39m,
+  message: [32m'fetch failed'[39m
+}
+[36mwait[39m  - compiling / (client and server)...
+[35mevent[39m - compiled client and server successfully in 141 ms (1625 modules)
+[36mwait[39m  - compiling /api/trpc/[trpc] (client and server)...
+[35mevent[39m - compiled successfully in 20 ms (108 modules)
+[next-auth][error][CLIENT_FETCH_ERROR] 
+https://next-auth.js.org/errors#client_fetch_error fetch failed {
+  error: {
+    message: [32m'fetch failed'[39m,
+    stack: [32m'TypeError: fetch failed\n'[39m +
+      [32m'    at Object.processResponse (node:internal/deps/undici/undici:6277:34)\n'[39m +
+      [32m'    at node:internal/deps/undici/undici:6602:42\n'[39m +
+      [32m'    at node:internal/process/task_queues:140:7\n'[39m +
+      [32m'    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n'[39m +
+      [32m'    at AsyncResource.runMicrotask (node:internal/process/task_queues:137:8)\n'[39m +
+      [32m'    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)'[39m,
+    name: [32m'TypeError'[39m
+  },
+  url: [32m'http://localhost:4200/api/auth/session'[39m,
+  message: [32m'fetch failed'[39m
+}
+[next-auth][error][CLIENT_FETCH_ERROR] 
+https://next-auth.js.org/errors#client_fetch_error fetch failed {
+  error: {
+    message: [32m'fetch failed'[39m,
+    stack: [32m'TypeError: fetch failed\n'[39m +
+      [32m'    at Object.processResponse (node:internal/deps/undici/undici:6277:34)\n'[39m +
+      [32m'    at node:internal/deps/undici/undici:6602:42\n'[39m +
+      [32m'    at node:internal/process/task_queues:140:7\n'[39m +
+      [32m'    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n'[39m +
+      [32m'    at AsyncResource.runMicrotask (node:internal/process/task_queues:137:8)\n'[39m +
+      [32m'    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)'[39m,
+    name: [32m'TypeError'[39m
+  },
+  url: [32m'http://localhost:4200/api/auth/session'[39m,
+  message: [32m'fetch failed'[39m
+}
+[next-auth][error][CLIENT_FETCH_ERROR] 
+https://next-auth.js.org/errors#client_fetch_error fetch failed {
+  error: {
+    message: [32m'fetch failed'[39m,
+    stack: [32m'TypeError: fetch failed\n'[39m +
+      [32m'    at Object.processResponse (node:internal/deps/undici/undici:6277:34)\n'[39m +
+      [32m'    at node:internal/deps/undici/undici:6602:42\n'[39m +
+      [32m'    at node:internal/process/task_queues:140:7\n'[39m +
+      [32m'    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n'[39m +
+      [32m'    at AsyncResource.runMicrotask (node:internal/process/task_queues:137:8)\n'[39m +
+      [32m'    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)'[39m,
+    name: [32m'TypeError'[39m
+  },
+  url: [32m'http://localhost:4200/api/auth/session'[39m,
+  message: [32m'fetch failed'[39m
+}
+[next-auth][error][CLIENT_FETCH_ERROR] 
+https://next-auth.js.org/errors#client_fetch_error fetch failed {
+  error: {
+    message: [32m'fetch failed'[39m,
+    stack: [32m'TypeError: fetch failed\n'[39m +
+      [32m'    at Object.processResponse (node:internal/deps/undici/undici:6277:34)\n'[39m +
+      [32m'    at node:internal/deps/undici/undici:6602:42\n'[39m +
+      [32m'    at node:internal/process/task_queues:140:7\n'[39m +
+      [32m'    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n'[39m +
+      [32m'    at AsyncResource.runMicrotask (node:internal/process/task_queues:137:8)\n'[39m +
+      [32m'    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)'[39m,
+    name: [32m'TypeError'[39m
+  },
+  url: [32m'http://localhost:4200/api/auth/session'[39m,
+  message: [32m'fetch failed'[39m
 }

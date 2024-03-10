@@ -16,7 +16,7 @@ import AppBarLink from '../shared/app-bar-link';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 const pages: string[] = ['dashboard', 'import', 'friends'];
-const settings = ['Profile', 'Account', 'Dashboard', 'user-preferences'];
+const settings = ['profile', 'account', 'dashboard', 'user-preferences'];
 
 function ResponsiveAppBar() {
     const { data: session, status } = useSession();

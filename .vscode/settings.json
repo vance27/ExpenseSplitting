@@ -20,5 +20,17 @@
         "titleBar.inactiveBackground": "#1857a499",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#1857a4"
+    "peacock.color": "#1857a4",
+    "jest.outputConfig": {
+        "revealOn": "demand",
+        "revealWithFocus": "none",
+        "clearOnRun": "both"
+    },
+    "jest.jestCommandLine": "yarn nx run-many -t test --all=true",
+    "jest.runMode": {
+        "type": "on-demand",
+        "revealOutput": "on-run",
+        "deferred": true
+    },
+    "testing.openTesting": "neverOpen"
 }

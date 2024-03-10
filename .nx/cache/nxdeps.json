@@ -23,6 +23,7 @@
     "next": "13.3.0",
     "next-auth": "4",
     "papaparse": "^5.4.1",
+    "plaid": "^21.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
@@ -716,7 +717,7 @@
           },
           {
             "file": "apps/mint-split-next/src/components/app-control/app-bar.tsx",
-            "hash": "16198366043227340191",
+            "hash": "6996658116663518404",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -763,7 +764,7 @@
           },
           {
             "file": "apps/mint-split-next/src/components/app-control/theme-provider.tsx",
-            "hash": "9566539626313340242",
+            "hash": "11560564425582436549",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1258,6 +1259,28 @@
               {
                 "source": "mint-split-next",
                 "target": "npm:next-auth",
+                "type": "static"
+              }
+            ]
+          },
+          {
+            "file": "apps/mint-split-next/src/pages/api/plaid/index.ts",
+            "hash": "8236591176486156412",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:next-auth",
+                "type": "static"
+              }
+            ]
+          },
+          {
+            "file": "apps/mint-split-next/src/pages/profile/index.tsx",
+            "hash": "7819699451255386835",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:@mui/material",
                 "type": "static"
               }
             ]
@@ -5980,6 +6003,15 @@
         "hash": "d0bdb2256353c4a5eb96042634628251be7a58508dc781a54c7321719084e5c0a268ea6186b09f93b10d06bde91c930e083a204cdf12abdbea5e69d4a5b5e508"
       }
     },
+    "npm:axios@1.6.7": {
+      "type": "npm",
+      "name": "npm:axios@1.6.7",
+      "data": {
+        "version": "1.6.7",
+        "packageName": "axios",
+        "hash": "0d2d1eaaeeace71ea53a543c98a9d11d2316d288f80252641500c4ba7b1104f96f86a1b716cb51b982c3bd646ab6e95a5dd81d9a21bcd9ef894c7d3984b9c049"
+      }
+    },
     "npm:axobject-query": {
       "type": "npm",
       "name": "npm:axobject-query",
@@ -8462,6 +8494,15 @@
         "version": "1.15.2",
         "packageName": "follow-redirects",
         "hash": "930171f8b81bf00e9368df4b17f3b835934762d51192632af53a51a8a608d5510a1ffbc6da5761dce9996cdbd750740490ca844320e5ff11cdaf2329a5a69647"
+      }
+    },
+    "npm:follow-redirects@1.15.5": {
+      "type": "npm",
+      "name": "npm:follow-redirects@1.15.5",
+      "data": {
+        "version": "1.15.5",
+        "packageName": "follow-redirects",
+        "hash": "4307a49f63724a0d72626765083b02ed7e286dedd68432d789f45307e2f2f8a115588febd634922ba5f22ba63778c0010eb8958bad48697c4ef49427f23f6822"
       }
     },
     "npm:for-each": {
@@ -12010,6 +12051,15 @@
         "hash": "220ae78b93ef48d6cd81958ff3bdda5f5e6268c9887ca430aa974370499669c72886d85db0a768898a0a09114be14aab9a7171356033c082c0d2e65f384a5886"
       }
     },
+    "npm:plaid": {
+      "type": "npm",
+      "name": "npm:plaid",
+      "data": {
+        "version": "21.0.0",
+        "packageName": "plaid",
+        "hash": "68cb4e961b4931ddfc806f2f46c7404013bf907b92c7d6331b38dfb4b0e60bd37812e1921b1abfa83cf89f86f395a7e7e4b6cc359d87b4205b9b2fea1f2c9285"
+      }
+    },
     "npm:portfinder": {
       "type": "npm",
       "name": "npm:portfinder",
@@ -15057,16 +15107,21 @@
     "mint-split-backend-e2e": [
       {
         "source": "mint-split-backend-e2e",
-        "target": "npm:axios",
-        "type": "static"
+        "target": "mint-split-backend",
+        "type": "implicit"
       },
       {
         "source": "mint-split-backend-e2e",
-        "target": "mint-split-backend",
-        "type": "implicit"
+        "target": "npm:axios",
+        "type": "static"
       }
     ],
     "mint-split-next-e2e": [
+      {
+        "source": "mint-split-next-e2e",
+        "target": "mint-split-next",
+        "type": "implicit"
+      },
       {
         "source": "mint-split-next-e2e",
         "target": "npm:cypress",
@@ -15076,138 +15131,17 @@
         "source": "mint-split-next-e2e",
         "target": "npm:@nx/cypress",
         "type": "static"
-      },
-      {
-        "source": "mint-split-next-e2e",
-        "target": "mint-split-next",
-        "type": "implicit"
-      }
-    ],
-    "mint-split-backend": [
-      {
-        "source": "mint-split-backend",
-        "target": "npm:express",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-backend",
-        "target": "npm:cors",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-backend",
-        "target": "npm:@prisma/client",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-backend",
-        "target": "npm:@nx/webpack",
-        "type": "static"
       }
     ],
     "plaid-backend-e2e": [
       {
         "source": "plaid-backend-e2e",
-        "target": "npm:axios",
-        "type": "static"
+        "target": "plaid-backend",
+        "type": "implicit"
       },
       {
         "source": "plaid-backend-e2e",
-        "target": "plaid-backend",
-        "type": "implicit"
-      }
-    ],
-    "mint-split-next": [
-      {
-        "source": "mint-split-next",
-        "target": "npm:@nx/next",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@prisma/client",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:react",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@mui/material",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@mui/icons-material",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:next-auth",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:next",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@mui/x-data-grid",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:papaparse",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:zod",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@next-auth/prisma-adapter",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@trpc/server",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:react-hook-form",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@testing-library/react",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@trpc/client",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@trpc/next",
-        "type": "static"
-      }
-    ],
-    "plaid-backend": [
-      {
-        "source": "plaid-backend",
-        "target": "npm:express",
-        "type": "static"
-      },
-      {
-        "source": "plaid-backend",
-        "target": "npm:@nx/webpack",
+        "target": "npm:axios",
         "type": "static"
       }
     ],
@@ -22323,6 +22257,23 @@
       },
       {
         "source": "npm:axios",
+        "target": "npm:proxy-from-env",
+        "type": "static"
+      }
+    ],
+    "npm:axios@1.6.7": [
+      {
+        "source": "npm:axios@1.6.7",
+        "target": "npm:follow-redirects@1.15.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:axios@1.6.7",
+        "target": "npm:form-data",
+        "type": "static"
+      },
+      {
+        "source": "npm:axios@1.6.7",
         "target": "npm:proxy-from-env",
         "type": "static"
       }
@@ -31428,6 +31379,13 @@
         "type": "static"
       }
     ],
+    "npm:plaid": [
+      {
+        "source": "npm:plaid",
+        "target": "npm:axios@1.6.7",
+        "type": "static"
+      }
+    ],
     "npm:portfinder": [
       {
         "source": "npm:portfinder",
@@ -34596,6 +34554,122 @@
       {
         "source": "npm:yauzl",
         "target": "npm:fd-slicer",
+        "type": "static"
+      }
+    ],
+    "mint-split-backend": [
+      {
+        "source": "mint-split-backend",
+        "target": "npm:express",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-backend",
+        "target": "npm:cors",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-backend",
+        "target": "npm:@prisma/client",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-backend",
+        "target": "npm:@nx/webpack",
+        "type": "static"
+      }
+    ],
+    "mint-split-next": [
+      {
+        "source": "mint-split-next",
+        "target": "npm:@nx/next",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@prisma/client",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:react",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@mui/material",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@mui/icons-material",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:next-auth",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:next",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@mui/x-data-grid",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:papaparse",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:zod",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@next-auth/prisma-adapter",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@trpc/server",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:react-hook-form",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@testing-library/react",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@trpc/client",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@trpc/next",
+        "type": "static"
+      }
+    ],
+    "plaid-backend": [
+      {
+        "source": "plaid-backend",
+        "target": "npm:express",
+        "type": "static"
+      },
+      {
+        "source": "plaid-backend",
+        "target": "npm:@nx/webpack",
         "type": "static"
       }
     ]
