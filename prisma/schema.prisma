@@ -25,8 +25,19 @@ model User {
     accounts                Account[]
     sessions                Session[]
     SharedPercentage        SharedPercentage[]
-    FriendRequestSent           FriendRequest[] @relation("sender")
-    FriendRequestReceived           FriendRequest[] @relation("receiver")
+    FriendRequestSent       FriendRequest[]          @relation("sender")
+    FriendRequestReceived   FriendRequest[]          @relation("receiver")
+    banks                   Bank[]
+}
+
+model Bank {
+    id          Int      @id @default(autoincrement())
+    accessToken String
+    createdAt   DateTime @default(now()) @db.Timestamp(3)
+    updatedAt   DateTime @default(now()) @db.Timestamp(3)
+    name        String
+    User        User?    @relation(fields: [userId], references: [id])
+    userId      String?
 }
 
 model Transaction {
@@ -80,20 +91,20 @@ model ExpenseSplittingWindow {
 }
 
 model UserPreferences {
-    id              Int    @id @unique @default(autoincrement())
-    user            User   @relation(fields: [userId], references: [id])
-    userId          String @unique
+    id              Int      @id @unique @default(autoincrement())
+    user            User     @relation(fields: [userId], references: [id])
+    userId          String   @unique
     createdAt       String
     updatedAt       String
-    splittingUserId String @default("")
-    currency        String @default("USD")
-    language        String @default("en")
-    timezone        String @default("America/Chicago")
-    dateFormat      String @default("MM/dd/yyyy")
-    timeFormat      String @default("hh:mm a")
-    theme           String @default("dark")
-    preferredSort   String @default("date")
-    filterOutList String[] @default([])
+    splittingUserId String   @default("")
+    currency        String   @default("USD")
+    language        String   @default("en")
+    timezone        String   @default("America/Chicago")
+    dateFormat      String   @default("MM/dd/yyyy")
+    timeFormat      String   @default("hh:mm a")
+    theme           String   @default("dark")
+    preferredSort   String   @default("date")
+    filterOutList   String[] @default([])
 }
 
 model FriendRequest {

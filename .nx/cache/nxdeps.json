@@ -27,6 +27,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
+    "react-plaid-link": "^3.5.1",
     "tslib": "^2.3.0",
     "zod": "^3.21.4",
     "@nrwl/cypress": "15.9.2",
@@ -996,8 +997,8 @@
             ]
           },
           {
-            "file": "apps/mint-split-next/src/pages/api/plaid/index.ts",
-            "hash": "15679989917242979522",
+            "file": "apps/mint-split-next/src/pages/api/plaid/exchange/public_token.ts",
+            "hash": "16457227911152236160",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1008,15 +1009,32 @@
                 "source": "mint-split-next",
                 "target": "npm:plaid",
                 "type": "static"
-              },
+              }
+            ]
+          },
+          {
+            "file": "apps/mint-split-next/src/pages/api/plaid/index.ts",
+            "hash": "17158879408425610845",
+            "dependencies": [
               {
                 "source": "mint-split-next",
-                "target": "npm:next",
+                "target": "npm:next-auth",
                 "type": "static"
               },
               {
                 "source": "mint-split-next",
-                "target": "npm:@mui/icons-material",
+                "target": "npm:plaid",
+                "type": "static"
+              }
+            ]
+          },
+          {
+            "file": "apps/mint-split-next/src/pages/api/plaid/transactions/index.ts",
+            "hash": "16719088632620603995",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:plaid",
                 "type": "static"
               }
             ]
@@ -1131,11 +1149,26 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/profile/index.tsx",
-            "hash": "14326121508344938595",
+            "hash": "11654021877809308082",
             "dependencies": [
               {
                 "source": "mint-split-next",
                 "target": "npm:@mui/material",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:next-auth",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:react",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:react-plaid-link",
                 "type": "static"
               }
             ]
@@ -1219,7 +1252,7 @@
           },
           {
             "file": "apps/mint-split-next/src/services/user.service.ts",
-            "hash": "6708016274187420592",
+            "hash": "15032807105679953788",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -12759,6 +12792,15 @@
         "hash": "f542f0effed3f89b4faa237bf56e746d437c9dba4ed1039a2ba6e6fcb463244300b8f3c17d8e610e76476a626c4d97ee4c2ed7a5b5d64e2b2e2d7b2144816ac8"
       }
     },
+    "npm:react-plaid-link": {
+      "type": "npm",
+      "name": "npm:react-plaid-link",
+      "data": {
+        "version": "3.5.1",
+        "packageName": "react-plaid-link",
+        "hash": "8702d0d5a2929d1cf05c57cd8668fe3fb053830a20054216ee8af10f590fc4f6af7b37d1120c9fe908331947487ccfb7f8c82eb7831d4199bac6d458b681a80e"
+      }
+    },
     "npm:react-refresh": {
       "type": "npm",
       "name": "npm:react-refresh",
@@ -12766,6 +12808,15 @@
         "version": "0.14.0",
         "packageName": "react-refresh",
         "hash": "0dc7d5a197ae193f0bddea2f8d712a2b8477ae401c9e3b04c85d0a046ac7847b24af573923ab4c3ca67735583a6b421edc43b39a07b4d1a46056289249f4f897"
+      }
+    },
+    "npm:react-script-hook": {
+      "type": "npm",
+      "name": "npm:react-script-hook",
+      "data": {
+        "version": "1.7.2",
+        "packageName": "react-script-hook",
+        "hash": "bdff944762a38a133231f4aa04e9db327aa3f8e94917af7dacf41ba00b71836096513a0a3c974ec4e85c2abfc92a949a0822490f04e82d05db33f812206553a9"
       }
     },
     "npm:react-shallow-renderer": {
@@ -31970,6 +32021,18 @@
         "type": "static"
       }
     ],
+    "npm:react-plaid-link": [
+      {
+        "source": "npm:react-plaid-link",
+        "target": "npm:prop-types",
+        "type": "static"
+      },
+      {
+        "source": "npm:react-plaid-link",
+        "target": "npm:react-script-hook",
+        "type": "static"
+      }
+    ],
     "npm:react-shallow-renderer": [
       {
         "source": "npm:react-shallow-renderer",
@@ -34597,6 +34660,36 @@
     "mint-split-next": [
       {
         "source": "mint-split-next",
+        "target": "npm:plaid",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:next-auth",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@mui/material",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@trpc/server",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:react",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:react-plaid-link",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
         "target": "npm:@nx/next",
         "type": "static"
       },
@@ -34607,22 +34700,7 @@
       },
       {
         "source": "mint-split-next",
-        "target": "npm:react",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@mui/material",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
         "target": "npm:@mui/icons-material",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:next-auth",
         "type": "static"
       },
       {
@@ -34652,11 +34730,6 @@
       },
       {
         "source": "mint-split-next",
-        "target": "npm:@trpc/server",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
         "target": "npm:react-hook-form",
         "type": "static"
       },
@@ -34673,11 +34746,6 @@
       {
         "source": "mint-split-next",
         "target": "npm:@trpc/next",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:plaid",
         "type": "static"
       }
     ],

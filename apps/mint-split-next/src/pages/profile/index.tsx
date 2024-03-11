@@ -1,15 +1,13 @@
 import { Button } from '@mui/material';
-import { AnyQueryProcedure } from '@trpc/server';
+import { getSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import {
-    usePlaidLink,
-    PlaidLinkOptions,
-    PlaidLinkOnSuccess,
-} from 'react-plaid-link';
+import { usePlaidLink } from 'react-plaid-link';
+import { getUserBanks } from '../../services/user.service';
 
-export default function Profile() {
+export default function Profile(props: { banks: any[] }) {
     const [linkToken, setLinkToken] = useState('');
     const [publicToken, setPublicToken] = useState('');
+    const [banks, setBanks] = useState([]);
 
     const { open, ready, error } = usePlaidLink({
         token: linkToken,
@@ -85,7 +83,7 @@ export default function Profile() {
             <div>Link Token: {linkToken}</div>
             <div>Public Token: {publicToken}</div>
             <Button variant="outlined" onClick={() => open()} disabled={!ready}>
-                Open Plaid Link
+                New Bank Account +
             </Button>
             <Button variant="outlined" onClick={getAccounts}>
                 Get Accounts
@@ -98,3 +96,25 @@ export default function Profile() {
         </>
     );
 }
+
+export const getServerSideProps = async (context: any) => {
+    const session = await getSession(context);
+    if (session?.id) {
+        getUserBanks(session.id)
+            .then((res) => {
+                console.log(res);
+                return {
+                    banks: res,
+                };
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    return {
+        props: {
+            banks: [],
+        },
+    };
+};

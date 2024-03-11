@@ -13,7 +13,6 @@ const configuration = new Configuration({
 export default async function handler(req: any, res: any) {
     const plaidClient = new PlaidApi(configuration);
     const json = JSON.parse(req.body);
-    console.log('HERERRRRR', json.access_token);
     plaidClient
         .accountsGet({
             access_token: json.access_token,
