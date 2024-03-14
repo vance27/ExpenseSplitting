@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { Bank, User } from '@prisma/client';
 import { Session } from 'next-auth';
 
 declare module 'next-auth' {
@@ -7,5 +7,6 @@ declare module 'next-auth' {
         err?: string | null;
         authorizedUsers?: User[];
         userPreferences?: any;
+        banks?: Bank[];
     }
 }

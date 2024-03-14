@@ -6,6 +6,7 @@ import {
     Container,
     FormControl,
     FormControlLabel,
+    Grid,
     InputLabel,
     MenuItem,
     Radio,
@@ -22,6 +23,8 @@ import { Lock } from '@mui/icons-material';
 import { Controller, useForm } from 'react-hook-form';
 import StructuredGrid from '../components/ui-lib-candidates/structured-form';
 import Zod from 'zod';
+import { InferGetServerSidePropsType } from 'next';
+import { Bank } from '@prisma/client';
 
 export const UserPreferencesFormSchema = Zod.object({
     updatedAt: Zod.string().optional(),
@@ -51,12 +54,14 @@ export const getServerSideProps = async (context: any) => {
     );
     const authorizedUsers = session?.authorizedUsers ?? [];
     const userPreferences = session?.userPreferences ?? null;
+    const banks = session?.banks ?? [];
 
     return {
         props: {
             title: 'User Preferences',
             authorizedUsers: authorizedUsers,
             userPreferences: userPreferences,
+            banks: JSON.parse(JSON.stringify(banks)) as Bank[],
         },
     };
 };
@@ -65,11 +70,8 @@ function UserPreferences({
     title,
     authorizedUsers,
     userPreferences,
-}: {
-    title: any;
-    authorizedUsers: any[];
-    userPreferences: any;
-}): ReactElement {
+    banks,
+}: InferGetServerSidePropsType<typeof getServerSideProps>): ReactElement {
     const defaultFormData: UserPreferencesForm = {
         splittingUserId: userPreferences?.splittingUserId,
         currency: userPreferences?.currency,
@@ -271,11 +273,20 @@ function UserPreferences({
                         <Box sx={{ flexGrow: 1 }} m={2}>
                             {disabled ? (
                                 <Button
-                                    variant="contained"
+                                    variant="outlined"
+                                    sx={{ alignItems: 'center' }}
                                     onClick={() => setDisabled(!disabled)}
                                 >
-                                    Edit Preferences
-                                    <Lock />
+                                    <Grid
+                                        container
+                                        direction="row"
+                                        alignItems="center"
+                                    >
+                                        <Grid item>Edit Preferences</Grid>
+                                        <Grid item>
+                                            <Lock />
+                                        </Grid>
+                                    </Grid>
                                 </Button>
                             ) : (
                                 <>
@@ -293,6 +304,16 @@ function UserPreferences({
                             )}
                         </Box>
                     </form>
+                </Card>
+                <Card sx={{ p: 2, mt: 2 }}>
+                    <Typography sx={{ color: 'primary.light', p: 2 }}>
+                        Banks
+                    </Typography>
+                    <Box>
+                        {banks.map((bank) => (
+                            <div key={bank.id}>{bank.name}</div>
+                        ))}
+                    </Box>
                 </Card>
             </Container>
         </div>

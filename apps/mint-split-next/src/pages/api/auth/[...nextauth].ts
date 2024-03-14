@@ -7,6 +7,7 @@ import GitHubProvider from 'next-auth/providers/github';
 import prisma from 'apps/mint-split-next/prisma/prisma';
 import {
     getAuthorizedUsers,
+    getUserBanks,
     getUserPreferences,
 } from 'apps/mint-split-next/src/services/user.service';
 import { AdapterUser } from 'next-auth/adapters';
@@ -41,19 +42,13 @@ export const authOptions: NextAuthOptions = {
         }) => {
             const authorizedUsers = await getAuthorizedUsers(user?.id);
             const userPreferences = await getUserPreferences(user?.id);
-            // const transactions =
-            //     await getAllTransactionsInExpenseSplittingWindow(user?.id);
-            // const authorizedUserTransactions =
-            //     await getAllTransactionsInExpenseSplittingWindowForAuthorizedUsers(
-            //         authorizedUsers.map((user) => user?.id)
-            //     );
+            const banks = await getUserBanks(user?.id);
+
             session.authorizedUsers = authorizedUsers;
             session.userPreferences = userPreferences;
             session.id = user?.id;
-            // session.authorizedUsers = authorizedUsers;
-            // session.user.currentTransactions = transactions;
-            // session.user.authorizedUserTransactions =
-            //     authorizedUserTransactions;
+            session.banks = banks;
+
             return session;
         },
     },

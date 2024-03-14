@@ -6,7 +6,6 @@ import { getUserBanks } from '../../services/user.service';
 
 export default function Profile(props: { banks: any[] }) {
     const [linkToken, setLinkToken] = useState('');
-    const [publicToken, setPublicToken] = useState('');
     const [banks, setBanks] = useState([]);
 
     const { open, ready, error } = usePlaidLink({
@@ -19,10 +18,10 @@ export default function Profile(props: { banks: any[] }) {
                 method: 'POST',
                 body: JSON.stringify({
                     public_token: public_token,
+                    bankMetadata: metadata,
                 }),
             })
                 .then(async (res) => {
-                    console.log(res);
                     const json = await res.json();
                     localStorage.setItem('access_token', json.access_token);
                     console.log(json);
@@ -43,9 +42,7 @@ export default function Profile(props: { banks: any[] }) {
             method: 'POST',
         })
             .then(async (res) => {
-                console.log(res);
                 const json = await res.json();
-                localStorage.setItem('link_token', json.link_token);
                 setLinkToken(json.link_token);
                 open();
                 return;
@@ -80,8 +77,6 @@ export default function Profile(props: { banks: any[] }) {
 
     return (
         <>
-            <div>Link Token: {linkToken}</div>
-            <div>Public Token: {publicToken}</div>
             <Button variant="outlined" onClick={() => open()} disabled={!ready}>
                 New Bank Account +
             </Button>
@@ -89,7 +84,7 @@ export default function Profile(props: { banks: any[] }) {
                 Get Accounts
             </Button>
             <div>
-                {accounts.map((account: any) => (
+                {accounts?.map((account: any) => (
                     <div key={account.account_id}>{account.name}</div>
                 ))}
             </div>

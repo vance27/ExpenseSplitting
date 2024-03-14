@@ -106,7 +106,8 @@ export async function postUpdateUserPreferences(
 export async function addUserBank(
     accessToken: string,
     name: string,
-    userId: string
+    userId: string,
+    institutionId: string
 ): Promise<any> {
     console.log('adding bank', userId, accessToken, name);
     const bank = await prisma.bank.create({
@@ -114,9 +115,24 @@ export async function addUserBank(
             accessToken: accessToken,
             name: name,
             userId: userId,
+            institutionId: institutionId,
         },
     });
     return bank ?? undefined;
+}
+export type BankAccount = {
+    type: string;
+    accountId: string;
+    name: string;
+    subtype: string;
+    userId: string;
+    bankId: number;
+};
+export async function addBankAccounts(bankAccounts: BankAccount[]) {
+    const accounts = await prisma.bankAccount.createMany({
+        data: [...bankAccounts],
+    });
+    return accounts ?? undefined;
 }
 
 export async function getUserBanks(id: string): Promise<any> {

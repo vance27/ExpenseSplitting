@@ -37,7 +37,6 @@ export default async function handler(req, res) {
                 country_codes: [CountryCode.Us],
             })
             .then((response) => {
-                console.log(response.data.link_token);
                 return res
                     .status(200)
                     .json({ link_token: response.data.link_token });

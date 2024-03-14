@@ -5,7 +5,7 @@ export function MintTheme(props: any): ReactElement {
     const theme = createTheme({
         palette: {
             primary: {
-                main: '#38663e',
+                main: '#3eb489',
             },
             secondary: {
                 main: '#ffffff',

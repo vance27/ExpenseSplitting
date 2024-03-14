@@ -1,6 +1,14 @@
-import { addUserBank } from 'apps/mint-split-next/src/services/user.service';
+import {
+    addBankAccounts,
+    addUserBank,
+} from 'apps/mint-split-next/src/services/user.service';
 import { getServerSession } from 'next-auth';
-import { Configuration, PlaidApi, PlaidEnvironments } from 'plaid';
+import {
+    BankIncomeCompleteResult,
+    Configuration,
+    PlaidApi,
+    PlaidEnvironments,
+} from 'plaid';
 import { authOptions } from '../../auth/[...nextauth]';
 
 const configuration = new Configuration({
@@ -21,13 +29,30 @@ export default async function handler(req, res) {
         .itemPublicTokenExchange({
             public_token: json.public_token,
         })
-        .then((response) => {
+        .then(async (response) => {
             console.log(response.data);
             console.log(
                 'access_token to add a bank: ',
                 response.data.access_token
             );
-            addUserBank(response.data.access_token, 'Bank', session?.id ?? '');
+            const newBank = await addUserBank(
+                response.data.access_token,
+                json.bankMetadata.institution.name,
+                session?.id ?? '',
+                json.bankMetadata.institution.institution_id
+            );
+            addBankAccounts(
+                json.bankMetadata.accounts.map((account) => {
+                    return {
+                        type: account.type,
+                        accountId: account.id,
+                        name: account.name,
+                        subtype: account.subtype,
+                        userId: session?.id ?? '',
+                        bankId: newBank.id,
+                    };
+                })
+            );
             return res.status(200).json(response.data);
         })
         .catch((e) => {

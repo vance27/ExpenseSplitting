@@ -765,7 +765,7 @@
           },
           {
             "file": "apps/mint-split-next/src/components/app-control/theme-provider.tsx",
-            "hash": "11560564425582436549",
+            "hash": "6695933419090969110",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -956,7 +956,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/api/auth/[...nextauth].ts",
-            "hash": "9960256628748142452",
+            "hash": "9563306414139683419",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -998,7 +998,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/api/plaid/exchange/public_token.ts",
-            "hash": "16457227911152236160",
+            "hash": "7114490393906547993",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1014,7 +1014,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/api/plaid/index.ts",
-            "hash": "17158879408425610845",
+            "hash": "15535347004053704494",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1149,7 +1149,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/profile/index.tsx",
-            "hash": "11654021877809308082",
+            "hash": "8071852225305391815",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1179,7 +1179,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/user-preferences.tsx",
-            "hash": "16218388171194079486",
+            "hash": "6784670772936389401",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1209,6 +1209,16 @@
               {
                 "source": "mint-split-next",
                 "target": "npm:zod",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:next",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:@prisma/client",
                 "type": "static"
               }
             ]
@@ -1252,7 +1262,7 @@
           },
           {
             "file": "apps/mint-split-next/src/services/user.service.ts",
-            "hash": "15032807105679953788",
+            "hash": "10736325418147993418",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1319,7 +1329,7 @@
           },
           {
             "file": "apps/mint-split-next/types/next-auth.d.ts",
-            "hash": "9835499231948258402",
+            "hash": "5107042953557703897",
             "dependencies": [
               {
                 "source": "mint-split-next",
