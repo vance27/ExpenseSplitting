@@ -15,16 +15,13 @@ import {
     Tooltip,
     Typography,
 } from '@mui/material';
-import { getServerSession } from 'next-auth';
 import React from 'react';
 import { ReactElement } from 'react';
-import { authOptions } from './api/auth/[...nextauth]';
 import { Lock } from '@mui/icons-material';
 import { Controller, useForm } from 'react-hook-form';
 import StructuredGrid from '../components/ui-lib-candidates/structured-form';
 import Zod from 'zod';
-import { InferGetServerSidePropsType } from 'next';
-import { Bank } from '@prisma/client';
+import { trpc } from '../utils/trpc';
 
 export const UserPreferencesFormSchema = Zod.object({
     updatedAt: Zod.string().optional(),
@@ -46,38 +43,25 @@ export const UserPreferencesSchema = UserPreferencesFormSchema.extend({
 export type UserPreferencesType = Zod.infer<typeof UserPreferencesSchema>;
 export type UserPreferencesForm = Zod.infer<typeof UserPreferencesFormSchema>;
 
-export const getServerSideProps = async (context: any) => {
-    const session = await getServerSession(
-        context.req,
-        context.res,
-        authOptions
-    );
-    const authorizedUsers = session?.authorizedUsers ?? [];
-    const userPreferences = session?.userPreferences ?? null;
-    const banks = session?.banks ?? [];
-
-    return {
-        props: {
-            title: 'User Preferences',
-            authorizedUsers: authorizedUsers,
-            userPreferences: userPreferences,
-            banks: JSON.parse(JSON.stringify(banks)) as Bank[],
-        },
-    };
-};
-
-function UserPreferences({
-    title,
-    authorizedUsers,
-    userPreferences,
-    banks,
-}: InferGetServerSidePropsType<typeof getServerSideProps>): ReactElement {
+export default function UserPreferences(): ReactElement {
+    const updateUserPreferences = trpc.user.updateUserPreferences.useMutation();
+    const userPreferences = trpc.user.getUserPreferences.useQuery();
+    const banks = trpc.user.getBanks.useQuery();
+    const authorizedUsers = trpc.user.getAuthorizedUsers.useQuery();
+    const { splittingUserId, currency, language, timezone, theme } =
+        userPreferences.data ?? {
+            splittingUserId: '',
+            currency: '',
+            language: '',
+            timezone: '',
+            theme: '',
+        };
     const defaultFormData: UserPreferencesForm = {
-        splittingUserId: userPreferences?.splittingUserId,
-        currency: userPreferences?.currency,
-        language: userPreferences?.language,
-        timezone: userPreferences?.timezone,
-        theme: userPreferences?.theme,
+        splittingUserId,
+        currency,
+        language,
+        timezone,
+        theme,
     };
     const {
         handleSubmit,
@@ -96,16 +80,7 @@ function UserPreferences({
     };
 
     const onSubmit = async (data: any) => {
-        const res = await fetch('/api/user-preferences/update', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        const json = await res.json();
-        setDisabled(true);
-        reset(json);
+        updateUserPreferences.mutate(data);
     };
 
     return (
@@ -118,7 +93,8 @@ function UserPreferences({
             <Container maxWidth="sm">
                 <Card sx={{ p: 2, mt: 2 }}>
                     <Typography sx={{ color: 'primary.light', p: 2 }}>
-                        {`${userPreferences ? 'Update' : 'Create'}`} {title}
+                        {`${userPreferences ? 'Update' : 'Create'}`}{' '}
+                        {'User Preferences'}
                     </Typography>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <StructuredGrid spacing={2}>
@@ -141,14 +117,18 @@ function UserPreferences({
                                             <InputLabel>Shared User</InputLabel>
                                         </Tooltip>
                                         <Select {...field} label={field.name}>
-                                            {authorizedUsers?.map((user) => (
-                                                <MenuItem
-                                                    key={`authUsers${user.id}`}
-                                                    value={user.id}
-                                                >
-                                                    {user.name} [{user.email}]
-                                                </MenuItem>
-                                            ))}
+                                            {authorizedUsers &&
+                                                authorizedUsers.data?.map(
+                                                    (user) => (
+                                                        <MenuItem
+                                                            key={`authUsers${user.id}`}
+                                                            value={user.id}
+                                                        >
+                                                            {user.name} [
+                                                            {user.email}]
+                                                        </MenuItem>
+                                                    )
+                                                )}
                                         </Select>
                                     </FormControl>
                                 )}
@@ -310,7 +290,7 @@ function UserPreferences({
                         Banks
                     </Typography>
                     <Box>
-                        {banks.map((bank) => (
+                        {banks.data?.map((bank) => (
                             <div key={bank.id}>{bank.name}</div>
                         ))}
                     </Box>
@@ -319,5 +299,3 @@ function UserPreferences({
         </div>
     );
 }
-
-export default UserPreferences;

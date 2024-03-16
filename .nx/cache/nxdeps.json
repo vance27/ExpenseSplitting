@@ -1169,16 +1169,11 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/user-preferences.tsx",
-            "hash": "6784670772936389401",
+            "hash": "16121166111717182256",
             "dependencies": [
               {
                 "source": "mint-split-next",
                 "target": "npm:@mui/material",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:next-auth",
                 "type": "static"
               },
               {
@@ -1199,16 +1194,6 @@
               {
                 "source": "mint-split-next",
                 "target": "npm:zod",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:next",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:@prisma/client",
                 "type": "static"
               }
             ]
@@ -1239,7 +1224,7 @@
           },
           {
             "file": "apps/mint-split-next/src/server/routers/user.ts",
-            "hash": "15552927796549347883",
+            "hash": "9680480635990686984",
             "dependencies": [
               {
                 "source": "mint-split-next",
