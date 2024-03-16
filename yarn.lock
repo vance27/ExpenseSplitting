@@ -4037,29 +4037,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:4.29.5":
-  version: 4.29.5
-  resolution: "@tanstack/query-core@npm:4.29.5"
-  checksum: 96c58093f8199f2c4b1b5448acb7ebbc22f6d3b53c3befb0f70f978de6047fc8c6e89a034710a9c875cdd0ceb53771027b0e025dbb3bea09dafb25f899350173
+"@tanstack/query-core@npm:5.28.4":
+  version: 5.28.4
+  resolution: "@tanstack/query-core@npm:5.28.4"
+  checksum: 270b186372daede79075f1218796ee5784a9bef9c1879ac7192533d46f3c80141131e98754dc6028001f514998bc44b11f18dec9755678b57afff7b9f55ef87f
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:^4.29.5":
-  version: 4.29.5
-  resolution: "@tanstack/react-query@npm:4.29.5"
+"@tanstack/react-query@npm:^5.28.4":
+  version: 5.28.4
+  resolution: "@tanstack/react-query@npm:5.28.4"
   dependencies:
-    "@tanstack/query-core": "npm:4.29.5"
-    use-sync-external-store: "npm:^1.2.0"
+    "@tanstack/query-core": "npm:5.28.4"
   peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-native: "*"
-  peerDependenciesMeta:
-    react-dom:
-      optional: true
-    react-native:
-      optional: true
-  checksum: 6965d244981a37a20ab782e87d04e62d7a6d1cb8f46df0802f4b3c3a06f27d9879388aba9c05af4549544dd0e6b0c67753352d0e0b8b7d49cb2bcdac671ac275
+    react: ^18.0.0
+  checksum: 9ba98876e46cf3cf14d52228da3de8f8b534f2ac04c52a84af90ee7f5ea2ab0bfe4c0b739ffc4be2a8c109640468f545617318aeaf04506ac25f2ee65d219f51
   languageName: node
   linkType: hard
 
@@ -4100,49 +4092,52 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trpc/client@npm:^10.25.1":
-  version: 10.25.1
-  resolution: "@trpc/client@npm:10.25.1"
+"@trpc/client@npm:^11.0.0-next-beta.318":
+  version: 11.0.0-next-beta.318
+  resolution: "@trpc/client@npm:11.0.0-next-beta.318"
   peerDependencies:
-    "@trpc/server": 10.25.1
-  checksum: 513cdd592682a4cf09d5e1091c0c4be1b01075a94e1b8fb40b73d954bebe65fb8146e05159b22af7be8e2ac6b498fe6e9b90c0025e9724fe5fbdff43957f82ce
+    "@trpc/server": 11.0.0-next-beta.318+e9899d002
+  checksum: 11a7f1ce1cbea94237e6abe2ec1c1357a0a99426e097bf1661557024bae6ed46b6e48072f3cfe9002cc8001a1da7ff0b8be35bc24f6d6e04d7e7c4d04a999b95
   languageName: node
   linkType: hard
 
-"@trpc/next@npm:^10.25.1":
-  version: 10.25.1
-  resolution: "@trpc/next@npm:10.25.1"
-  dependencies:
-    react-ssr-prepass: "npm:^1.5.0"
+"@trpc/next@npm:^11.0.0-next-beta.318":
+  version: 11.0.0-next-beta.318
+  resolution: "@trpc/next@npm:11.0.0-next-beta.318"
   peerDependencies:
-    "@tanstack/react-query": ^4.18.0
-    "@trpc/client": 10.25.1
-    "@trpc/react-query": 10.25.1
-    "@trpc/server": 10.25.1
+    "@tanstack/react-query": ^5.25.0
+    "@trpc/client": 11.0.0-next-beta.318+e9899d002
+    "@trpc/react-query": 11.0.0-next-beta.318+e9899d002
+    "@trpc/server": 11.0.0-next-beta.318+e9899d002
     next: "*"
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 43b2a385f8b2fcace4f5b1bcc07a617835fdd4ae82afbcb4ecbadbb9431c853dd7206f4b97f5cf163d045e95b8c657aaa827a44fc4a6f17017140f55ab5d3758
+  peerDependenciesMeta:
+    "@tanstack/react-query":
+      optional: true
+    "@trpc/react-query":
+      optional: true
+  checksum: d0eaaf2308a1d5ba9926163578c3310898201f6e3cb0b48c1e8fc72815e5a653689d1d32b72cd3a1aaf492dea3682da4e782ec37d71b3e175d27b23537b3646b
   languageName: node
   linkType: hard
 
-"@trpc/react-query@npm:^10.25.1":
-  version: 10.25.1
-  resolution: "@trpc/react-query@npm:10.25.1"
+"@trpc/react-query@npm:^11.0.0-next-beta.318":
+  version: 11.0.0-next-beta.318
+  resolution: "@trpc/react-query@npm:11.0.0-next-beta.318"
   peerDependencies:
-    "@tanstack/react-query": ^4.18.0
-    "@trpc/client": 10.25.1
-    "@trpc/server": 10.25.1
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: b2d1bc8abc131f8c7fa3988ae971c74b880d101ff2f9ed9a0003eb51307fd164c99d05f97797d00e68f6a60dc56799c2c81eed0da8bac94081c99b5f82df56bb
+    "@tanstack/react-query": ^5.25.0
+    "@trpc/client": 11.0.0-next-beta.318+e9899d002
+    "@trpc/server": 11.0.0-next-beta.318+e9899d002
+    react: ">=18.2.0"
+    react-dom: ">=18.2.0"
+  checksum: dd91e07cfd5df8dfea5c9098cc6b1f00896819341d6046b1f24bf56b2889d19c59273b9e270cc69f0980b18e7f73d02589e386d1abf5d3559c3335e97fb80fc4
   languageName: node
   linkType: hard
 
-"@trpc/server@npm:^10.25.1":
-  version: 10.25.1
-  resolution: "@trpc/server@npm:10.25.1"
-  checksum: 29e68219449f5380cf273fa76ff5413945e4612f8963d3a092b837397955a86939100420db2c38e61f09fb298263df975aab9a45ca81ea3c461fa6173fa92820
+"@trpc/server@npm:^11.0.0-next-beta.318":
+  version: 11.0.0-next-beta.318
+  resolution: "@trpc/server@npm:11.0.0-next-beta.318"
+  checksum: f88204dd4768e91c0e70aa6c297616ffb1873f4b6c04886dd0b1ff2d58643b93bec7862805e1448f1284a08bcfd6b6588568953e9fe16dd1c9876f38936c1112
   languageName: node
   linkType: hard
 
@@ -8274,12 +8269,12 @@ __metadata:
     "@nx/react": "npm:16.0.3"
     "@nx/webpack": "npm:16.0.1"
     "@prisma/client": "npm:^4.14.0"
-    "@tanstack/react-query": "npm:^4.29.5"
+    "@tanstack/react-query": "npm:^5.28.4"
     "@testing-library/react": "npm:14.0.0"
-    "@trpc/client": "npm:^10.25.1"
-    "@trpc/next": "npm:^10.25.1"
-    "@trpc/react-query": "npm:^10.25.1"
-    "@trpc/server": "npm:^10.25.1"
+    "@trpc/client": "npm:^11.0.0-next-beta.318"
+    "@trpc/next": "npm:^11.0.0-next-beta.318"
+    "@trpc/react-query": "npm:^11.0.0-next-beta.318"
+    "@trpc/server": "npm:^11.0.0-next-beta.318"
     "@types/cors": "npm:^2.8.13"
     "@types/express": "npm:4.17.13"
     "@types/jest": "npm:^29.5.1"
@@ -8333,7 +8328,7 @@ __metadata:
     vite-plugin-eslint: "npm:^1.8.1"
     vite-tsconfig-paths: "npm:^4.0.2"
     vitest: "npm:^0.25.8"
-    zod: "npm:^3.21.4"
+    zod: "npm:^3.22.4"
   languageName: unknown
   linkType: soft
 
@@ -13722,15 +13717,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-ssr-prepass@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "react-ssr-prepass@npm:1.5.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: eea25592271fe6b0ee625fce39b1cb2d13f1ea19d3432658071d5a8061c380904540c122949974012e59a354a45a2db67ff2359cd929b5feea8df6feb4946c52
-  languageName: node
-  linkType: hard
-
 "react-test-renderer@npm:18.2.0":
   version: 18.2.0
   resolution: "react-test-renderer@npm:18.2.0"
@@ -15713,15 +15699,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "use-sync-external-store@npm:1.2.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: bed3d1f68ca3dd33647035dbeb9d3a5ece12fced0245cb0fa831426192e52e4948b0fc6e9187d9d4dce9f58269af605f8feeeda100d2928f8b865f9cd9cc4a4a
-  languageName: node
-  linkType: hard
-
 "util-deprecate@npm:^1.0.1, util-deprecate@npm:^1.0.2, util-deprecate@npm:~1.0.1":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -16385,9 +16362,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.21.4":
-  version: 3.21.4
-  resolution: "zod@npm:3.21.4"
-  checksum: f25f384f380c49d05a11541093a8d26f07688aa39f6a8adbd6dc338b43f63617bf138734fb1b79800ba374523f6a1bb561f7d401b3cc051fed2715eae5577d0a
+"zod@npm:^3.22.4":
+  version: 3.22.4
+  resolution: "zod@npm:3.22.4"
+  checksum: 6de658042fb4a67e901e38604746246171a39cb8c5227ba8b334a636b4db4a4c3a995ea2a2377323dcfbfd3dd58fee1f49f1fc95a5d5d87b2476844ad09c082b
   languageName: node
   linkType: hard

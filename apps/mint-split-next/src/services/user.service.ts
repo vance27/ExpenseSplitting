@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { Bank, User } from '@prisma/client';
 import prisma from '../../prisma/prisma';
 import { UserPreferencesForm } from '../pages/user-preferences';
 import { Session } from 'next-auth';
@@ -135,7 +135,7 @@ export async function addBankAccounts(bankAccounts: BankAccount[]) {
     return accounts ?? undefined;
 }
 
-export async function getUserBanks(id: string): Promise<any> {
+export async function getUserBanks(id: string): Promise<Bank[]> {
     const banks = await prisma.bank.findMany({
         where: {
             userId: id,

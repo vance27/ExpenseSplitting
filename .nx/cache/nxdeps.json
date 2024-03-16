@@ -10,11 +10,11 @@
     "@next-auth/prisma-adapter": "^1.0.6",
     "@nrwl/cli": "^15.9.2",
     "@prisma/client": "^4.14.0",
-    "@tanstack/react-query": "^4.29.5",
-    "@trpc/client": "^10.25.1",
-    "@trpc/next": "^10.25.1",
-    "@trpc/react-query": "^10.25.1",
-    "@trpc/server": "^10.25.1",
+    "@tanstack/react-query": "^5.28.4",
+    "@trpc/client": "^11.0.0-next-beta.318",
+    "@trpc/next": "^11.0.0-next-beta.318",
+    "@trpc/react-query": "^11.0.0-next-beta.318",
+    "@trpc/server": "^11.0.0-next-beta.318",
     "axios": "^1.0.0",
     "express": "^4.18.1",
     "global": "^4.4.0",
@@ -29,7 +29,7 @@
     "react-hook-form": "^7.43.9",
     "react-plaid-link": "^3.5.1",
     "tslib": "^2.3.0",
-    "zod": "^3.21.4",
+    "zod": "^3.22.4",
     "@nrwl/cypress": "15.9.2",
     "@nrwl/eslint-plugin-nx": "15.9.2",
     "@nrwl/jest": "^15.9.2",
@@ -714,7 +714,7 @@
           },
           {
             "file": "apps/mint-split-next/public/favicon.ico",
-            "hash": "9303420814833116677"
+            "hash": "14014016892574997757"
           },
           {
             "file": "apps/mint-split-next/src/components/app-control/app-bar.tsx",
@@ -956,7 +956,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/api/auth/[...nextauth].ts",
-            "hash": "9563306414139683419",
+            "hash": "15671071258955511269",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1041,7 +1041,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/api/trpc/[trpc].ts",
-            "hash": "3321617735351322700",
+            "hash": "13409731313711220839",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1145,20 +1145,15 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/index.tsx",
-            "hash": "12122627426035887197"
+            "hash": "6550809788773088870"
           },
           {
             "file": "apps/mint-split-next/src/pages/profile/index.tsx",
-            "hash": "8071852225305391815",
+            "hash": "5341279869278056906",
             "dependencies": [
               {
                 "source": "mint-split-next",
                 "target": "npm:@mui/material",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:next-auth",
                 "type": "static"
               },
               {
@@ -1224,8 +1219,32 @@
             ]
           },
           {
+            "file": "apps/mint-split-next/src/server/context.ts",
+            "hash": "8285666372204989592",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:@trpc/server",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:next-auth",
+                "type": "static"
+              }
+            ]
+          },
+          {
             "file": "apps/mint-split-next/src/server/routers/_app.ts",
-            "hash": "14982793248345212791",
+            "hash": "4754927638537367943"
+          },
+          {
+            "file": "apps/mint-split-next/src/server/routers/temp.models.ts",
+            "hash": "4595979742548113990"
+          },
+          {
+            "file": "apps/mint-split-next/src/server/routers/user.ts",
+            "hash": "1403547227111843408",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1236,7 +1255,7 @@
           },
           {
             "file": "apps/mint-split-next/src/server/trpc.ts",
-            "hash": "5500888356470376615",
+            "hash": "12584065611316732526",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1262,7 +1281,7 @@
           },
           {
             "file": "apps/mint-split-next/src/services/user.service.ts",
-            "hash": "10736325418147993418",
+            "hash": "9807116267081626018",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1310,14 +1329,7 @@
           },
           {
             "file": "apps/mint-split-next/src/utils/value-formatters.ts",
-            "hash": "7410433372591545552",
-            "dependencies": [
-              {
-                "source": "mint-split-next",
-                "target": "npm:@mui/x-data-grid",
-                "type": "static"
-              }
-            ]
+            "hash": "16728602500136050465"
           },
           {
             "file": "apps/mint-split-next/tsconfig.json",
@@ -1334,6 +1346,22 @@
               {
                 "source": "mint-split-next",
                 "target": "npm:@prisma/client",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:next-auth",
+                "type": "static"
+              }
+            ]
+          },
+          {
+            "file": "apps/mint-split-next/src/services/plaid.ts",
+            "hash": "6328195145222978811",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:plaid",
                 "type": "static"
               },
               {
@@ -4562,18 +4590,18 @@
       "type": "npm",
       "name": "npm:@tanstack/query-core",
       "data": {
-        "version": "4.29.5",
+        "version": "5.28.4",
         "packageName": "@tanstack/query-core",
-        "hash": "96c58093f8199f2c4b1b5448acb7ebbc22f6d3b53c3befb0f70f978de6047fc8c6e89a034710a9c875cdd0ceb53771027b0e025dbb3bea09dafb25f899350173"
+        "hash": "270b186372daede79075f1218796ee5784a9bef9c1879ac7192533d46f3c80141131e98754dc6028001f514998bc44b11f18dec9755678b57afff7b9f55ef87f"
       }
     },
     "npm:@tanstack/react-query": {
       "type": "npm",
       "name": "npm:@tanstack/react-query",
       "data": {
-        "version": "4.29.5",
+        "version": "5.28.4",
         "packageName": "@tanstack/react-query",
-        "hash": "6965d244981a37a20ab782e87d04e62d7a6d1cb8f46df0802f4b3c3a06f27d9879388aba9c05af4549544dd0e6b0c67753352d0e0b8b7d49cb2bcdac671ac275"
+        "hash": "9ba98876e46cf3cf14d52228da3de8f8b534f2ac04c52a84af90ee7f5ea2ab0bfe4c0b739ffc4be2a8c109640468f545617318aeaf04506ac25f2ee65d219f51"
       }
     },
     "npm:@testing-library/dom": {
@@ -4607,36 +4635,36 @@
       "type": "npm",
       "name": "npm:@trpc/client",
       "data": {
-        "version": "10.25.1",
+        "version": "11.0.0-next-beta.318",
         "packageName": "@trpc/client",
-        "hash": "513cdd592682a4cf09d5e1091c0c4be1b01075a94e1b8fb40b73d954bebe65fb8146e05159b22af7be8e2ac6b498fe6e9b90c0025e9724fe5fbdff43957f82ce"
+        "hash": "11a7f1ce1cbea94237e6abe2ec1c1357a0a99426e097bf1661557024bae6ed46b6e48072f3cfe9002cc8001a1da7ff0b8be35bc24f6d6e04d7e7c4d04a999b95"
       }
     },
     "npm:@trpc/next": {
       "type": "npm",
       "name": "npm:@trpc/next",
       "data": {
-        "version": "10.25.1",
+        "version": "11.0.0-next-beta.318",
         "packageName": "@trpc/next",
-        "hash": "43b2a385f8b2fcace4f5b1bcc07a617835fdd4ae82afbcb4ecbadbb9431c853dd7206f4b97f5cf163d045e95b8c657aaa827a44fc4a6f17017140f55ab5d3758"
+        "hash": "d0eaaf2308a1d5ba9926163578c3310898201f6e3cb0b48c1e8fc72815e5a653689d1d32b72cd3a1aaf492dea3682da4e782ec37d71b3e175d27b23537b3646b"
       }
     },
     "npm:@trpc/react-query": {
       "type": "npm",
       "name": "npm:@trpc/react-query",
       "data": {
-        "version": "10.25.1",
+        "version": "11.0.0-next-beta.318",
         "packageName": "@trpc/react-query",
-        "hash": "b2d1bc8abc131f8c7fa3988ae971c74b880d101ff2f9ed9a0003eb51307fd164c99d05f97797d00e68f6a60dc56799c2c81eed0da8bac94081c99b5f82df56bb"
+        "hash": "dd91e07cfd5df8dfea5c9098cc6b1f00896819341d6046b1f24bf56b2889d19c59273b9e270cc69f0980b18e7f73d02589e386d1abf5d3559c3335e97fb80fc4"
       }
     },
     "npm:@trpc/server": {
       "type": "npm",
       "name": "npm:@trpc/server",
       "data": {
-        "version": "10.25.1",
+        "version": "11.0.0-next-beta.318",
         "packageName": "@trpc/server",
-        "hash": "29e68219449f5380cf273fa76ff5413945e4612f8963d3a092b837397955a86939100420db2c38e61f09fb298263df975aab9a45ca81ea3c461fa6173fa92820"
+        "hash": "f88204dd4768e91c0e70aa6c297616ffb1873f4b6c04886dd0b1ff2d58643b93bec7862805e1448f1284a08bcfd6b6588568953e9fe16dd1c9876f38936c1112"
       }
     },
     "npm:@trysound/sax": {
@@ -12838,15 +12866,6 @@
         "hash": "0fe146850712649db4b043d0c6188184d4640928dd77090d50947375b73b1f465fe657f512e0b48c3379202ece3dd9908642f76b789ef206b57d58b9be59807a"
       }
     },
-    "npm:react-ssr-prepass": {
-      "type": "npm",
-      "name": "npm:react-ssr-prepass",
-      "data": {
-        "version": "1.5.0",
-        "packageName": "react-ssr-prepass",
-        "hash": "eea25592271fe6b0ee625fce39b1cb2d13f1ea19d3432658071d5a8061c380904540c122949974012e59a354a45a2db67ff2359cd929b5feea8df6feb4946c52"
-      }
-    },
     "npm:react-test-renderer": {
       "type": "npm",
       "name": "npm:react-test-renderer",
@@ -14647,15 +14666,6 @@
         "hash": "66bbd003c46f39998b1c127b26b2ff4e8426e8597bb46ddb758fb3e05f56eaac745c05d40af07e87d72cab5827fbfe88050dec58d3128c82629731f8ceea42c2"
       }
     },
-    "npm:use-sync-external-store": {
-      "type": "npm",
-      "name": "npm:use-sync-external-store",
-      "data": {
-        "version": "1.2.0",
-        "packageName": "use-sync-external-store",
-        "hash": "bed3d1f68ca3dd33647035dbeb9d3a5ece12fced0245cb0fa831426192e52e4948b0fc6e9187d9d4dce9f58269af605f8feeeda100d2928f8b865f9cd9cc4a4a"
-      }
-    },
     "npm:util-deprecate": {
       "type": "npm",
       "name": "npm:util-deprecate",
@@ -15173,9 +15183,9 @@
       "type": "npm",
       "name": "npm:zod",
       "data": {
-        "version": "3.21.4",
+        "version": "3.22.4",
         "packageName": "zod",
-        "hash": "f25f384f380c49d05a11541093a8d26f07688aa39f6a8adbd6dc338b43f63617bf138734fb1b79800ba374523f6a1bb561f7d401b3cc051fed2715eae5577d0a"
+        "hash": "6de658042fb4a67e901e38604746246171a39cb8c5227ba8b334a636b4db4a4c3a995ea2a2377323dcfbfd3dd58fee1f49f1fc95a5d5d87b2476844ad09c082b"
       }
     }
   },
@@ -20982,11 +20992,6 @@
         "source": "npm:@tanstack/react-query",
         "target": "npm:@tanstack/query-core",
         "type": "static"
-      },
-      {
-        "source": "npm:@tanstack/react-query",
-        "target": "npm:use-sync-external-store",
-        "type": "static"
       }
     ],
     "npm:@testing-library/dom": [
@@ -21045,13 +21050,6 @@
       {
         "source": "npm:@testing-library/react",
         "target": "npm:@types/react-dom",
-        "type": "static"
-      }
-    ],
-    "npm:@trpc/next": [
-      {
-        "source": "npm:@trpc/next",
-        "target": "npm:react-ssr-prepass",
         "type": "static"
       }
     ],
@@ -34670,22 +34668,7 @@
     "mint-split-next": [
       {
         "source": "mint-split-next",
-        "target": "npm:plaid",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:next-auth",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
         "target": "npm:@mui/material",
-        "type": "static"
-      },
-      {
-        "source": "mint-split-next",
-        "target": "npm:@trpc/server",
         "type": "static"
       },
       {
@@ -34700,12 +34683,22 @@
       },
       {
         "source": "mint-split-next",
-        "target": "npm:@nx/next",
+        "target": "npm:@trpc/server",
         "type": "static"
       },
       {
         "source": "mint-split-next",
         "target": "npm:@prisma/client",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:next-auth",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@nx/next",
         "type": "static"
       },
       {
@@ -34740,6 +34733,11 @@
       },
       {
         "source": "mint-split-next",
+        "target": "npm:plaid",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
         "target": "npm:react-hook-form",
         "type": "static"
       },
@@ -34756,6 +34754,11 @@
       {
         "source": "mint-split-next",
         "target": "npm:@trpc/next",
+        "type": "static"
+      },
+      {
+        "source": "mint-split-next",
+        "target": "npm:@nx/react",
         "type": "static"
       }
     ],

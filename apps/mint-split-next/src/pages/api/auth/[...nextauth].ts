@@ -47,6 +47,7 @@ export const authOptions: NextAuthOptions = {
             session.authorizedUsers = authorizedUsers;
             session.userPreferences = userPreferences;
             session.id = user?.id;
+            console.log('session.id', session.id);
             session.banks = banks;
 
             return session;
