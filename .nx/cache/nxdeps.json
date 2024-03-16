@@ -1067,79 +1067,6 @@
             ]
           },
           {
-            "file": "apps/mint-split-next/src/pages/dashboard/[id].tsx",
-            "hash": "14400877688302149743",
-            "dependencies": [
-              {
-                "source": "mint-split-next",
-                "target": "npm:@mui/material",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:next-auth",
-                "type": "static"
-              }
-            ]
-          },
-          {
-            "file": "apps/mint-split-next/src/pages/friends/[id].tsx",
-            "hash": "15252257468088399617",
-            "dependencies": [
-              {
-                "source": "mint-split-next",
-                "target": "npm:@mui/icons-material",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:@mui/material",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:@prisma/client",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:next-auth",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:react",
-                "type": "static"
-              }
-            ]
-          },
-          {
-            "file": "apps/mint-split-next/src/pages/import/[id].tsx",
-            "hash": "17536524596601763731",
-            "dependencies": [
-              {
-                "source": "mint-split-next",
-                "target": "npm:@mui/icons-material",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:@mui/material",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:next-auth",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:react",
-                "type": "static"
-              }
-            ]
-          },
-          {
             "file": "apps/mint-split-next/src/pages/index.module.scss",
             "hash": "4786619528779355986"
           },
@@ -1358,6 +1285,64 @@
               {
                 "source": "mint-split-next",
                 "target": "npm:zod",
+                "type": "static"
+              }
+            ]
+          },
+          {
+            "file": "apps/mint-split-next/src/pages/dashboard/index.tsx",
+            "hash": "18282869171355761578",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:@mui/material",
+                "type": "static"
+              }
+            ]
+          },
+          {
+            "file": "apps/mint-split-next/src/pages/friends/index.tsx",
+            "hash": "5366709343013484567",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:@mui/icons-material",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:@mui/material",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:@prisma/client",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:react",
+                "type": "static"
+              }
+            ]
+          },
+          {
+            "file": "apps/mint-split-next/src/pages/import/index.tsx",
+            "hash": "1800304462250325481",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:@mui/icons-material",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:@mui/material",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:react",
                 "type": "static"
               }
             ]
