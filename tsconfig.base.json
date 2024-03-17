@@ -25,7 +25,11 @@
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "@ExpenseSplitting/mint-split//convert": [
+                "libs/mint-split/convert/src/index.ts"
+            ]
+        }
     },
     "exclude": ["node_modules", "tmp"]
 }

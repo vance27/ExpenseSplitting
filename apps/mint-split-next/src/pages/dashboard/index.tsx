@@ -1,4 +1,4 @@
-import { Card, Grid } from '@mui/material';
+import { Card, Grid, Typography } from '@mui/material';
 import CurrentExpenseSplittingWindow from '../../components/dashboard/current-expense-splitting-window';
 import OwedDisplay from '../../components/dashboard/owed-display';
 import { trpc } from '../../utils/trpc';
@@ -42,19 +42,63 @@ function Dashboard() {
                         ) : transactions.error ? (
                             <div>Error: {transactions.error.message}</div>
                         ) : (
-                            <div>
-                                <pre>
+                            <Grid container columns={12}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h6">
+                                        New Transactions (
+                                        {transactions.data?.added.length})
+                                    </Typography>
                                     {transactions.data?.added.map(
                                         (transaction) => {
-                                            return JSON.stringify(
-                                                transaction,
-                                                null,
-                                                2
+                                            return (
+                                                <>
+                                                    <div>
+                                                        {transaction.name} -{' '}
+                                                        {transaction.amount}
+                                                    </div>
+                                                </>
                                             );
                                         }
                                     )}
-                                </pre>
-                            </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="h6">
+                                        Modified Transactions (
+                                        {transactions.data?.modified.length})
+                                    </Typography>
+                                    {transactions.data?.modified.map(
+                                        (transaction) => {
+                                            return (
+                                                <>
+                                                    <div>
+                                                        {transaction.name} -{' '}
+                                                        {transaction.amount}
+                                                    </div>
+                                                </>
+                                            );
+                                        }
+                                    )}
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="h6">
+                                        Removed Transactions (
+                                        {transactions.data?.removed.length})
+                                    </Typography>
+                                    {transactions.data?.removed.map(
+                                        (transaction) => {
+                                            return (
+                                                <>
+                                                    <div>
+                                                        {
+                                                            transaction.transaction_id
+                                                        }
+                                                    </div>
+                                                </>
+                                            );
+                                        }
+                                    )}
+                                </Grid>
+                            </Grid>
                         )}
                     </Card>
                 </Grid>

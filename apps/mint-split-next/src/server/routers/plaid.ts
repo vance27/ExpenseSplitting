@@ -1,3 +1,4 @@
+import { Transaction } from '@prisma/client';
 import { access } from 'fs';
 import { z } from 'zod';
 import {
@@ -5,6 +6,7 @@ import {
     exchangePublicToken,
     transactionsSync,
 } from '../../services/plaid.service';
+import { postBulkTransactions } from '../../services/transaction.service';
 import { protectedProcedure, publicProcedure, router } from '../trpc';
 
 export const plaidRouter = router({
@@ -44,12 +46,29 @@ export const plaidRouter = router({
                 .passthrough()
         )
         .query(async (req) => {
-            const {data} = await transactionsSync(
+            const { data } = await transactionsSync(
                 req.input.access_token ?? '',
                 req.input.cursor,
                 req.input.count,
                 undefined
             );
+            const addedTransactions: Transaction[] = data.added.map(
+                (transaction) => {
+                    return {
+                        id: transaction.transaction_id,
+                        title: transaction.name,
+                        date: transaction.date,
+                        userId: req.ctx.id,
+                        price: transaction.amount,
+                        createdAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString(),
+                        notes: '',
+                        sharedId: null,
+                        expenseSplittingWindowId: null,
+                    };
+                }
+            );
+            postBulkTransactions(addedTransactions);
             return data;
         }),
 });

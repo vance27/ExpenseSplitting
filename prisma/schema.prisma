@@ -32,15 +32,16 @@ model User {
 }
 
 model BankAccount {
-    id        String @id @default(cuid())
-    type      String
-    accountId String @unique
-    name      String
-    subtype   String
-    user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-    userId    String
-    bank      Bank   @relation(fields: [bankId], references: [id])
-    bankId    Int
+    id          String        @id @default(cuid())
+    type        String
+    accountId   String        @unique
+    name        String
+    subtype     String
+    user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId      String
+    bank        Bank          @relation(fields: [bankId], references: [id])
+    bankId      Int
+    Transaction Transaction[]
 }
 
 model Bank {
@@ -57,12 +58,32 @@ model Bank {
 
 model Transaction {
     id                       Int                     @id @default(autoincrement())
+    transactionId            String                  @unique
+    transactionType          String?
+    accountId                String
+    BankAccount              BankAccount?            @relation(fields: [accountId], references: [id])
+    ammount                  Float
+    isoCurrencyCode          String?
+    unofficialCurrencyCode   String?
+    category                 String[]
+    category_id              String?
+    checkNumber              String?
+    date                     String
+    name                     String
+    merchantName             String
+    description              String
+    pending                  Boolean
+    pendingTransactionId     String?
+    accountOwner             String?
+    logoUrl                  String?
+    website                  String?
+    authorizedDate           String?
+    authorizedDateTime       String?
+    dateTime                 String?
+    paymentChannel           String?
     createdAt                DateTime                @default(now()) @db.Timestamp(3)
     updatedAt                DateTime                @default(now()) @db.Timestamp(3)
-    title                    String
-    date                     String
     notes                    String
-    price                    Int
     shared                   SharedTransaction?
     sharedId                 Int?
     User                     User?                   @relation(fields: [userId], references: [id])

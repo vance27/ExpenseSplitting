@@ -1,6 +1,5 @@
+import { Transaction } from '@prisma/client';
 import prisma from '../../prisma/prisma';
-
-export type Transaction = any;
 
 // TODO: Add types
 export async function getAllTransactions(id: string): Promise<any> {
