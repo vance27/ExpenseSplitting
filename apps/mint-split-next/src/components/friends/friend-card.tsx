@@ -1,11 +1,4 @@
-import {
-    Container,
-    Tooltip,
-    Card,
-    CardContent,
-    Avatar,
-    Typography,
-} from '@mui/material';
+import { Tooltip, Card, CardContent, Avatar, Typography } from '@mui/material';
 
 export default function FriendCard({ user, children }: any) {
     return (

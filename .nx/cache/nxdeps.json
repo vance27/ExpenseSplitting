@@ -718,7 +718,7 @@
           },
           {
             "file": "apps/mint-split-next/src/components/app-control/app-bar.tsx",
-            "hash": "17321084413391567649",
+            "hash": "2455860010510034127",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -813,7 +813,7 @@
           },
           {
             "file": "apps/mint-split-next/src/components/friends/friend-card.tsx",
-            "hash": "13599386917560600748",
+            "hash": "9893638070282624358",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -961,7 +961,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/api/auth/[...nextauth].ts",
-            "hash": "15671071258955511269",
+            "hash": "9563306414139683419",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1167,7 +1167,7 @@
           },
           {
             "file": "apps/mint-split-next/src/server/trpc.ts",
-            "hash": "12584065611316732526",
+            "hash": "3189755626695136179",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1193,7 +1193,7 @@
           },
           {
             "file": "apps/mint-split-next/src/services/user.service.ts",
-            "hash": "9807116267081626018",
+            "hash": "16549267300744663606",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1269,7 +1269,7 @@
           },
           {
             "file": "apps/mint-split-next/src/services/plaid.ts",
-            "hash": "6328195145222978811",
+            "hash": "5970977551559714485",
             "dependencies": [
               {
                 "source": "mint-split-next",

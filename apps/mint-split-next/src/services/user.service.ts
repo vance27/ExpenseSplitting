@@ -22,7 +22,6 @@ export async function getFriendRequests(id: string): Promise<any> {
         },
     });
     const requestedUsers = user?.FriendRequestSent.map((f) => f.receiver);
-    console.log(requestedUsers);
     return requestedUsers ?? [];
 }
 
@@ -40,7 +39,6 @@ export async function getFriendRequestsReceived(id: string): Promise<any> {
         },
     });
     const senderUsers = user?.FriendRequestReceived.map((f) => f.sender);
-    console.log(senderUsers);
     return senderUsers ?? [];
 }
 
@@ -109,7 +107,6 @@ export async function addUserBank(
     userId: string,
     institutionId: string
 ): Promise<any> {
-    console.log('adding bank', userId, accessToken, name);
     const bank = await prisma.bank.create({
         data: {
             accessToken: accessToken,

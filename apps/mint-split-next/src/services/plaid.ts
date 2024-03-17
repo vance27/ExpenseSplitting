@@ -55,11 +55,6 @@ export async function exchangePublicToken(
             public_token: publicToken,
         })
         .then(async (response) => {
-            console.log(response.data);
-            console.log(
-                'access_token to add a bank: ',
-                response.data.access_token
-            );
             const { name, institution_id } = metadata.institution;
             const newBank = await addUserBank(
                 response.data.access_token,

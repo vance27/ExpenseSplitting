@@ -15,7 +15,6 @@ export const protectedProcedure = publicProcedure.use(async function isAuthed(
     opts
 ) {
     const session = opts.ctx.session;
-    console.log('session', session);
     if (!session?.id) {
         throw new TRPCError({ code: 'UNAUTHORIZED' });
     } else {
