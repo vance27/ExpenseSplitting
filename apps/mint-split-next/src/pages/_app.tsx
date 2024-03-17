@@ -21,11 +21,11 @@ const MintSplitApp: AppType = ({
             <main className="app">
                 <MintTheme>
                     <ResponsiveAppBar />
-                    <Box m={2}>
-                        <AuthContainer>
+                    <AuthContainer>
+                        <Box m={2}>
                             <Component {...pageProps} />
-                        </AuthContainer>
-                    </Box>
+                        </Box>
+                    </AuthContainer>
                 </MintTheme>
             </main>
         </SessionProvider>

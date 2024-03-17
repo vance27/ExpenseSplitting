@@ -718,13 +718,8 @@
           },
           {
             "file": "apps/mint-split-next/src/components/app-control/app-bar.tsx",
-            "hash": "6996658116663518404",
+            "hash": "17321084413391567649",
             "dependencies": [
-              {
-                "source": "mint-split-next",
-                "target": "npm:react",
-                "type": "static"
-              },
               {
                 "source": "mint-split-next",
                 "target": "npm:@mui/material",
@@ -743,6 +738,11 @@
               {
                 "source": "mint-split-next",
                 "target": "npm:next",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:react",
                 "type": "static"
               }
             ]
@@ -892,11 +892,16 @@
           },
           {
             "file": "apps/mint-split-next/src/components/shared/app-bar-link.tsx",
-            "hash": "17207071602604718506",
+            "hash": "15857779934207200817",
             "dependencies": [
               {
                 "source": "mint-split-next",
                 "target": "npm:@mui/material",
+                "type": "static"
+              },
+              {
+                "source": "mint-split-next",
+                "target": "npm:next",
                 "type": "static"
               },
               {
@@ -935,7 +940,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/_app.tsx",
-            "hash": "5328012056434351267",
+            "hash": "11619996927410622737",
             "dependencies": [
               {
                 "source": "mint-split-next",

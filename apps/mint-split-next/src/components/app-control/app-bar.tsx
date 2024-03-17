@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,21 +12,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AppBarLink from '../shared/app-bar-link';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useState } from 'react';
 const pages: string[] = ['dashboard', 'import', 'friends'];
 const settings = ['profile', 'account', 'dashboard', 'user-preferences'];
-
+// TODO this code is shit and needs to be fixed
 function ResponsiveAppBar() {
     const { data: session, status } = useSession();
-    const id = session?.id ?? 'NOID';
+    const id = session?.id;
 
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-        null
-    );
-    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-        null
-    );
+    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -53,12 +49,16 @@ function ResponsiveAppBar() {
             // <Button variant="contained" onClick={() => signIn()}>
             //     Sign in
             // </Button>
-            <Link href="/api/auth/signin">
-                <Button variant="contained">Sign in</Button>
-            </Link>
+            <Button
+                variant="contained"
+                href="/api/auth/signin"
+                LinkComponent={Link}
+            >
+                Sign in
+            </Button>
         );
     }
-    if (session) {
+    if (id) {
         links = (
             <AppBarLink
                 pages={pages}
@@ -94,7 +94,9 @@ function ResponsiveAppBar() {
                 >
                     {settings.map((setting) => (
                         <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                            <Button href={`/${setting}`}>{setting}</Button>
+                            <Button href={`/${setting}`} LinkComponent={Link}>
+                                {setting}
+                            </Button>
                         </MenuItem>
                     ))}
                     <MenuItem key="logout" onClick={() => signOut()}>
@@ -106,7 +108,7 @@ function ResponsiveAppBar() {
         alternateLinks = pages.map((page) => (
             <MenuItem key={page} onClick={handleCloseNavMenu} href={`/${page}`}>
                 <Typography textAlign="center">
-                    <Button href={`/${page}/${id}`}>{page}</Button>
+                    {/* <Button href={`/${page}`}>{page}</Button> */}
                 </Typography>
             </MenuItem>
         ));
@@ -117,11 +119,10 @@ function ResponsiveAppBar() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <LocalAtmIcon />
-                    <Typography
-                        variant="h6"
-                        noWrap
+                    <Button
                         component="a"
                         href="/"
+                        LinkComponent={Link}
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -133,7 +134,7 @@ function ResponsiveAppBar() {
                         }}
                     >
                         MintSplit
-                    </Typography>
+                    </Button>
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -171,25 +172,24 @@ function ResponsiveAppBar() {
                             {alternateLinks}
                         </Menu>
                     </Box>
-
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        MintSplit
-                    </Typography>
+                    <Link href="/" passHref>
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'flex', md: 'none' },
+                                flexGrow: 1,
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            MintSplit
+                        </Typography>
+                    </Link>
 
                     {links}
                     {avatar}

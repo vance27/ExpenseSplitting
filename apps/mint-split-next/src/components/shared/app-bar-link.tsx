@@ -1,4 +1,5 @@
 import { Box, Button } from '@mui/material';
+import Link from 'next/link';
 import { ReactElement } from 'react';
 
 function AppBarLink({
@@ -21,9 +22,14 @@ function AppBarLink({
                 <Button
                     variant="outlined"
                     key={page}
+                    sx={{
+                        my: 2,
+                        color: 'secondary.light',
+                        display: 'block',
+                    }}
+                    href={`/${page}`}
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'secondary.light', display: 'block' }}
-                    href={`/${page}/${id}`}
+                    LinkComponent={Link}
                 >
                     {page}
                 </Button>
