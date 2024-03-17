@@ -46,9 +46,6 @@ function ResponsiveAppBar() {
     }
     if (!session) {
         links = (
-            // <Button variant="contained" onClick={() => signIn()}>
-            //     Sign in
-            // </Button>
             <Button
                 variant="contained"
                 href="/api/auth/signin"

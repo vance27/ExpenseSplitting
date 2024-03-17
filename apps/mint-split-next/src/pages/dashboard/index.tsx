@@ -1,8 +1,16 @@
 import { Card, Grid } from '@mui/material';
 import CurrentExpenseSplittingWindow from '../../components/dashboard/current-expense-splitting-window';
 import OwedDisplay from '../../components/dashboard/owed-display';
+import { trpc } from '../../utils/trpc';
 
 function Dashboard() {
+    const banks = trpc.user.getBanks.useQuery();
+
+    const transactions = trpc.plaid.getTransactions.useQuery({
+        access_token: banks?.data?.[0]?.accessToken,
+        cursor: undefined,
+        count: undefined,
+    });
     const userTransactions = [];
     const amountOwed = 0;
 
@@ -24,6 +32,30 @@ function Dashboard() {
                         <CurrentExpenseSplittingWindow
                             transactions={userTransactions}
                         />
+                    </Card>
+                </Grid>
+
+                <Grid item xs={12} md={12}>
+                    <Card variant="outlined">
+                        {transactions.isLoading ? (
+                            <div>Loading...</div>
+                        ) : transactions.error ? (
+                            <div>Error: {transactions.error.message}</div>
+                        ) : (
+                            <div>
+                                <pre>
+                                    {transactions.data?.added.map(
+                                        (transaction) => {
+                                            return JSON.stringify(
+                                                transaction,
+                                                null,
+                                                2
+                                            );
+                                        }
+                                    )}
+                                </pre>
+                            </div>
+                        )}
                     </Card>
                 </Grid>
             </Grid>

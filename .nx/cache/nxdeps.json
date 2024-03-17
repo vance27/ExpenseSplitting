@@ -718,7 +718,7 @@
           },
           {
             "file": "apps/mint-split-next/src/components/app-control/app-bar.tsx",
-            "hash": "2455860010510034127",
+            "hash": "8353984668353106304",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -961,7 +961,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/api/auth/[...nextauth].ts",
-            "hash": "9563306414139683419",
+            "hash": "14393351800432332282",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1268,24 +1268,8 @@
             ]
           },
           {
-            "file": "apps/mint-split-next/src/services/plaid.ts",
-            "hash": "5970977551559714485",
-            "dependencies": [
-              {
-                "source": "mint-split-next",
-                "target": "npm:plaid",
-                "type": "static"
-              },
-              {
-                "source": "mint-split-next",
-                "target": "npm:next-auth",
-                "type": "static"
-              }
-            ]
-          },
-          {
             "file": "apps/mint-split-next/src/server/routers/plaid.ts",
-            "hash": "12541111682446936073",
+            "hash": "6914196001274367990",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1296,7 +1280,7 @@
           },
           {
             "file": "apps/mint-split-next/src/pages/dashboard/index.tsx",
-            "hash": "18282869171355761578",
+            "hash": "3851077901431377774",
             "dependencies": [
               {
                 "source": "mint-split-next",
@@ -1348,6 +1332,28 @@
               {
                 "source": "mint-split-next",
                 "target": "npm:react",
+                "type": "static"
+              }
+            ]
+          },
+          {
+            "file": "apps/mint-split-next/src/services/plaid.config.ts",
+            "hash": "2092021942066057154",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:plaid",
+                "type": "static"
+              }
+            ]
+          },
+          {
+            "file": "apps/mint-split-next/src/services/plaid.service.ts",
+            "hash": "15821931420821239707",
+            "dependencies": [
+              {
+                "source": "mint-split-next",
+                "target": "npm:plaid",
                 "type": "static"
               }
             ]

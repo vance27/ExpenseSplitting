@@ -1,5 +1,10 @@
+import { access } from 'fs';
 import { z } from 'zod';
-import { getLinkToken, exchangePublicToken } from '../../services/plaid';
+import {
+    getLinkToken,
+    exchangePublicToken,
+    transactionsSync,
+} from '../../services/plaid.service';
 import { protectedProcedure, publicProcedure, router } from '../trpc';
 
 export const plaidRouter = router({
@@ -27,5 +32,24 @@ export const plaidRouter = router({
                 bankMetadata,
                 req.ctx.id
             );
+        }),
+    getTransactions: protectedProcedure
+        .input(
+            z
+                .object({
+                    access_token: z.string().optional(),
+                    cursor: z.string().optional(),
+                    count: z.number().optional(),
+                })
+                .passthrough()
+        )
+        .query(async (req) => {
+            const {data} = await transactionsSync(
+                req.input.access_token ?? '',
+                req.input.cursor,
+                req.input.count,
+                undefined
+            );
+            return data;
         }),
 });
