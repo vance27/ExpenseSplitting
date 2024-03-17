@@ -28,6 +28,9 @@
         "paths": {
             "@ExpenseSplitting/mint-split//convert": [
                 "libs/mint-split/convert/src/index.ts"
+            ],
+            "@ExpenseSplitting/mint-split//data": [
+                "libs/mint-split/data/src/index.ts"
             ]
         }
     },
