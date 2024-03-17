@@ -31,6 +31,9 @@
             ],
             "@ExpenseSplitting/mint-split//data": [
                 "libs/mint-split/data/src/index.ts"
+            ],
+            "@ExpenseSplitting/mint-split//ui": [
+                "libs/mint-split/ui/src/index.ts"
             ]
         }
     },

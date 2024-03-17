@@ -31,6 +31,7 @@
     "react-plaid-link": "^3.5.1",
     "tslib": "^2.3.0",
     "zod": "^3.22.4",
+    "@babel/preset-react": "^7.14.5",
     "@nrwl/cypress": "15.9.2",
     "@nrwl/eslint-plugin-nx": "15.9.2",
     "@nrwl/jest": "^15.9.2",
@@ -97,6 +98,9 @@
     ],
     "@ExpenseSplitting/mint-split//data": [
       "libs/mint-split/data/src/index.ts"
+    ],
+    "@ExpenseSplitting/mint-split//ui": [
+      "libs/mint-split/ui/src/index.ts"
     ]
   },
   "nxJsonPlugins": [],
@@ -1713,6 +1717,87 @@
           {
             "file": "libs/mint-split/data/tsconfig.spec.json",
             "hash": "11234809548007883289"
+          }
+        ]
+      }
+    },
+    "mint-split--ui": {
+      "name": "mint-split--ui",
+      "type": "lib",
+      "data": {
+        "name": "mint-split--ui",
+        "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/mint-split/ui/src",
+        "projectType": "library",
+        "tags": [],
+        "targets": {
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json",
+              "{workspaceRoot}/.eslintignore"
+            ],
+            "executor": "@nx/linter:eslint",
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "options": {
+              "lintFilePatterns": [
+                "libs/mint-split/ui/**/*.{ts,tsx,js,jsx}"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "root": "libs/mint-split/ui",
+        "implicitDependencies": [],
+        "files": [
+          {
+            "file": "libs/mint-split/ui/.babelrc",
+            "hash": "12518696695936721075"
+          },
+          {
+            "file": "libs/mint-split/ui/.eslintrc.json",
+            "hash": "16832458989104337543"
+          },
+          {
+            "file": "libs/mint-split/ui/project.json",
+            "hash": "6790164184935096904"
+          },
+          {
+            "file": "libs/mint-split/ui/README.md",
+            "hash": "15837373580952501261"
+          },
+          {
+            "file": "libs/mint-split/ui/src/index.ts",
+            "hash": "14576783204743814682"
+          },
+          {
+            "file": "libs/mint-split/ui/src/lib/mint-split--ui.module.css",
+            "hash": "125145030238681982"
+          },
+          {
+            "file": "libs/mint-split/ui/src/lib/mint-split--ui.spec.tsx",
+            "hash": "8282978240913386368",
+            "dependencies": [
+              {
+                "source": "mint-split--ui",
+                "target": "npm:@testing-library/react",
+                "type": "static"
+              }
+            ]
+          },
+          {
+            "file": "libs/mint-split/ui/src/lib/mint-split--ui.tsx",
+            "hash": "1317133472692069370"
+          },
+          {
+            "file": "libs/mint-split/ui/tsconfig.json",
+            "hash": "17208179364496808815"
+          },
+          {
+            "file": "libs/mint-split/ui/tsconfig.lib.json",
+            "hash": "10490799247650017599"
           }
         ]
       }
@@ -36374,6 +36459,13 @@
         "type": "static"
       }
     ],
-    "mint-split--data": []
+    "mint-split--data": [],
+    "mint-split--ui": [
+      {
+        "source": "mint-split--ui",
+        "target": "npm:@testing-library/react",
+        "type": "static"
+      }
+    ]
   }
 }
